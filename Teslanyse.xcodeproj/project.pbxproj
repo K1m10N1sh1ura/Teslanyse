@@ -11,6 +11,9 @@
 		89F882E42B8A355400C81C85 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882E32B8A355400C81C85 /* ContentView.swift */; };
 		89F882E62B8A355600C81C85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F882E52B8A355600C81C85 /* Assets.xcassets */; };
 		89F882E92B8A355600C81C85 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F882E82B8A355600C81C85 /* Preview Assets.xcassets */; };
+		89F882F02B8A3DA000C81C85 /* PlotDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882EF2B8A3DA000C81C85 /* PlotDataView.swift */; };
+		89F882F22B8A3DB100C81C85 /* PlotDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882F12B8A3DB100C81C85 /* PlotDataViewModel.swift */; };
+		89F882F42B8A3DC800C81C85 /* AppModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882F32B8A3DC800C81C85 /* AppModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,9 @@
 		89F882E32B8A355400C81C85 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		89F882E52B8A355600C81C85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89F882E82B8A355600C81C85 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		89F882EF2B8A3DA000C81C85 /* PlotDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotDataView.swift; sourceTree = "<group>"; };
+		89F882F12B8A3DB100C81C85 /* PlotDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotDataViewModel.swift; sourceTree = "<group>"; };
+		89F882F32B8A3DC800C81C85 /* AppModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +59,9 @@
 			children = (
 				89F882E12B8A355400C81C85 /* TeslanyseApp.swift */,
 				89F882E32B8A355400C81C85 /* ContentView.swift */,
+				89F882EF2B8A3DA000C81C85 /* PlotDataView.swift */,
+				89F882F12B8A3DB100C81C85 /* PlotDataViewModel.swift */,
+				89F882F32B8A3DC800C81C85 /* AppModels.swift */,
 				89F882E52B8A355600C81C85 /* Assets.xcassets */,
 				89F882E72B8A355600C81C85 /* Preview Content */,
 			);
@@ -83,6 +92,8 @@
 			dependencies = (
 			);
 			name = Teslanyse;
+			packageProductDependencies = (
+			);
 			productName = Teslanyse;
 			productReference = 89F882DE2B8A355400C81C85 /* Teslanyse.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +122,9 @@
 				Base,
 			);
 			mainGroup = 89F882D52B8A355400C81C85;
+			packageReferences = (
+				899DA9222B8C05F400495D4E /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = 89F882DF2B8A355400C81C85 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,8 +151,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89F882F42B8A3DC800C81C85 /* AppModels.swift in Sources */,
 				89F882E42B8A355400C81C85 /* ContentView.swift in Sources */,
+				89F882F02B8A3DA000C81C85 /* PlotDataView.swift in Sources */,
 				89F882E22B8A355400C81C85 /* TeslanyseApp.swift in Sources */,
+				89F882F22B8A3DB100C81C85 /* PlotDataViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +361,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		899DA9222B8C05F400495D4E /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 89F882D62B8A355400C81C85 /* Project object */;
 }
