@@ -13,13 +13,14 @@ struct CarSalesView: View {
     @StateObject var plotDataViewModel = PlotDataViewModel()
     @State var carModelToShowIndex = 0
     @State var carSaleStateToShowIndex = 0
-    let carModelToShowOptions = ["Model 3/Y","Model S/X","Total"]
+    let carModelToShowOptions = ["Model 3 and Y","Other Models","Total"]
     let carSaleStateToShowOptions = ["Delivered","Produced"]
 
     var body: some View {
         VStack(alignment: .leading) {
             TitleView(model: carModelToShowOptions[carModelToShowIndex], saleState: carSaleStateToShowOptions[carSaleStateToShowIndex])
             ChartView(plotDataViewModel: plotDataViewModel, modelIndex: carModelToShowIndex, saleStateIndex: carSaleStateToShowIndex)
+                .animation(.smooth)
             Divider()
             Picker("", selection: $carModelToShowIndex) {
                 ForEach(carModelToShowOptions.indices, id: \.self) {
@@ -36,7 +37,7 @@ struct CarSalesView: View {
             }
             .pickerStyle(SegmentedPickerStyle())
             .padding(.horizontal)
-            Spacer()
+            ExportButtonView()
         }
     }
 
@@ -80,30 +81,30 @@ struct CarToggleView: View {
 struct ChartView: View {
     
     @StateObject var plotDataViewModel: PlotDataViewModel
-    
     let modelIndex: Int
     let saleStateIndex: Int
-    
+    let yAxisLabel: String = "Cars"
+
     var body: some View {
-        
+
         Chart(plotDataViewModel.quarters) {quarterData in
             
             switch (modelIndex) {
             case 0:
                 BarMark(x: .value("Quarter", quarterData.date),
-                        y: .value("Revenue", saleStateIndex == 0 ? quarterData.deliveredModel3Y : quarterData.producedModel3Y)
+                        y: .value(yAxisLabel, saleStateIndex == 0 ? quarterData.deliveredModel3Y : quarterData.producedModel3Y)
                 )
             case 1:
                 BarMark(x: .value("Quarter", quarterData.date),
-                        y: .value("Revenue", saleStateIndex == 0 ? quarterData.deliveredOtherModels : quarterData.producedOtherModels)
+                        y: .value(yAxisLabel, saleStateIndex == 0 ? quarterData.deliveredOtherModels : quarterData.producedOtherModels)
                 )
             case 2:
                 BarMark(x: .value("Quarter", quarterData.date),
-                        y: .value("Revenue", saleStateIndex == 0 ? quarterData.deliveredCars : quarterData.producedCars)
+                        y: .value(yAxisLabel, saleStateIndex == 0 ? quarterData.deliveredCars : quarterData.producedCars)
                 )
             default:
                 BarMark(x: .value("Quarter", quarterData.date),
-                        y: .value("Revenue", quarterData.deliveredModel3Y)
+                        y: .value(yAxisLabel, quarterData.deliveredModel3Y)
                 )
             }
 
@@ -111,5 +112,22 @@ struct ChartView: View {
         .frame(maxHeight: 400)
         .padding(.horizontal,20)
         .padding(.bottom,20)
+    }
+}
+
+struct ExportButtonView: View {
+    var body: some View {
+        Button(action: {
+            
+        }, label: {
+            Text("Export Chart")
+                .font(.headline)
+                .foregroundStyle(.white)
+                .frame(height: 55)
+                .frame(maxWidth: .infinity)
+                .background(.blue)
+                .cornerRadius(10.0)
+                .padding()
+        })
     }
 }
