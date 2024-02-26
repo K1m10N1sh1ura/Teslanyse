@@ -23,24 +23,6 @@ struct PlotDataView: View {
             }
             .aspectRatio(1, contentMode: .fit)
             .padding()
-            Chart {
-                ForEach(plotDataViewModel.quarters) {quarter in
-                    LineMark(x: .value("Quarter", quarter.quarter),
-                            y: .value("Revenue", quarter.profit))
-                    .foregroundStyle(.blue)
-                }
-            }
-            .aspectRatio(1, contentMode: .fit)
-            .padding()
-            Chart {
-                ForEach(plotDataViewModel.quarters) {quarter in
-                    LineMark(x: .value("Quarter", quarter.quarter),
-                            y: .value("Revenue", quarter.margin))
-                    .foregroundStyle(.blue)
-                }
-            }
-            .aspectRatio(1, contentMode: .fit)
-            .padding()
         }
         .padding()
     }
