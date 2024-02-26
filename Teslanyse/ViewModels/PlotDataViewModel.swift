@@ -14,7 +14,6 @@ class PlotDataViewModel: ObservableObject {
     init() {
         Task {
             guard let dataDict = try? await fetchData() else {
-                print("[Error] Data dict seems to be empty")
                 return
             }
             quarters = extractQuarterData(from: dataDict)
@@ -31,20 +30,31 @@ class PlotDataViewModel: ObservableObject {
             let revenue = dataDictionary.revenue[String(i)]!
             let carRevenue = dataDictionary.carRevenue[String(i)]!
             let carCostOfRevenue = dataDictionary.carCostOfRevenue[String(i)]!
-            let carNumCars = dataDictionary.carNumCars[String(i)]!
+            let producedCars = dataDictionary.producedCars[String(i)]!
+            let deliveredCars = dataDictionary.deliveredCars[String(i)]!
             let energyRevenue = dataDictionary.energyRevenue[String(i)]!
             let energyCostOfRevenue = dataDictionary.energyCostOfRevenue[String(i)]!
             let energyStorage = dataDictionary.energyStorage[String(i)]!
+            let deliveriesModel3Y = dataDictionary.deliveredModel3Y[String(i)]!
+            let deliveriesOtherModels = dataDictionary.deliveredOtherModels[String(i)]!
+            let productionModel3Y = dataDictionary.producedModel3Y[String(i)]!
+            let productionOtherModels = dataDictionary.producedOtherModels[String(i)]!
 
             let quarterDatum = QuarterData(quarter: quarter,
-                                          revenue: revenue,
-                                          profit: profit,
-                                          carRevenue: carRevenue,
-                                          carCostOfRevenue: carCostOfRevenue,
-                                          carNumCars: carNumCars,
-                                          energyRevenue: energyRevenue,
-                                          energyCostOfRevenue: energyCostOfRevenue,
-                                          energyStorage: energyStorage)
+                                           revenue: revenue,
+                                           profit: profit,
+                                           carRevenue: carRevenue,
+                                           carCostOfRevenue: carCostOfRevenue,
+                                           deliveredCars: deliveredCars,
+                                           producedCars: producedCars,
+                                           energyRevenue: energyRevenue,
+                                           energyCostOfRevenue: energyCostOfRevenue,
+                                           energyStorage: energyStorage,
+                                           deliveredModel3Y: deliveriesModel3Y,
+                                           deliveredOtherModels: deliveriesOtherModels,
+                                           producedModel3Y: productionModel3Y,
+                                           producedOtherModels: productionOtherModels)
+                                          
             
             quarterData.append(quarterDatum)
         }

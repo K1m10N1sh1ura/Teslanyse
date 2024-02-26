@@ -12,9 +12,14 @@ struct TeslaDataModel: Codable {
     var profit: [String:Int] = [:]
     var revenue: [String:Int] = [:]
     var carRevenue: [String:Int] = [:]
-    var carCostOfRevenue: [String:Int] = [:]
-    var carNumCars: [String:Int] = [:]
+    var deliveredModel3Y: [String:Int] = [:]
+    var deliveredOtherModels: [String:Int] = [:]
+    var producedModel3Y: [String:Int] = [:]
+    var producedOtherModels: [String:Int] = [:]
+    var deliveredCars: [String:Int] = [:]
+    var producedCars: [String:Int] = [:]
     var energyRevenue: [String:Int] = [:]
+    var carCostOfRevenue: [String:Int] = [:]
     var energyCostOfRevenue: [String:Int] = [:]
     var energyStorage: [String:Int] = [:]
 }
@@ -26,10 +31,15 @@ struct QuarterData: Identifiable {
     let profit: Int
     let carRevenue: Int
     let carCostOfRevenue: Int
-    let carNumCars: Int
+    let deliveredCars: Int
+    let producedCars: Int
     let energyRevenue: Int
     let energyCostOfRevenue: Int
     let energyStorage: Int
+    let deliveredModel3Y: Int
+    let deliveredOtherModels: Int
+    let producedModel3Y: Int
+    let producedOtherModels: Int
     
     var margin: Double {
         return Double(profit) / Double(revenue)
@@ -44,3 +54,12 @@ struct QuarterData: Identifiable {
     
 }
 
+enum TeslaModel {
+    case model3Y
+    case otherModels
+}
+
+enum TeslaSaleState {
+    case produced
+    case delivered
+}
