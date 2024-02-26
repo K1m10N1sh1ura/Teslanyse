@@ -18,9 +18,6 @@ class PlotDataViewModel: ObservableObject {
                 return
             }
             quarters = extractQuarterData(from: dataDict)
-            for quarter in quarters {
-                print(quarter.margin)
-            }
         }
     }
     

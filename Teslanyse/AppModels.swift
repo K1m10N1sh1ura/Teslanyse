@@ -32,7 +32,15 @@ struct QuarterData: Identifiable {
     let energyStorage: Int
     
     var margin: Double {
-        Double(profit) / Double(revenue)
+        return Double(profit) / Double(revenue)
     }
+    
+    var date: Date {
+        // Convert quarter string to Date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "'Q'q yyyy"
+        return dateFormatter.date(from: quarter) ?? Date()
+    }
+    
 }
 

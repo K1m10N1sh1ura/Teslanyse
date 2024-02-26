@@ -13,18 +13,13 @@ struct PlotDataView: View {
     @StateObject var plotDataViewModel = PlotDataViewModel()
 
     var body: some View {
-        ScrollView {
-            Chart {
-                ForEach(plotDataViewModel.quarters) {quarter in
-                    BarMark(x: .value("Quarter", quarter.quarter),
-                            y: .value("Revenue", quarter.revenue))
-                    .foregroundStyle(.blue)
-                }
+            Chart(plotDataViewModel.quarters) {quarterData in
+                BarMark(x: .value("Quarter", quarterData.date),
+                        y: .value("Revenue", quarterData.revenue))
+                //.foregroundStyle(.blue)
             }
-            .aspectRatio(1, contentMode: .fit)
             .padding()
-        }
-        .padding()
+            .navigationTitle("Revenue")
     }
 }
 
