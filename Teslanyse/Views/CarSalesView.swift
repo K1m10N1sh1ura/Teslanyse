@@ -11,28 +11,27 @@ import Charts
 struct CarSalesView: View {
 
     @StateObject var plotDataViewModel = PlotDataViewModel()
-    @State var carModelToShowIndex = 0
-    @State var carSaleStateToShowIndex = 0
-    let carModelToShowOptions = ["Model 3 and Y","Other Models","Total"]
-    let carSaleStateToShowOptions = ["Delivered","Produced"]
+    @State var selectedModel = TeslaModel.model3Y
+    @State var selectedCarSaleState = TeslaSaleState.produced
+
 
     var body: some View {
         VStack(alignment: .leading) {
-            TitleView(model: carModelToShowOptions[carModelToShowIndex], saleState: carSaleStateToShowOptions[carSaleStateToShowIndex])
-            ChartView(plotDataViewModel: plotDataViewModel, modelIndex: carModelToShowIndex, saleStateIndex: carSaleStateToShowIndex)
+            TitleView(model: selectedModel.description, saleState: selectedCarSaleState.description)
+            ChartView(plotDataViewModel: plotDataViewModel, model: selectedModel, saleState: selectedCarSaleState)
                 .animation(.smooth)
             Divider()
-            Picker("", selection: $carModelToShowIndex) {
-                ForEach(carModelToShowOptions.indices, id: \.self) {
-                    Text(self.carModelToShowOptions[$0])
+            Picker("Select a Tesla Model", selection: $selectedModel) {
+                ForEach(TeslaModel.allCases, id: \.self) { model in
+                    Text(model.description)
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
             .padding(.horizontal)
             Divider()
-            Picker("", selection: $carSaleStateToShowIndex) {
-                ForEach(carSaleStateToShowOptions.indices, id: \.self) {
-                    Text(self.carSaleStateToShowOptions[$0])
+            Picker("Select sale state", selection: $selectedCarSaleState) {
+                ForEach(TeslaSaleState.allCases, id: \.self) { saleState in
+                    Text(saleState.description)
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
@@ -81,35 +80,30 @@ struct CarToggleView: View {
 struct ChartView: View {
     
     @StateObject var plotDataViewModel: PlotDataViewModel
-    let modelIndex: Int
-    let saleStateIndex: Int
+    let model: TeslaModel
+    let saleState: TeslaSaleState
     let yAxisLabel: String = "Cars"
 
     var body: some View {
 
         Chart(plotDataViewModel.quarters) {quarterData in
             
-            switch (modelIndex) {
-            case 0:
+            switch (model) {
+            case .model3Y:
                 BarMark(x: .value("Quarter", quarterData.date),
-                        y: .value(yAxisLabel, saleStateIndex == 0 ? quarterData.deliveredModel3Y : quarterData.producedModel3Y)
+                        y: .value(yAxisLabel, saleState == .delivered ? quarterData.deliveredModel3Y : quarterData.producedModel3Y)
                 )
-            case 1:
+            case .otherModels:
                 BarMark(x: .value("Quarter", quarterData.date),
-                        y: .value(yAxisLabel, saleStateIndex == 0 ? quarterData.deliveredOtherModels : quarterData.producedOtherModels)
+                        y: .value(yAxisLabel, saleState == .delivered ? quarterData.deliveredOtherModels : quarterData.producedOtherModels)
                 )
-            case 2:
+            case .allModels:
                 BarMark(x: .value("Quarter", quarterData.date),
-                        y: .value(yAxisLabel, saleStateIndex == 0 ? quarterData.deliveredCars : quarterData.producedCars)
-                )
-            default:
-                BarMark(x: .value("Quarter", quarterData.date),
-                        y: .value(yAxisLabel, quarterData.deliveredModel3Y)
+                        y: .value(yAxisLabel, saleState == .delivered ? quarterData.deliveredCars : quarterData.producedCars)
                 )
             }
-
         }
-        .frame(maxHeight: 400)
+        .frame(maxHeight: 300)
         .padding(.horizontal,20)
         .padding(.bottom,20)
     }

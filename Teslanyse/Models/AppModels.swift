@@ -54,12 +54,32 @@ struct QuarterData: Identifiable {
     
 }
 
-enum TeslaModel {
+enum TeslaModel: CaseIterable {
     case model3Y
     case otherModels
+    case allModels
+    
+    var description: String {
+        switch self {
+        case .model3Y:
+            return "Model 3/Y"
+        case .otherModels:
+            return "Other models"
+        case .allModels:
+            return "Total"
+        }
+    }
 }
 
-enum TeslaSaleState {
+enum TeslaSaleState: CaseIterable {
     case produced
     case delivered
+    var description: String {
+        switch self {
+        case .produced:
+            return "Produced"
+        case .delivered:
+            return "Delivered"
+        }
+    }
 }
