@@ -1,21 +1,24 @@
 //
-//  EnergySalesView.swift
+//  EnergyFinancialsView.swift
 //  Teslanyse
 //
-//  Created by Kimio Nishiura on 27.02.24.
+//  Created by Kimio Nishiura on 28.02.24.
 //
 
 import SwiftUI
 import Charts
 
-struct EnergySalesView: View {
+struct EnergyFinancialsView: View {
     
     @StateObject var plotDataViewModel: PlotDataViewModel
+    var subtitle: String {
+        "Storage in Wh"
+    }
     
     var body: some View {
         VStack {
-            TitleView(title: "Energy Sales")
-            SubtitleView(subtitle: "Storage in Wh")
+            TitleView(title: "Energy Finacials")
+            SubtitleView(subtitle: subtitle)
             Chart(plotDataViewModel.quarters) { quarter in
                 BarMark(x: .value("", quarter.date),
                         y: .value("", quarter.energyStorage))
@@ -27,6 +30,7 @@ struct EnergySalesView: View {
 
 #Preview {
     NavigationStack {
-        EnergySalesView(plotDataViewModel: plotDataViewModel)
+        EnergyFinancialsView(plotDataViewModel: plotDataViewModel)
+
     }
 }

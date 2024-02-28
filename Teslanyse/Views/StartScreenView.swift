@@ -20,22 +20,26 @@ struct StartScreenView: View {
             }
             Section("Automotive") {
                 NavigationLink(destination: AutomotiveSalesView(plotDataViewModel: plotDataViewModel)) {
-                    Label("Car Sales", systemImage: "car.side")
+                    Label("Sales", systemImage: "car.side")
                 }
-                NavigationLink(destination: EnergySalesView()) {
-                    Label("Automotive Business", systemImage: "bolt.batteryblock")
+                NavigationLink(destination: AutomotiveFinancialsView(plotDataViewModel: plotDataViewModel)) {
+                    Label("Financials", systemImage: "dollarsign.square")
                 }
             }
             Section("Energy") {
-                NavigationLink(destination: EnergySalesView()) {
-                    Label("Deployed Storage", systemImage: "bolt.batteryblock")
+                NavigationLink(destination: EnergySalesView(plotDataViewModel:plotDataViewModel)) {
+                    Label("Storage", systemImage: "bolt.batteryblock")
                 }
-                NavigationLink(destination: EnergySalesView()) {
-                    Label("Energy Business", systemImage: "bolt.batteryblock")
+                NavigationLink(destination: Text("")) {
+                    Label("Financials", systemImage: "dollarsign.square")
                 }
             }
+            Section("Comparison") {
+                Label("Quarters", systemImage: "clock.arrow.2.circlepath")
+                Label("Other manufacturers", systemImage: "car.2.fill")
+            }
         }
-        .navigationTitle("Menu")
+        .navigationTitle("Tesla Analytics")
     }
 }
 

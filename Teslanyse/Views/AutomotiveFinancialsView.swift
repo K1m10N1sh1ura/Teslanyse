@@ -19,9 +19,9 @@ struct AutomotiveFinancialsView: View {
     var body: some View {
         VStack (alignment: .leading) {
             TitleView(title: "Financials")
-                .padding(.top, 40)
             SubtitleView(subtitle: subtitle)
             AutomotiveFinancialsChartView(plotDataViewModel: plotDataViewModel, selection: selection)
+            CarSalesSubView(title: "Select metric")
             PickerAutomotiveFinancialsView(selection: $selection)
             ExportButtonView()
         }
@@ -41,14 +41,12 @@ struct PickerAutomotiveFinancialsView: View {
     @Binding var selection: AutomotiveFinancialDataOption
     
     var body: some View {
-        Form {
-            Picker("Data", selection: $selection) {
-                ForEach(AutomotiveFinancialDataOption.allCases, id: \.self) {
-                    Text($0.description)
-                }
+        Picker("", selection: $selection) {
+            ForEach(AutomotiveFinancialDataOption.allCases, id: \.self) {
+                Text($0.description)
             }
-            .pickerStyle(.menu)
         }
+        .pickerStyle(.wheel)
     }
 }
 

@@ -22,7 +22,7 @@ struct AutomotiveSalesView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            TitleView(title: "Car Sales")
+            TitleView(title: "Automotive Sales")
             SubtitleView(subtitle: subtitle)
             ProductionAndDeliveriesChartView(plotDataViewModel: plotDataViewModel, model: selectedModel, saleState: selectedCarSaleState)
                 //.animation(.smooth)
