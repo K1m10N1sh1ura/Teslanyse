@@ -50,8 +50,17 @@ struct QuarterData: Identifiable {
     var automotiveMargin: Double {
         return Double(automotiveProfit) / Double(carRevenue)
     }
-    var costOfGoodsSold: Int {
+    var energyProfit: Int {
+        return energyRevenue - energyCostOfRevenue
+    }
+    var energyMargin: Double {
+        return Double(energyProfit) / Double(energyRevenue)
+    }
+    var automotiveCostOfGoodsSold: Int {
         return Int(Double(carCostOfRevenue) / Double(producedCars))
+    }
+    var energyCostOfGoodsSold: Int {
+        return Int(Double(energyCostOfRevenue*1000000) / Double(energyStorage))
     }
     var date: Date {
         // Convert quarter string to Date
@@ -95,9 +104,9 @@ enum TeslaSaleState: CaseIterable {
 
 enum FinancialDataOption: CaseIterable {
     case revenue
-    case costOfRevenue
     case profit
     case grossGAAPMargin
+//  case costOfRevenue
 //    case operatingExpenses
 //    case incomeFromOperations
 //    case adjustedEBITDA
@@ -118,8 +127,7 @@ enum FinancialDataOption: CaseIterable {
         switch self {
         case .revenue:
             return "Revenue"
-        case .costOfRevenue:
-            return "Cost of revenue"
+
         case .profit:
             return "Profit"
         case .grossGAAPMargin:
@@ -163,4 +171,19 @@ enum EnergyFinancialDataOption: CaseIterable {
     case profit
     case margin
     case cogs
+    
+    var description: String {
+        switch self {
+        case .revenue:
+            return "Revenue"
+        case .costOfRevenue:
+            return "Cost of revenue"
+        case .profit:
+            return "Profit"
+        case .margin:
+            return "Margin"
+        case .cogs:
+            return "Cost of goods sold"
+        }
+    }
 }

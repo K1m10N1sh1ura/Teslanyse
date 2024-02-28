@@ -14,7 +14,7 @@ struct StartScreenView: View {
     var body: some View {
         List {
             Section("Total") {
-                NavigationLink(destination: FinancialDataView()) {
+                NavigationLink(destination: FinancialDataView(plotDataViewModel: plotDataViewModel)) {
                     Label("Financials", systemImage: "dollarsign.square")
                 }
             }
@@ -30,7 +30,7 @@ struct StartScreenView: View {
                 NavigationLink(destination: EnergySalesView(plotDataViewModel:plotDataViewModel)) {
                     Label("Storage", systemImage: "bolt.batteryblock")
                 }
-                NavigationLink(destination: Text("")) {
+                NavigationLink(destination: EnergyFinancialsView(plotDataViewModel: plotDataViewModel)) {
                     Label("Financials", systemImage: "dollarsign.square")
                 }
             }

@@ -56,7 +56,7 @@ struct AutomotiveFinancialsChartView: View {
     @StateObject var plotDataViewModel: PlotDataViewModel
     @State var rawSelectedDate: Date? = nil
     let selection: AutomotiveFinancialDataOption
-    let yAxisLabel: String = "Cars"
+    let yAxisLabel: String = "$"
 
     var body: some View {
         
@@ -71,7 +71,7 @@ struct AutomotiveFinancialsChartView: View {
                         y: .value(yAxisLabel, quarterData.automotiveProfit))
             case .cogs:
                 BarMark(x: .value("Quarter", quarterData.date),
-                        y: .value(yAxisLabel, quarterData.costOfGoodsSold))
+                        y: .value(yAxisLabel, quarterData.automotiveCostOfGoodsSold))
             case .margin:
                 BarMark(x: .value("Quarter", quarterData.date),
                         y: .value(yAxisLabel, quarterData.automotiveMargin))
