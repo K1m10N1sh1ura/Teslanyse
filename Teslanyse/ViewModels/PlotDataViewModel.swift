@@ -61,6 +61,49 @@ class PlotDataViewModel: ObservableObject {
         return quarterData
     }
     
+    func extractQuarters () -> [Date] {
+        var data = [Date]()
+
+        for quarter in quarters {
+            data.append(quarter.date)
+        }
+        return data
+    }
+    
+    func extractData(property: String) -> [Int] {
+        var data = [Int]()
+        
+        switch (property) {
+        case "deliveredModel3Y":
+            for quarter in quarters {
+                data.append(quarter.deliveredModel3Y)
+            }
+        case "producedModel3Y":
+            for quarter in quarters {
+                data.append(quarter.producedModel3Y)
+            }
+        case "deliveredOtherModels":
+            for quarter in quarters {
+                data.append(quarter.deliveredOtherModels)
+            }
+        case "producedOtherModels":
+            for quarter in quarters {
+                data.append(quarter.producedOtherModels)
+            }
+        case "deliveredCars":
+            for quarter in quarters {
+                data.append(quarter.deliveredCars)
+            }
+        case "producedCars":
+            for quarter in quarters {
+                data.append(quarter.producedCars)
+            }
+        default:
+            data = []
+        }
+        return data
+    }
+    
     func fetchData() async throws -> TeslaDataModel? {
         let endpoint = "http://127.0.0.1:5000/quartalszahlen"
         guard let url = URL(string: endpoint) else {
