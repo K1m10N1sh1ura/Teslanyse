@@ -189,6 +189,20 @@ enum AutomotiveFinancialDataOption: CaseIterable {
     }
 }
 
+enum EnergyOptions: CaseIterable {
+    case storageDeployed
+    case solarDeployed
+    
+    var description: String {
+        switch self {
+        case .storageDeployed:
+            return "Storage"
+        case .solarDeployed:
+            return "Solar"
+        }
+    }
+}
+
 enum EnergyFinancialDataOption: CaseIterable {
     case revenue
     case costOfRevenue

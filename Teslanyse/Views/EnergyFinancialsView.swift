@@ -20,6 +20,7 @@ struct EnergyFinancialsView: View {
         plotDataViewModel.quarters.count
     }
     
+    
     var body: some View {
 
         VStack (alignment: .leading) {
@@ -29,6 +30,7 @@ struct EnergyFinancialsView: View {
             EnergyFinancialsPickerView(selection: $selection)
             ExportButtonView()
         }
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
@@ -53,11 +55,28 @@ struct EnergyFinancialsPickerView: View {
 struct EnergyFinancialsChartView: View {
     @StateObject var plotDataViewModel: PlotDataViewModel
     @State var rawSelectedDate: Date? = nil
+    @Environment (\.calendar) var calendar
     let selection: EnergyFinancialDataOption
     let yAxisLabel: String = "$"
     var countBarMarks: Int {
         plotDataViewModel.quarters.count
     }
+    var selectedDateValue: Int? {
+        if let rawSelectedDate {
+            let quarter = plotDataViewModel.quarters.first {
+                let startOfQuarter = $0.date
+                let endOfQuarter = calendar.date(byAdding: .quarter, value: 1, to: startOfQuarter) ?? Date()
+                return (startOfQuarter...endOfQuarter).contains(rawSelectedDate)
+            }
+            print(quarter?.date)
+            return nil
+        }
+        else {
+            return nil
+        }
+    }
+    
+    
     var body: some View {
         let xData = plotDataViewModel.extractQuarters()
         let yData: [Double]
@@ -101,7 +120,7 @@ struct EnergyFinancialsChartView: View {
         if let rawSelectedDate {
             VStack {
                 Text(rawSelectedDate.formatted(.dateTime.year().quarter()))
-                Text("$: 999.999")
+                Text("")
             }
             .padding(6)
             .background {

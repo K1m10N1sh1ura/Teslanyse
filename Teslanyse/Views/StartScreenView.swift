@@ -20,7 +20,16 @@ struct StartScreenView: View {
             }
             Section("Automotive") {
                 NavigationLink(destination: AutomotiveSalesView(plotDataViewModel: plotDataViewModel)) {
-                    Label("Sales", systemImage: "car.side")
+                    Label("Global sales", systemImage: "car.side")
+                }
+                NavigationLink(destination: AutomotiveSalesView(plotDataViewModel: plotDataViewModel)) {
+                    Label("China sales 🇨🇳", systemImage: "car.fill")
+                }
+                NavigationLink(destination: AutomotiveSalesView(plotDataViewModel: plotDataViewModel)) {
+                    Label("Europe sales 🇪🇺", systemImage: "car.fill")
+                }
+                NavigationLink(destination: AutomotiveSalesView(plotDataViewModel: plotDataViewModel)) {
+                    Label("US sales 🇺🇸", systemImage: "car.fill")
                 }
                 NavigationLink(destination: AutomotiveFinancialsView(plotDataViewModel: plotDataViewModel)) {
                     Label("Financials", systemImage: "dollarsign.square")
@@ -34,6 +43,7 @@ struct StartScreenView: View {
                     Label("Financials", systemImage: "dollarsign.square")
                 }
             }
+
             Section("Comparison") {
                 Label("Quarters", systemImage: "clock.arrow.2.circlepath")
                 Label("Other manufacturers", systemImage: "car.2.fill")

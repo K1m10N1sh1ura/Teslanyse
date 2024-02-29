@@ -44,6 +44,7 @@ struct AutomotiveSalesView: View {
             Divider()
             ExportButtonView()
         }
+        .navigationBarTitleDisplayMode(.inline)
     }
 
 }
@@ -141,9 +142,7 @@ struct ProductionAndDeliveriesChartView: View {
             }
         }
         .chartXSelection(value: $rawSelectedDate)
-        .frame(maxHeight: 300)
-        .padding(.horizontal,20)
-        .padding(.bottom,20)
+        .padding(.horizontal)
     }
     
     @ViewBuilder

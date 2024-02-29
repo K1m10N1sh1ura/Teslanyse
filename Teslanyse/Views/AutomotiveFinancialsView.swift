@@ -21,11 +21,14 @@ struct AutomotiveFinancialsView: View {
             TitleView(title: "Financials")
             SubtitleView(subtitle: subtitle)
             AutomotiveFinancialsChartView(plotDataViewModel: plotDataViewModel, selection: selection)
+            Divider()
             CarSalesSubView(title: "Select metric")
+            Divider()
             PickerAutomotiveFinancialsView(selection: $selection)
             ExportButtonView()
+            Spacer()
         }
-        
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
@@ -94,9 +97,7 @@ struct AutomotiveFinancialsChartView: View {
             }
         }
         .chartXSelection(value: $rawSelectedDate)
-        .frame(maxHeight: 300)
-        .padding(.horizontal,20)
-        .padding(.bottom,20)
+        .padding(.horizontal)
     }
     
     @ViewBuilder

@@ -17,9 +17,11 @@ struct FinancialDataView: View {
             TitleView(title: "Financials")
             SubtitleView(subtitle: "Summary")
             FinancialsChartView(plotDataViewModel: plotDataViewModel, selection: $selection)
+                .padding(.horizontal)
             FinancialsPickerView(selection: $selection)
             ExportButtonView()
         }
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
