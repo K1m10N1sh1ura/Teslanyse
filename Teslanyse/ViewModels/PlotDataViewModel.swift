@@ -16,7 +16,9 @@ class PlotDataViewModel: ObservableObject {
             guard let dataDict = try? await fetchData() else {
                 return
             }
-            quarters = extractQuarterData(from: dataDict)
+            DispatchQueue.main.async {
+                self.quarters = self.extractQuarterData(from: dataDict)
+            }
         }
     }
     
@@ -105,7 +107,7 @@ class PlotDataViewModel: ObservableObject {
     }
     
     func fetchData() async throws -> TeslaDataModel? {
-        let endpoint = "http://127.0.0.1:5000/quartalszahlen"
+        let endpoint = "http://192.168.178.20:5001/quartalszahlen"
         guard let url = URL(string: endpoint) else {
             print("[ERROR] invalid url")
             return nil

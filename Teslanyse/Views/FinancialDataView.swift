@@ -28,14 +28,16 @@ struct FinancialDataView: View {
     }
 }
 
+
 struct FinancialsChartView: View {
     @StateObject var plotDataViewModel: PlotDataViewModel
     @Binding var selection: FinancialDataOption
     let yAxisLabel = "$"
-    
+    let x = [1,2,3]
+    let y = [1,2,1]
     var body: some View {
         Chart(plotDataViewModel.quarters) {quarterData in
-            
+
             switch (selection) {
             case .revenue:
                 BarMark(x: .value("Quarter", quarterData.date),
