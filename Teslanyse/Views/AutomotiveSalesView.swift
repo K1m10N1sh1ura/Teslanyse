@@ -8,9 +8,6 @@
 import SwiftUI
 import Charts
 
-// Only used for preview
-var plotDataViewModel = PlotDataViewModel()
-
 struct AutomotiveSalesView: View {
 
     @StateObject var plotDataViewModel: PlotDataViewModel
@@ -22,7 +19,7 @@ struct AutomotiveSalesView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            TitleView(title: "Car Sales")
+            TitleView(title: "Automotive Sales")
             SubtitleView(subtitle: subtitle)
             ProductionAndDeliveriesChartView(plotDataViewModel: plotDataViewModel, model: selectedModel, saleState: selectedCarSaleState)
                 //.animation(.smooth)
@@ -47,6 +44,7 @@ struct AutomotiveSalesView: View {
             Divider()
             ExportButtonView()
         }
+        .navigationBarTitleDisplayMode(.inline)
     }
 
 }
@@ -104,32 +102,33 @@ struct ProductionAndDeliveriesChartView: View {
     let model: TeslaModel
     let saleState: TeslaSaleState
     let yAxisLabel: String = "Cars"
-
+    var countBarMarks: Int {
+        plotDataViewModel.quarters.count
+    }
+    
     var body: some View {
         
-        Chart(plotDataViewModel.quarters) {quarterData in
-
-            switch (model, saleState) {
-            case (.model3Y, .delivered):
-                BarMark(x: .value("Quarter", quarterData.date),
-                        y: .value(yAxisLabel, quarterData.deliveredModel3Y))
-            case (.model3Y, .produced):
-                BarMark(x: .value("Quarter", quarterData.date),
-                        y: .value(yAxisLabel, quarterData.producedModel3Y))
-            case (.otherModels, .delivered):
-                BarMark(x: .value("Quarter", quarterData.date),
-                        y: .value(yAxisLabel, quarterData.deliveredOtherModels))
-            case (.otherModels, .produced):
-                BarMark(x: .value("Quarter", quarterData.date),
-                        y: .value(yAxisLabel, quarterData.producedOtherModels))
-            case (.allModels, .delivered):
-                BarMark(x: .value("Quarter", quarterData.date),
-                        y: .value(yAxisLabel, quarterData.deliveredCars))
-            case (.allModels, .produced):
-                BarMark(x: .value("Quarter", quarterData.date),
-                        y: .value(yAxisLabel, quarterData.producedCars))
-            }
-            
+        let xData = plotDataViewModel.extractQuarters()
+        let yData: [Double]
+        
+        switch (model, saleState) {
+        case (.model3Y, .delivered):
+            yData = plotDataViewModel.extractData(property: .deliveredModel3Y)
+        case (.model3Y, .produced):
+            yData = plotDataViewModel.extractData(property: .producedModel3Y)
+        case (.otherModels, .delivered):
+            yData = plotDataViewModel.extractData(property: .deliveredOtherModels)
+        case (.otherModels, .produced):
+            yData = plotDataViewModel.extractData(property: .producedOtherModels)
+        case (.allModels, .delivered):
+            yData = plotDataViewModel.extractData(property: .deliveredCars)
+        case (.allModels, .produced):
+            yData = plotDataViewModel.extractData(property: .producedCars)
+        }
+                
+        return Chart(0..<countBarMarks, id: \.self) {index in
+                BarMark(x: .value("Quarter", xData[index]),
+                        y: .value(yAxisLabel, yData[index]))
             if let rawSelectedDate {
                 BarMark(x: .value("Value", rawSelectedDate, unit: .weekOfYear))
                     .foregroundStyle(.gray)
@@ -137,22 +136,21 @@ struct ProductionAndDeliveriesChartView: View {
                     .annotation(position: .top,
                                 spacing: 0,
                                 overflowResolution: .init(x: .fit(to: .chart), y: .disabled)) {
-                        selectionPopover(quarterData: quarterData)
-                }
+                        selectionPopover()
+
+                    }
             }
         }
         .chartXSelection(value: $rawSelectedDate)
-        .frame(maxHeight: 300)
-        .padding(.horizontal,20)
-        .padding(.bottom,20)
+        .padding(.horizontal)
     }
     
     @ViewBuilder
-    func selectionPopover(quarterData: QuarterData) -> some View {
+    func selectionPopover() -> some View {
         if let rawSelectedDate {
             VStack {
                 Text(rawSelectedDate.formatted(.dateTime.year().quarter()))
-                Text("Cars: \(saleState == .delivered ? quarterData.deliveredCars : quarterData.producedCars)")
+                Text("Cars: 999.999")
             }
             .padding(6)
             .background {

@@ -12,6 +12,7 @@
 		893C58D62B8D628900734A71 /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C58D52B8D628900734A71 /* StartScreenView.swift */; };
 		893C58D82B8D62A700734A71 /* EnergySalesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C58D72B8D62A700734A71 /* EnergySalesView.swift */; };
 		893C58DC2B8F8B1600734A71 /* AutomotiveFinancialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C58DB2B8F8B1600734A71 /* AutomotiveFinancialsView.swift */; };
+		893C58DE2B8FC42300734A71 /* EnergyFinancialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C58DD2B8FC42300734A71 /* EnergyFinancialsView.swift */; };
 		89F882E22B8A355400C81C85 /* TeslanyseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882E12B8A355400C81C85 /* TeslanyseApp.swift */; };
 		89F882E42B8A355400C81C85 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882E32B8A355400C81C85 /* ContentView.swift */; };
 		89F882E62B8A355600C81C85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F882E52B8A355600C81C85 /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 		893C58D52B8D628900734A71 /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
 		893C58D72B8D62A700734A71 /* EnergySalesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergySalesView.swift; sourceTree = "<group>"; };
 		893C58DB2B8F8B1600734A71 /* AutomotiveFinancialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomotiveFinancialsView.swift; sourceTree = "<group>"; };
+		893C58DD2B8FC42300734A71 /* EnergyFinancialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyFinancialsView.swift; sourceTree = "<group>"; };
 		89F882DE2B8A355400C81C85 /* Teslanyse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teslanyse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F882E12B8A355400C81C85 /* TeslanyseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslanyseApp.swift; sourceTree = "<group>"; };
 		89F882E32B8A355400C81C85 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				893C58D52B8D628900734A71 /* StartScreenView.swift */,
 				893C58D72B8D62A700734A71 /* EnergySalesView.swift */,
 				893C58DB2B8F8B1600734A71 /* AutomotiveFinancialsView.swift */,
+				893C58DD2B8FC42300734A71 /* EnergyFinancialsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89F882F42B8A3DC800C81C85 /* AppModels.swift in Sources */,
+				893C58DE2B8FC42300734A71 /* EnergyFinancialsView.swift in Sources */,
 				893C58D62B8D628900734A71 /* StartScreenView.swift in Sources */,
 				893C58D82B8D62A700734A71 /* EnergySalesView.swift in Sources */,
 				89F882E42B8A355400C81C85 /* ContentView.swift in Sources */,

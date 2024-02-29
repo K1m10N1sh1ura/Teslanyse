@@ -1,5 +1,5 @@
 //
-//  AutomotiveFinancialsView.swift
+//  EnergyFinancialsView.swift
 //  Teslanyse
 //
 //  Created by Kimio Nishiura on 28.02.24.
@@ -8,25 +8,27 @@
 import SwiftUI
 import Charts
 
-struct AutomotiveFinancialsView: View {
+struct EnergyFinancialsView: View {
     
     @StateObject var plotDataViewModel: PlotDataViewModel
-    @State var selection = AutomotiveFinancialDataOption.revenue
+    @State var selection: EnergyFinancialDataOption = .revenue
     var subtitle: String {
-        "Automotive - \(selection.description)"
+        "Energy - \(selection.description)"
+    }
+    let yAxisLabel: String = "$"
+    var countBarMarks: Int {
+        plotDataViewModel.quarters.count
     }
     
+    
     var body: some View {
+
         VStack (alignment: .leading) {
             TitleView(title: "Financials")
             SubtitleView(subtitle: subtitle)
-            AutomotiveFinancialsChartView(plotDataViewModel: plotDataViewModel, selection: selection)
-            Divider()
-            CarSalesSubView(title: "Select metric")
-            Divider()
-            PickerAutomotiveFinancialsView(selection: $selection)
+            EnergyFinancialsChartView(plotDataViewModel: plotDataViewModel, selection: selection)
+            EnergyFinancialsPickerView(selection: $selection)
             ExportButtonView()
-            Spacer()
         }
         .navigationBarTitleDisplayMode(.inline)
     }
@@ -34,18 +36,15 @@ struct AutomotiveFinancialsView: View {
 
 #Preview {
     NavigationStack {
-        AutomotiveFinancialsView(plotDataViewModel: plotDataViewModel)
+        EnergyFinancialsView(plotDataViewModel: plotDataViewModel)
     }
 }
 
-
-struct PickerAutomotiveFinancialsView: View {
-    
-    @Binding var selection: AutomotiveFinancialDataOption
-    
+struct EnergyFinancialsPickerView: View {
+    @Binding var selection: EnergyFinancialDataOption
     var body: some View {
         Picker("", selection: $selection) {
-            ForEach(AutomotiveFinancialDataOption.allCases, id: \.self) {
+            ForEach(EnergyFinancialDataOption.allCases, id: \.self) {
                 Text($0.description)
             }
         }
@@ -53,16 +52,30 @@ struct PickerAutomotiveFinancialsView: View {
     }
 }
 
-
-struct AutomotiveFinancialsChartView: View {
-    
+struct EnergyFinancialsChartView: View {
     @StateObject var plotDataViewModel: PlotDataViewModel
     @State var rawSelectedDate: Date? = nil
-    let selection: AutomotiveFinancialDataOption
+    @Environment (\.calendar) var calendar
+    let selection: EnergyFinancialDataOption
     let yAxisLabel: String = "$"
     var countBarMarks: Int {
         plotDataViewModel.quarters.count
     }
+    var selectedDateValue: Int? {
+        if let rawSelectedDate {
+            let quarter = plotDataViewModel.quarters.first {
+                let startOfQuarter = $0.date
+                let endOfQuarter = calendar.date(byAdding: .quarter, value: 1, to: startOfQuarter) ?? Date()
+                return (startOfQuarter...endOfQuarter).contains(rawSelectedDate)
+            }
+            print(quarter?.date)
+            return nil
+        }
+        else {
+            return nil
+        }
+    }
+    
     
     var body: some View {
         let xData = plotDataViewModel.extractQuarters()
@@ -70,15 +83,15 @@ struct AutomotiveFinancialsChartView: View {
 
         switch (selection) {
         case .revenue:
-            yData = plotDataViewModel.extractData(property: .automotiveRevenue)
+            yData = plotDataViewModel.extractData(property: .energyRevenue)
         case .costOfRevenue:
-            yData = plotDataViewModel.extractData(property: .automotiveCostOfRevenue)
+            yData = plotDataViewModel.extractData(property: .energyCostOfRevenue)
         case .profit:
-            yData = plotDataViewModel.extractData(property: .automotiveProfit)
+            yData = plotDataViewModel.extractData(property: .energyProfit)
         case .margin:
-            yData = plotDataViewModel.extractData(property: .automotiveMargin)
+            yData = plotDataViewModel.extractData(property: .energyMargin)
         case .cogs:
-            yData = plotDataViewModel.extractData(property: .automotiveCostOfGoodsSold)
+            yData = plotDataViewModel.extractData(property: .energyCostOfGoodsSold)
         }
         
         return Chart(0..<countBarMarks, id: \.self) {index in
@@ -97,7 +110,9 @@ struct AutomotiveFinancialsChartView: View {
             }
         }
         .chartXSelection(value: $rawSelectedDate)
-        .padding(.horizontal)
+        .frame(maxHeight: 300)
+        .padding(.horizontal,20)
+        .padding(.bottom,20)
     }
     
     @ViewBuilder
@@ -105,7 +120,7 @@ struct AutomotiveFinancialsChartView: View {
         if let rawSelectedDate {
             VStack {
                 Text(rawSelectedDate.formatted(.dateTime.year().quarter()))
-                Text("$: 999.999")
+                Text("")
             }
             .padding(6)
             .background {

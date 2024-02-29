@@ -14,28 +14,42 @@ struct StartScreenView: View {
     var body: some View {
         List {
             Section("Total") {
-                NavigationLink(destination: FinancialDataView()) {
+                NavigationLink(destination: FinancialDataView(plotDataViewModel: plotDataViewModel)) {
                     Label("Financials", systemImage: "dollarsign.square")
                 }
             }
             Section("Automotive") {
                 NavigationLink(destination: AutomotiveSalesView(plotDataViewModel: plotDataViewModel)) {
-                    Label("Car Sales", systemImage: "car.side")
+                    Label("Global sales", systemImage: "car.side")
                 }
-                NavigationLink(destination: EnergySalesView()) {
-                    Label("Automotive Business", systemImage: "bolt.batteryblock")
+                NavigationLink(destination: AutomotiveSalesView(plotDataViewModel: plotDataViewModel)) {
+                    Label("China sales 🇨🇳", systemImage: "car.fill")
+                }
+                NavigationLink(destination: AutomotiveSalesView(plotDataViewModel: plotDataViewModel)) {
+                    Label("Europe sales 🇪🇺", systemImage: "car.fill")
+                }
+                NavigationLink(destination: AutomotiveSalesView(plotDataViewModel: plotDataViewModel)) {
+                    Label("US sales 🇺🇸", systemImage: "car.fill")
+                }
+                NavigationLink(destination: AutomotiveFinancialsView(plotDataViewModel: plotDataViewModel)) {
+                    Label("Financials", systemImage: "dollarsign.square")
                 }
             }
             Section("Energy") {
-                NavigationLink(destination: EnergySalesView()) {
-                    Label("Deployed Storage", systemImage: "bolt.batteryblock")
+                NavigationLink(destination: EnergySalesView(plotDataViewModel:plotDataViewModel)) {
+                    Label("Storage", systemImage: "bolt.batteryblock")
                 }
-                NavigationLink(destination: EnergySalesView()) {
-                    Label("Energy Business", systemImage: "bolt.batteryblock")
+                NavigationLink(destination: EnergyFinancialsView(plotDataViewModel: plotDataViewModel)) {
+                    Label("Financials", systemImage: "dollarsign.square")
                 }
             }
+
+            Section("Comparison") {
+                Label("Quarters", systemImage: "clock.arrow.2.circlepath")
+                Label("Other manufacturers", systemImage: "car.2.fill")
+            }
         }
-        .navigationTitle("Menu")
+        .navigationTitle("Tesla Analytics")
     }
 }
 
