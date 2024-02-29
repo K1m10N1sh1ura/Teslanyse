@@ -7,19 +7,21 @@
 
 import Foundation
 
+var plotDataViewModel = PlotDataViewModel()
+
 struct TeslaDataModel: Codable {
     var quarter: [String:String] = [:]
     var profit: [String:Int] = [:]
     var revenue: [String:Int] = [:]
-    var carRevenue: [String:Int] = [:]
+    var automotiveRevenue: [String:Int] = [:]
+    var automotiveCostOfRevenue: [String:Int] = [:]
+    var deliveredCars: [String:Int] = [:]
     var deliveredModel3Y: [String:Int] = [:]
     var deliveredOtherModels: [String:Int] = [:]
+    var producedCars: [String:Int] = [:]
     var producedModel3Y: [String:Int] = [:]
     var producedOtherModels: [String:Int] = [:]
-    var deliveredCars: [String:Int] = [:]
-    var producedCars: [String:Int] = [:]
     var energyRevenue: [String:Int] = [:]
-    var carCostOfRevenue: [String:Int] = [:]
     var energyCostOfRevenue: [String:Int] = [:]
     var energyStorage: [String:Int] = [:]
 }
@@ -29,8 +31,8 @@ struct QuarterData: Identifiable {
     let quarter: String
     let revenue: Int
     let profit: Int
-    let carRevenue: Int
-    let carCostOfRevenue: Int
+    let automotiveRevenue: Int
+    let automotiveCostOfRevenue: Int
     let deliveredCars: Int
     let producedCars: Int
     let energyRevenue: Int
@@ -45,10 +47,10 @@ struct QuarterData: Identifiable {
         return Double(profit) / Double(revenue)
     }
     var automotiveProfit: Int {
-        return carRevenue - carCostOfRevenue
+        return automotiveRevenue - automotiveCostOfRevenue
     }
     var automotiveMargin: Double {
-        return Double(automotiveProfit) / Double(carRevenue)
+        return Double(automotiveProfit) / Double(automotiveRevenue)
     }
     var energyProfit: Int {
         return energyRevenue - energyCostOfRevenue
@@ -57,7 +59,7 @@ struct QuarterData: Identifiable {
         return Double(energyProfit) / Double(energyRevenue)
     }
     var automotiveCostOfGoodsSold: Int {
-        return Int(Double(carCostOfRevenue) / Double(producedCars))
+        return Int(Double(automotiveCostOfRevenue) / Double(producedCars))
     }
     var energyCostOfGoodsSold: Int {
         return Int(Double(energyCostOfRevenue*1000000) / Double(energyStorage))
@@ -68,7 +70,29 @@ struct QuarterData: Identifiable {
         dateFormatter.dateFormat = "'Q'q yyyy"
         return dateFormatter.date(from: quarter) ?? Date()
     }
-    
+}
+
+enum QuarterDataEnum: CaseIterable {
+    case revenue
+    case profit
+    case margin
+    case automotiveRevenue
+    case automotiveCostOfRevenue
+    case automotiveProfit
+    case automotiveMargin
+    case automotiveCostOfGoodsSold
+    case deliveredCars
+    case producedCars
+    case deliveredModel3Y
+    case deliveredOtherModels
+    case producedModel3Y
+    case producedOtherModels
+    case energyRevenue
+    case energyCostOfRevenue
+    case energyStorage
+    case energyProfit
+    case energyMargin
+    case energyCostOfGoodsSold
 }
 
 enum TeslaModel: CaseIterable {

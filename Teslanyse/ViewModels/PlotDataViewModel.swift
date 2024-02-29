@@ -30,8 +30,8 @@ class PlotDataViewModel: ObservableObject {
             let quarter = dataDictionary.quarter[String(i)]!
             let profit = dataDictionary.profit[String(i)]!
             let revenue = dataDictionary.revenue[String(i)]!
-            let carRevenue = dataDictionary.carRevenue[String(i)]!
-            let carCostOfRevenue = dataDictionary.carCostOfRevenue[String(i)]!
+            let carRevenue = dataDictionary.automotiveRevenue[String(i)]!
+            let carCostOfRevenue = dataDictionary.automotiveCostOfRevenue[String(i)]!
             let producedCars = dataDictionary.producedCars[String(i)]!
             let deliveredCars = dataDictionary.deliveredCars[String(i)]!
             let energyRevenue = dataDictionary.energyRevenue[String(i)]!
@@ -45,8 +45,8 @@ class PlotDataViewModel: ObservableObject {
             let quarterDatum = QuarterData(quarter: quarter,
                                            revenue: revenue,
                                            profit: profit,
-                                           carRevenue: carRevenue,
-                                           carCostOfRevenue: carCostOfRevenue,
+                                           automotiveRevenue: carRevenue,
+                                           automotiveCostOfRevenue: carCostOfRevenue,
                                            deliveredCars: deliveredCars,
                                            producedCars: producedCars,
                                            energyRevenue: energyRevenue,
@@ -72,36 +72,90 @@ class PlotDataViewModel: ObservableObject {
         return data
     }
     
-    func extractData(property: String) -> [Int] {
-        var data = [Int]()
+    func extractData(property: QuarterDataEnum) -> [Double] {
+        var data = [Double]()
         
         switch (property) {
-        case "deliveredModel3Y":
+        case .deliveredModel3Y:
             for quarter in quarters {
-                data.append(quarter.deliveredModel3Y)
+                data.append(Double(quarter.deliveredModel3Y))
             }
-        case "producedModel3Y":
+        case .producedModel3Y:
             for quarter in quarters {
-                data.append(quarter.producedModel3Y)
+                data.append(Double(quarter.producedModel3Y))
             }
-        case "deliveredOtherModels":
+        case .deliveredOtherModels:
             for quarter in quarters {
-                data.append(quarter.deliveredOtherModels)
+                data.append(Double(quarter.deliveredOtherModels))
             }
-        case "producedOtherModels":
+        case .producedOtherModels:
             for quarter in quarters {
-                data.append(quarter.producedOtherModels)
+                data.append(Double(quarter.producedOtherModels))
             }
-        case "deliveredCars":
+        case .deliveredCars:
             for quarter in quarters {
-                data.append(quarter.deliveredCars)
+                data.append(Double(quarter.deliveredCars))
             }
-        case "producedCars":
+        case .producedCars:
             for quarter in quarters {
-                data.append(quarter.producedCars)
+                data.append(Double(quarter.producedCars))
             }
-        default:
-            data = []
+        case .automotiveCostOfGoodsSold:
+            for quarter in quarters {
+                data.append(Double(quarter.automotiveCostOfGoodsSold))
+            }
+        case .automotiveMargin:
+            for quarter in quarters {
+                data.append(quarter.automotiveMargin)
+            }
+        case .automotiveProfit:
+            for quarter in quarters {
+                data.append(Double(quarter.automotiveProfit))
+            }
+        case .automotiveCostOfRevenue:
+            for quarter in quarters {
+                data.append(Double(quarter.automotiveCostOfRevenue))
+            }
+        case .automotiveRevenue:
+            for quarter in quarters {
+                data.append(Double(quarter.automotiveRevenue))
+            }
+        case .energyCostOfGoodsSold:
+            for quarter in quarters {
+                data.append(Double(quarter.energyCostOfGoodsSold))
+            }
+        case .energyCostOfRevenue:
+            for quarter in quarters {
+                data.append(Double(quarter.energyCostOfRevenue))
+            }
+        case .energyMargin:
+            for quarter in quarters {
+                data.append(quarter.energyMargin)
+            }
+        case .energyProfit:
+            for quarter in quarters {
+                data.append(Double(quarter.energyProfit))
+            }
+        case .energyStorage:
+            for quarter in quarters {
+                data.append(Double(quarter.energyStorage))
+            }
+        case .margin:
+            for quarter in quarters {
+                data.append(quarter.margin)
+            }
+        case .profit:
+            for quarter in quarters {
+                data.append(Double(quarter.profit))
+            }
+        case .revenue:
+            for quarter in quarters {
+                data.append(Double(quarter.revenue))
+            }
+        case .energyRevenue:
+            for quarter in quarters {
+                data.append(Double(quarter.energyRevenue))
+            }
         }
         return data
     }

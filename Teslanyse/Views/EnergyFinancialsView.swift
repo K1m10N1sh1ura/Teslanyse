@@ -16,41 +16,18 @@ struct EnergyFinancialsView: View {
         "Energy - \(selection.description)"
     }
     let yAxisLabel: String = "$"
-
+    var countBarMarks: Int {
+        plotDataViewModel.quarters.count
+    }
     
     var body: some View {
+
         VStack (alignment: .leading) {
             TitleView(title: "Financials")
             SubtitleView(subtitle: subtitle)
-            Chart(plotDataViewModel.quarters) {quarterData in
-                
-                switch (selection) {
-                case .revenue:
-                    BarMark(x: .value("Quarter", quarterData.date),
-                            y: .value(yAxisLabel, quarterData.energyRevenue))
-                case .profit:
-                    BarMark(x: .value("Quarter", quarterData.date),
-                            y: .value(yAxisLabel, quarterData.energyProfit))
-                case .cogs:
-                    BarMark(x: .value("Quarter", quarterData.date),
-                            y: .value(yAxisLabel, quarterData.energyCostOfGoodsSold))
-                case .margin:
-                    BarMark(x: .value("Quarter", quarterData.date),
-                            y: .value(yAxisLabel, quarterData.energyMargin))
-                case .costOfRevenue:
-                    BarMark(x: .value("Quarter", quarterData.date),
-                            y: .value(yAxisLabel, quarterData.energyCostOfRevenue))
-                }
-            }
-            Picker("", selection: $selection) {
-                ForEach(EnergyFinancialDataOption.allCases, id: \.self) {
-                    Text($0.description)
-                }
-            }
-            .pickerStyle(.wheel)
+            EnergyFinancialsChartView(plotDataViewModel: plotDataViewModel, selection: selection)
+            EnergyFinancialsPickerView(selection: $selection)
             ExportButtonView()
-
-
         }
     }
 }
@@ -58,5 +35,80 @@ struct EnergyFinancialsView: View {
 #Preview {
     NavigationStack {
         EnergyFinancialsView(plotDataViewModel: plotDataViewModel)
+    }
+}
+
+struct EnergyFinancialsPickerView: View {
+    @Binding var selection: EnergyFinancialDataOption
+    var body: some View {
+        Picker("", selection: $selection) {
+            ForEach(EnergyFinancialDataOption.allCases, id: \.self) {
+                Text($0.description)
+            }
+        }
+        .pickerStyle(.wheel)
+    }
+}
+
+struct EnergyFinancialsChartView: View {
+    @StateObject var plotDataViewModel: PlotDataViewModel
+    @State var rawSelectedDate: Date? = nil
+    let selection: EnergyFinancialDataOption
+    let yAxisLabel: String = "$"
+    var countBarMarks: Int {
+        plotDataViewModel.quarters.count
+    }
+    var body: some View {
+        let xData = plotDataViewModel.extractQuarters()
+        let yData: [Double]
+
+        switch (selection) {
+        case .revenue:
+            yData = plotDataViewModel.extractData(property: .energyRevenue)
+        case .costOfRevenue:
+            yData = plotDataViewModel.extractData(property: .energyCostOfRevenue)
+        case .profit:
+            yData = plotDataViewModel.extractData(property: .energyProfit)
+        case .margin:
+            yData = plotDataViewModel.extractData(property: .energyMargin)
+        case .cogs:
+            yData = plotDataViewModel.extractData(property: .energyCostOfGoodsSold)
+        }
+        
+        return Chart(0..<countBarMarks, id: \.self) {index in
+                BarMark(x: .value("Quarter", xData[index]),
+                        y: .value(yAxisLabel, yData[index]))
+            if let rawSelectedDate {
+                BarMark(x: .value("Value", rawSelectedDate, unit: .weekOfYear))
+                    .foregroundStyle(.gray)
+                    .zIndex(-1)
+                    .annotation(position: .top,
+                                spacing: 0,
+                                overflowResolution: .init(x: .fit(to: .chart), y: .disabled)) {
+                        selectionPopover()
+
+                    }
+            }
+        }
+        .chartXSelection(value: $rawSelectedDate)
+        .frame(maxHeight: 300)
+        .padding(.horizontal,20)
+        .padding(.bottom,20)
+    }
+    
+    @ViewBuilder
+    func selectionPopover() -> some View {
+        if let rawSelectedDate {
+            VStack {
+                Text(rawSelectedDate.formatted(.dateTime.year().quarter()))
+                Text("$: 999.999")
+            }
+            .padding(6)
+            .background {
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(.white)
+                    .shadow(color: .blue, radius: 2)
+            }
+        }
     }
 }

@@ -57,29 +57,30 @@ struct AutomotiveFinancialsChartView: View {
     @State var rawSelectedDate: Date? = nil
     let selection: AutomotiveFinancialDataOption
     let yAxisLabel: String = "$"
-
+    var countBarMarks: Int {
+        plotDataViewModel.quarters.count
+    }
+    
     var body: some View {
-        
-        Chart(plotDataViewModel.quarters) {quarterData in
+        let xData = plotDataViewModel.extractQuarters()
+        let yData: [Double]
 
-            switch (selection) {
-            case .revenue:
-                BarMark(x: .value("Quarter", quarterData.date),
-                        y: .value(yAxisLabel, quarterData.carRevenue))
-            case .profit:
-                BarMark(x: .value("Quarter", quarterData.date),
-                        y: .value(yAxisLabel, quarterData.automotiveProfit))
-            case .cogs:
-                BarMark(x: .value("Quarter", quarterData.date),
-                        y: .value(yAxisLabel, quarterData.automotiveCostOfGoodsSold))
-            case .margin:
-                BarMark(x: .value("Quarter", quarterData.date),
-                        y: .value(yAxisLabel, quarterData.automotiveMargin))
-            case .costOfRevenue:
-                BarMark(x: .value("Quarter", quarterData.date),
-                        y: .value(yAxisLabel, quarterData.carCostOfRevenue))
-            }
-            
+        switch (selection) {
+        case .revenue:
+            yData = plotDataViewModel.extractData(property: .automotiveRevenue)
+        case .costOfRevenue:
+            yData = plotDataViewModel.extractData(property: .automotiveCostOfRevenue)
+        case .profit:
+            yData = plotDataViewModel.extractData(property: .automotiveProfit)
+        case .margin:
+            yData = plotDataViewModel.extractData(property: .automotiveMargin)
+        case .cogs:
+            yData = plotDataViewModel.extractData(property: .automotiveCostOfGoodsSold)
+        }
+        
+        return Chart(0..<countBarMarks, id: \.self) {index in
+                BarMark(x: .value("Quarter", xData[index]),
+                        y: .value(yAxisLabel, yData[index]))
             if let rawSelectedDate {
                 BarMark(x: .value("Value", rawSelectedDate, unit: .weekOfYear))
                     .foregroundStyle(.gray)
@@ -87,8 +88,9 @@ struct AutomotiveFinancialsChartView: View {
                     .annotation(position: .top,
                                 spacing: 0,
                                 overflowResolution: .init(x: .fit(to: .chart), y: .disabled)) {
-                        selectionPopover(quarterData: quarterData)
-                }
+                        selectionPopover()
+
+                    }
             }
         }
         .chartXSelection(value: $rawSelectedDate)
@@ -98,11 +100,11 @@ struct AutomotiveFinancialsChartView: View {
     }
     
     @ViewBuilder
-    func selectionPopover(quarterData: QuarterData) -> some View {
+    func selectionPopover() -> some View {
         if let rawSelectedDate {
             VStack {
                 Text(rawSelectedDate.formatted(.dateTime.year().quarter()))
-                Text("$999999")
+                Text("$: 999.999")
             }
             .padding(6)
             .background {
