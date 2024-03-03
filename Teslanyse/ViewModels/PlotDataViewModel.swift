@@ -41,6 +41,9 @@ class PlotDataViewModel: ObservableObject {
             let deliveriesOtherModels = dataDictionary.deliveredOtherModels[String(i)]!
             let productionModel3Y = dataDictionary.producedModel3Y[String(i)]!
             let productionOtherModels = dataDictionary.producedOtherModels[String(i)]!
+            let solarDeployed = dataDictionary.solarDeployed[String(i)]!
+            let superchargerStationsAccumulated = dataDictionary.superchargerStationsAccumulated[String(i)]!
+            let superchargerConnectorsAccumulated = dataDictionary.superchargerConnectorsAccumulated[String(i)]!
 
             let quarterDatum = QuarterData(quarter: quarter,
                                            revenue: revenue,
@@ -55,9 +58,11 @@ class PlotDataViewModel: ObservableObject {
                                            deliveredModel3Y: deliveriesModel3Y,
                                            deliveredOtherModels: deliveriesOtherModels,
                                            producedModel3Y: productionModel3Y,
-                                           producedOtherModels: productionOtherModels)
-                                          
-            
+                                           producedOtherModels: productionOtherModels,
+                                           solarDeployed: solarDeployed,
+                                           superchargerStationsAccumulated: superchargerStationsAccumulated,
+                                           superchargerConnectorsAccumulated: superchargerConnectorsAccumulated
+            )
             quarterData.append(quarterDatum)
         }
         return quarterData
@@ -155,6 +160,18 @@ class PlotDataViewModel: ObservableObject {
         case .energyRevenue:
             for quarter in quarters {
                 data.append(Double(quarter.energyRevenue))
+            }
+        case .solarDeployed:
+            for quarter in quarters {
+                data.append(Double(quarter.solarDeployed))
+            }
+        case .superchargerStationsAccumulated:
+            for quarter in quarters {
+                data.append(Double(quarter.superchargerStationsAccumulated))
+            }
+        case .superchargerConnectorsAccumulated:
+            for quarter in quarters {
+                data.append(Double(quarter.superchargerConnectorsAccumulated))
             }
         }
         return data
