@@ -68,7 +68,6 @@ struct EnergyFinancialsChartView: View {
                 let endOfQuarter = calendar.date(byAdding: .quarter, value: 1, to: startOfQuarter) ?? Date()
                 return (startOfQuarter...endOfQuarter).contains(rawSelectedDate)
             }
-            print(quarter?.date)
             return nil
         }
         else {

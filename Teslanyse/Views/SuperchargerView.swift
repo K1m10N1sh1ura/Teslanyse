@@ -10,9 +10,13 @@ import SwiftUI
 struct SuperchargerView: View {
     
     @StateObject var plotDataViewModel: PlotDataViewModel
+    @State var selector: SuperchargerOption = .stations
     
     var body: some View {
-        Text("Hello, World!")
+        VStack (alignment: .leading) {
+            TitleView(title: "Superchargers")
+            SubtitleView(subtitle: "Network")
+        }
     }
 }
 
