@@ -22,7 +22,7 @@ class PlotDataViewModel: ObservableObject {
         }
     }
     
-    func extractQuarterData(from dataDictionary: TeslaDataModel) -> [QuarterData] {
+    func extractQuarterData(from dataDictionary: TeslaApiDataModel) -> [QuarterData] {
         var quarterData = [QuarterData]()
         let numberOfQuarters = dataDictionary.quarter.count
         
@@ -177,7 +177,7 @@ class PlotDataViewModel: ObservableObject {
         return data
     }
     
-    func fetchData() async throws -> TeslaDataModel? {
+    func fetchData() async throws -> TeslaApiDataModel? {
         let endpoint = "http://192.168.178.20:5001/quartalszahlen"
         guard let url = URL(string: endpoint) else {
             print("[ERROR] invalid url")
@@ -191,7 +191,7 @@ class PlotDataViewModel: ObservableObject {
                 return nil
             }
 
-            guard let jsonData = try? JSONDecoder().decode(TeslaDataModel.self, from: data) else {
+            guard let jsonData = try? JSONDecoder().decode(TeslaApiDataModel.self, from: data) else {
                 print("[ERROR] failed decoding json data")
                 return nil
             }

@@ -27,6 +27,7 @@ struct SuperchargerView: View {
             .padding(.horizontal)
             ExportButtonView()
         }
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
