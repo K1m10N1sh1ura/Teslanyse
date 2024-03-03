@@ -46,10 +46,11 @@ struct StartScreenView: View {
                     Label("Superchargers", systemImage: "ev.charger.fill")
                 }
             }
-            
 
             Section("Comparison") {
-                Label("Quarters", systemImage: "clock.arrow.2.circlepath")
+                NavigationLink(destination: CompareQuartersView(plotDataViewModel:plotDataViewModel)) {
+                    Label("Quarters", systemImage: "clock.arrow.2.circlepath")
+                }
                 Label("Other manufacturers", systemImage: "car.2.fill")
             }
         }
