@@ -17,7 +17,6 @@ struct FinancialDataView: View {
             TitleView(title: "Financials")
             SubtitleView(subtitle: "Summary")
             FinancialsChartView(plotDataViewModel: plotDataViewModel, selection: $selection)
-                .padding(.horizontal)
             FinancialsPickerView(selection: $selection)
             ExportButtonView()
         }
@@ -35,7 +34,6 @@ struct FinancialDataView: View {
 struct FinancialsChartView: View {
     @StateObject var plotDataViewModel: PlotDataViewModel
     @Binding var selection: FinancialDataOption
-    let yAxisLabel = "$"
     var countBarMarks: Int {
         plotDataViewModel.quarters.count
     }
@@ -55,8 +53,9 @@ struct FinancialsChartView: View {
         
         return Chart(0..<countBarMarks, id: \.self) {index in
                 BarMark(x: .value("Quarter", xData[index]),
-                        y: .value(yAxisLabel, yData[index]), width: barMarkWidth)
+                        y: .value("$", yData[index]), width: barMarkWidth)
         }
+        .padding(.horizontal)
     }
 }
 

@@ -17,7 +17,6 @@ struct EnergySalesView: View {
             TitleView(title: "Energy Sales")
             SubtitleView(subtitle: "Storage in MWh")
             EnergySalesChartView(plotDataViewModel: plotDataViewModel, selection: selection)
-            .padding(.horizontal)
             Picker("", selection: $selection) {
                 ForEach(EnergyOptions.allCases, id: \.self) {
                     Text($0.description)

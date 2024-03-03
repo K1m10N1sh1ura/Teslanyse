@@ -78,8 +78,8 @@
 				893C58D72B8D62A700734A71 /* EnergySalesView.swift */,
 				893C58DB2B8F8B1600734A71 /* AutomotiveFinancialsView.swift */,
 				893C58DD2B8FC42300734A71 /* EnergyFinancialsView.swift */,
-				89B60ED92B9530C1005A7BF2 /* UIElements.swift */,
 				89B60EDB2B953D3E005A7BF2 /* QuarterComparisonView.swift */,
+				89B60ED92B9530C1005A7BF2 /* UIElements.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
