@@ -11,8 +11,8 @@ import Charts
 struct AutomotiveSalesView: View {
 
     @StateObject var plotDataViewModel: PlotDataViewModel
-    @State var selectedModel = TeslaModel.model3Y
-    @State var selectedCarSaleState = TeslaSaleState.produced
+    @State var selectedModel: TeslaModel = .model3Y
+    @State var selectedCarSaleState: TeslaSaleState = .produced
     var subtitle: String {
         "\(selectedModel.description) - \(selectedCarSaleState.description)"
     }
@@ -21,7 +21,7 @@ struct AutomotiveSalesView: View {
         VStack(alignment: .leading) {
             TitleView(title: "Automotive Sales")
             SubtitleView(subtitle: subtitle)
-            ProductionAndDeliveriesChartView(plotDataViewModel: plotDataViewModel, model: selectedModel, saleState: selectedCarSaleState)
+            AutomotiveSalesChartView(plotDataViewModel: plotDataViewModel, model: selectedModel, saleState: selectedCarSaleState)
                 //.animation(.smooth)
             Divider()
             CarSalesSubView(title: "Model")
@@ -55,47 +55,7 @@ struct AutomotiveSalesView: View {
     }
 }
 
-struct TitleView: View {
-    
-    let title: String
-
-    var body: some View {
-
-        HStack {
-            Text(title)
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding(.leading, 20)
-            Image("Tesla_T_symbol")
-                .resizable()
-                .frame(width: 25, height: 25)
-        }
-    }
-}
-
-struct SubtitleView: View {
-    
-    let subtitle: String
-    
-    var body: some View {
-        Text(subtitle)
-            .font(.headline)
-            .foregroundColor(.gray)
-            .padding(.leading, 20)
-    }
-}
-struct CarToggleView: View {
-    
-    let toggleText: String
-    @Binding var isOn: Bool
-    
-    var body: some View {
-        Toggle(toggleText, isOn: $isOn)
-            .toggleStyle(.button)
-    }
-}
-
-struct ProductionAndDeliveriesChartView: View {
+struct AutomotiveSalesChartView: View {
     
     @StateObject var plotDataViewModel: PlotDataViewModel
     @State var rawSelectedDate: Date? = nil
@@ -159,23 +119,6 @@ struct ProductionAndDeliveriesChartView: View {
                     .shadow(color: .blue, radius: 2)
             }
         }
-    }
-}
-
-struct ExportButtonView: View {
-    var body: some View {
-        Button(action: {
-            
-        }, label: {
-            Label("Export Chart", systemImage: "photo")
-                .font(.headline)
-                .foregroundStyle(.white)
-                .frame(height: 55)
-                .frame(maxWidth: .infinity)
-                .background(.blue)
-                .cornerRadius(10.0)
-                .padding()
-        })
     }
 }
 
