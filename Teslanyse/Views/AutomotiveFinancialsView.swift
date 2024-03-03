@@ -26,7 +26,6 @@ struct AutomotiveFinancialsView: View {
             Divider()
             PickerAutomotiveFinancialsView(selection: $selection)
             ExportButtonView()
-            Spacer()
         }
         .navigationBarTitleDisplayMode(.inline)
     }

@@ -42,7 +42,11 @@ struct StartScreenView: View {
                 NavigationLink(destination: EnergyFinancialsView(plotDataViewModel: plotDataViewModel)) {
                     Label("Financials", systemImage: "dollarsign.square")
                 }
+                NavigationLink(destination: SuperchargerView(plotDataViewModel:plotDataViewModel)) {
+                    Label("Superchargers", systemImage: "ev.charger.fill")
+                }
             }
+            
 
             Section("Comparison") {
                 Label("Quarters", systemImage: "clock.arrow.2.circlepath")
