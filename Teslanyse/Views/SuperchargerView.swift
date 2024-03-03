@@ -59,8 +59,8 @@ struct SuperchargerChartView: View {
         }
         
         return Chart(0..<countBarMarks, id: \.self) {index in
-                BarMark(x: .value("Quarter", xData[index]),
-                        y: .value(selection.desciption, yData[index]))
+            BarMark(x: .value("Quarter", xData[index]),
+                    y: .value(selection.desciption, yData[index]), width: barMarkWidth)
         }
         .padding(.horizontal)
     }

@@ -18,7 +18,7 @@ struct EnergySalesView: View {
             SubtitleView(subtitle: "Storage in MWh")
             Chart(plotDataViewModel.quarters) { quarter in
                 BarMark(x: .value("", quarter.date),
-                        y: .value("", quarter.energyStorage))
+                        y: .value("", quarter.energyStorage), width: barMarkWidth)
             }
             .padding(.horizontal)
             Picker("", selection: $selection) {

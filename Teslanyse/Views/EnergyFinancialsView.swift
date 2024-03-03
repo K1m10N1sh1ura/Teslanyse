@@ -95,7 +95,7 @@ struct EnergyFinancialsChartView: View {
         
         return Chart(0..<countBarMarks, id: \.self) {index in
                 BarMark(x: .value("Quarter", xData[index]),
-                        y: .value(yAxisLabel, yData[index]))
+                        y: .value(yAxisLabel, yData[index]), width: barMarkWidth)
             if let rawSelectedDate {
                 BarMark(x: .value("Value", rawSelectedDate, unit: .weekOfYear))
                     .foregroundStyle(.gray)
