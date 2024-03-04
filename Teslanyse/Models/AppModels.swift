@@ -6,10 +6,6 @@
 //
 
 import Foundation
-import Charts
-
-var plotDataViewModel = PlotDataViewModel()
-let barMarkWidth: MarkDimension = 8
 
 struct TeslaApiDataModel: Codable {
     var quarter: [String:String] = [:]
