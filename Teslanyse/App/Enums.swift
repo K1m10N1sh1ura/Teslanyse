@@ -32,6 +32,57 @@ enum QuarterDataEnum: CaseIterable {
     case solarDeployed
     case superchargerStationsAccumulated
     case superchargerConnectorsAccumulated
+    
+    var description: String {
+        switch self {
+        case .revenue:
+            "Revenue"
+        case .profit:
+            "Profit"
+        case .margin:
+            "Margin"
+        case .automotiveRevenue:
+            "Automotive revenue"
+        case .automotiveCostOfRevenue:
+            "Automotive cost of revenue"
+        case .automotiveProfit:
+            "Automotive profit"
+        case .automotiveMargin:
+            "Automotive margin"
+        case .automotiveCostOfGoodsSold:
+            "Automotive cost of goods sold"
+        case .deliveredCars:
+            "Delivered cars"
+        case .producedCars:
+            "Produced cars"
+        case .deliveredModel3Y:
+            "Delivered Model 3 and Y"
+        case .deliveredOtherModels:
+            "Delivered other models"
+        case .producedModel3Y:
+            "Produced Model 3 and Y"
+        case .producedOtherModels:
+            "Produced other models"
+        case .energyRevenue:
+            "Energy revenue"
+        case .energyCostOfRevenue:
+            "Energy cost of revenue"
+        case .energyStorage:
+            "Energy sorage"
+        case .energyProfit:
+            "Energy profit"
+        case .energyMargin:
+            "Energy margin"
+        case .energyCostOfGoodsSold:
+            "Energy cost of goods sold"
+        case .solarDeployed:
+            "Solar deployed"
+        case .superchargerStationsAccumulated:
+            "Supercharger stations accumulated"
+        case .superchargerConnectorsAccumulated:
+            "Supercharger connectors accumulated"
+        }
+    }
 }
 
 enum TeslaModel: CaseIterable {
