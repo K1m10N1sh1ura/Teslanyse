@@ -17,6 +17,7 @@
 		89B60ED82B952E54005A7BF2 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B60ED72B952E54005A7BF2 /* Enums.swift */; };
 		89B60EDA2B9530C1005A7BF2 /* UIElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B60ED92B9530C1005A7BF2 /* UIElements.swift */; };
 		89B60EDC2B953D3E005A7BF2 /* QuarterComparisonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B60EDB2B953D3E005A7BF2 /* QuarterComparisonView.swift */; };
+		89B60EE02B9666B5005A7BF2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B60EDF2B9666B5005A7BF2 /* Constants.swift */; };
 		89F882E22B8A355400C81C85 /* TeslanyseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882E12B8A355400C81C85 /* TeslanyseApp.swift */; };
 		89F882E42B8A355400C81C85 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882E32B8A355400C81C85 /* ContentView.swift */; };
 		89F882E62B8A355600C81C85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F882E52B8A355600C81C85 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 		89B60ED72B952E54005A7BF2 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		89B60ED92B9530C1005A7BF2 /* UIElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIElements.swift; sourceTree = "<group>"; };
 		89B60EDB2B953D3E005A7BF2 /* QuarterComparisonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuarterComparisonView.swift; sourceTree = "<group>"; };
+		89B60EDF2B9666B5005A7BF2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		89F882DE2B8A355400C81C85 /* Teslanyse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teslanyse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F882E12B8A355400C81C85 /* TeslanyseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslanyseApp.swift; sourceTree = "<group>"; };
 		89F882E32B8A355400C81C85 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,7 +64,6 @@
 			isa = PBXGroup;
 			children = (
 				89F882F32B8A3DC800C81C85 /* AppModels.swift */,
-				89B60ED72B952E54005A7BF2 /* Enums.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -70,6 +71,7 @@
 		893C58CE2B8CD0DB00734A71 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				89B60EDE2B966691005A7BF2 /* UIElements */,
 				89B60ED52B94CF01005A7BF2 /* SuperchargerView.swift */,
 				89F882EF2B8A3DA000C81C85 /* PlotDataView.swift */,
 				893C58D12B8CD11100734A71 /* AutomotiveSalesView.swift */,
@@ -79,7 +81,6 @@
 				893C58DB2B8F8B1600734A71 /* AutomotiveFinancialsView.swift */,
 				893C58DD2B8FC42300734A71 /* EnergyFinancialsView.swift */,
 				89B60EDB2B953D3E005A7BF2 /* QuarterComparisonView.swift */,
-				89B60ED92B9530C1005A7BF2 /* UIElements.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -97,8 +98,18 @@
 			children = (
 				89F882E12B8A355400C81C85 /* TeslanyseApp.swift */,
 				89F882E32B8A355400C81C85 /* ContentView.swift */,
+				89B60ED72B952E54005A7BF2 /* Enums.swift */,
+				89B60EDF2B9666B5005A7BF2 /* Constants.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		89B60EDE2B966691005A7BF2 /* UIElements */ = {
+			isa = PBXGroup;
+			children = (
+				89B60ED92B9530C1005A7BF2 /* UIElements.swift */,
+			);
+			path = UIElements;
 			sourceTree = "<group>";
 		};
 		89F882D52B8A355400C81C85 = {
@@ -220,6 +231,7 @@
 				89B60EDA2B9530C1005A7BF2 /* UIElements.swift in Sources */,
 				893C58D82B8D62A700734A71 /* EnergySalesView.swift in Sources */,
 				89F882E42B8A355400C81C85 /* ContentView.swift in Sources */,
+				89B60EE02B9666B5005A7BF2 /* Constants.swift in Sources */,
 				89F882F02B8A3DA000C81C85 /* PlotDataView.swift in Sources */,
 				89B60ED82B952E54005A7BF2 /* Enums.swift in Sources */,
 				893C58DC2B8F8B1600734A71 /* AutomotiveFinancialsView.swift in Sources */,
