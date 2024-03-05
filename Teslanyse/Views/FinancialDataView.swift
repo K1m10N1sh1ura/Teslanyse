@@ -18,7 +18,7 @@ struct FinancialDataView: View {
             SubtitleView(subtitle: "Summary")
             FinancialsChartView(plotDataViewModel: plotDataViewModel, selection: $selection)
             FinancialsPickerView(selection: $selection)
-            ExportButtonView()
+            ExportButtonView(chart: Text("Test"))
         }
         .navigationBarTitleDisplayMode(.inline)
     }

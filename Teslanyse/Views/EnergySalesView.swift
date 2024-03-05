@@ -17,6 +17,8 @@ struct EnergySalesView: View {
             TitleView(title: "Energy Sales")
             SubtitleView(subtitle: "Storage in MWh")
             EnergySalesChartView(plotDataViewModel: plotDataViewModel, selection: selection)
+            Divider()
+            InfoButtonSubView(title: "Type")
             Picker("", selection: $selection) {
                 ForEach(EnergyOptions.allCases, id: \.self) {
                     Text($0.description)
@@ -24,7 +26,7 @@ struct EnergySalesView: View {
             }
             .pickerStyle(.palette)
             .padding()
-            ExportButtonView()
+            ExportButtonView(chart: Text("Test"))
         }
         .navigationBarTitleDisplayMode(.inline)
     }

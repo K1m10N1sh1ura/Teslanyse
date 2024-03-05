@@ -9,11 +9,22 @@ import SwiftUI
 
 struct CompareQuartersView: View {
     
-    @StateObject var plotDataViewModel: PlotDataViewModel
+    @StateObject var vm: PlotDataViewModel
     @State var selectionQuarterOne: String = ""
     @State var selectionQuarterTwo: String = ""
 
+    var firstQuarterIndex: Int {
+        plotDataViewModel.quarters.firstIndex {
+            $0.quarter == selectionQuarterOne
+        } ?? 0
+    }
     
+    var secondQuarterIndex: Int {
+        plotDataViewModel.quarters.firstIndex {
+            $0.quarter == selectionQuarterTwo
+        } ?? 1
+    }
+        
     var body: some View {
         VStack (alignment: .leading) {
             TitleView(title: "Quarter")
@@ -22,54 +33,53 @@ struct CompareQuartersView: View {
             HStack {
                 VStack {
                     Text("From")
-                    Picker("From", selection: $selectionQuarterOne) {
-                        ForEach(plotDataViewModel.quarters) { quarter in
-                            Text(quarter.quarter)
+                    Picker("", selection: $selectionQuarterOne) {
+                        ForEach(vm.quarters) {
+                            Text($0.quarter)
                         }
                     }
-                        .bold()
                 }
                 VStack {
                     Text("To")
-                    Picker("To", selection: $selectionQuarterTwo) {
-                        ForEach(plotDataViewModel.quarters) { quarter in
-                            Text(quarter.quarter)
+                    Picker("", selection: $selectionQuarterTwo) {
+                        ForEach(vm.quarters) {
+                            Text($0.quarter)
                         }
                     }
-                    .bold()
                 }
             }
+            .bold()
             .pickerStyle(.inline)
-            .frame(height: 120)
+            .frame(height: 150)
             ScrollView {
-                ExtractedView(title: "Revenue")
-                ExtractedView(title: "Profit")
-                ExtractedView(title: "Margin")
-                ExtractedView(title: "Revenue")
-                ExtractedView(title: "Profit")
-                ExtractedView(title: "Margin")
-                ExtractedView(title: "Revenue")
-                ExtractedView(title: "Profit")
-                ExtractedView(title: "Margin")
-                ExtractedView(title: "Revenue")
-                ExtractedView(title: "Profit")
-                ExtractedView(title: "Margin")
+//                ForEach(QuarterDataEnum.allCases, id: \.self) {param in
+//                    if !vm.quarters.isEmpty {
+//                        ExtractedView(title: param.description,
+//                                      valueFirstQuarter: vm.extractData(property: param)[firstQuarterIndex],
+//                                      valueSecondQuarter: vm.extractData(property: param)[secondQuarterIndex])
+//                    }
+//                }
+                Text("\(selectionQuarterTwo)")
             }
-
-
         }
         .navigationBarTitleDisplayMode(.inline)
     }
+    
 }
 
 #Preview {
     NavigationStack {
-        CompareQuartersView(plotDataViewModel: plotDataViewModel)
+        CompareQuartersView(vm: plotDataViewModel)
     }
 }
 
 struct ExtractedView: View {
     let title: String
+    let valueFirstQuarter: Double
+    let valueSecondQuarter: Double
+    
+    var deviation: Double { (valueSecondQuarter - valueFirstQuarter) / valueSecondQuarter }
+    
     var body: some View {
         Divider()
         VStack {
@@ -78,16 +88,18 @@ struct ExtractedView: View {
                 .padding(.horizontal)
             HStack {
                 Spacer()
-                Text("10B$")
+                Text(Int(valueFirstQuarter), format: .number.notation(.compactName))
                     .font(.subheadline)
                     .padding(.horizontal)
                 Spacer()
-                Text("+ 100 %")
+                Text("\(deviation * 100, specifier: "%.1f") %")
                     .font(.subheadline)
-                    .foregroundStyle(.green)
+                    .foregroundStyle(.white)
                     .padding(.horizontal)
+                    .background(deviation >= 0.0 ? .green : .red)
+                    .cornerRadius(10)
                 Spacer()
-                Text("20B$")
+                Text(Int(valueSecondQuarter), format: .number.notation(.compactName))
                     .font(.subheadline)
                     .padding(.horizontal)
                 Spacer()

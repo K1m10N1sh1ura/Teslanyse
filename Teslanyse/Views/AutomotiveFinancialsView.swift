@@ -22,10 +22,9 @@ struct AutomotiveFinancialsView: View {
             SubtitleView(subtitle: subtitle)
             AutomotiveFinancialsChartView(plotDataViewModel: plotDataViewModel, selection: selection)
             Divider()
-            CarSalesSubView(title: "Select metric")
-            Divider()
+            InfoButtonSubView(title: "Select metric")
             PickerAutomotiveFinancialsView(selection: $selection)
-            ExportButtonView()
+            ExportButtonView(chart: Text("Test"))
         }
         .navigationBarTitleDisplayMode(.inline)
     }
@@ -58,10 +57,6 @@ struct AutomotiveFinancialsChartView: View {
     @StateObject var plotDataViewModel: PlotDataViewModel
     @State var rawSelectedDate: Date? = nil
     let selection: AutomotiveFinancialDataOption
-    let yAxisLabel: String = "$"
-    var countBarMarks: Int {
-        plotDataViewModel.quarters.count
-    }
     
     var body: some View {
         let xData = plotDataViewModel.extractQuarters()
@@ -80,9 +75,9 @@ struct AutomotiveFinancialsChartView: View {
             yData = plotDataViewModel.extractData(property: .automotiveCostOfGoodsSold)
         }
         
-        return Chart(0..<countBarMarks, id: \.self) {index in
+        return Chart(0..<plotDataViewModel.quarters.count, id: \.self) {index in
                 BarMark(x: .value("Quarter", xData[index]),
-                        y: .value(yAxisLabel, yData[index]), width: barMarkWidth)
+                        y: .value("$", yData[index]), width: barMarkWidth)
             if let rawSelectedDate {
                 BarMark(x: .value("Value", rawSelectedDate, unit: .weekOfYear))
                     .foregroundStyle(.gray)

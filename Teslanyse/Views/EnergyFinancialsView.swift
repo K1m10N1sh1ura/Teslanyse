@@ -28,7 +28,7 @@ struct EnergyFinancialsView: View {
             SubtitleView(subtitle: subtitle)
             EnergyFinancialsChartView(plotDataViewModel: plotDataViewModel, selection: selection)
             EnergyFinancialsPickerView(selection: $selection)
-            ExportButtonView()
+            ExportButtonView(chart: Text("Test"))
         }
         .navigationBarTitleDisplayMode(.inline)
     }

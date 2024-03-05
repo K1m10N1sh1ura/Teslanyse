@@ -22,7 +22,6 @@
 		89F882E42B8A355400C81C85 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882E32B8A355400C81C85 /* ContentView.swift */; };
 		89F882E62B8A355600C81C85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F882E52B8A355600C81C85 /* Assets.xcassets */; };
 		89F882E92B8A355600C81C85 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F882E82B8A355600C81C85 /* Preview Assets.xcassets */; };
-		89F882F02B8A3DA000C81C85 /* PlotDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882EF2B8A3DA000C81C85 /* PlotDataView.swift */; };
 		89F882F22B8A3DB100C81C85 /* PlotDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882F12B8A3DB100C81C85 /* PlotDataViewModel.swift */; };
 		89F882F42B8A3DC800C81C85 /* AppModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882F32B8A3DC800C81C85 /* AppModels.swift */; };
 /* End PBXBuildFile section */
@@ -39,12 +38,12 @@
 		89B60ED92B9530C1005A7BF2 /* UIElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIElements.swift; sourceTree = "<group>"; };
 		89B60EDB2B953D3E005A7BF2 /* QuarterComparisonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuarterComparisonView.swift; sourceTree = "<group>"; };
 		89B60EDF2B9666B5005A7BF2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		89B60EE12B97D173005A7BF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		89F882DE2B8A355400C81C85 /* Teslanyse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teslanyse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F882E12B8A355400C81C85 /* TeslanyseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslanyseApp.swift; sourceTree = "<group>"; };
 		89F882E32B8A355400C81C85 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		89F882E52B8A355600C81C85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89F882E82B8A355600C81C85 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		89F882EF2B8A3DA000C81C85 /* PlotDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotDataView.swift; sourceTree = "<group>"; };
 		89F882F12B8A3DB100C81C85 /* PlotDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotDataViewModel.swift; sourceTree = "<group>"; };
 		89F882F32B8A3DC800C81C85 /* AppModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,9 +70,8 @@
 		893C58CE2B8CD0DB00734A71 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				89B60EDE2B966691005A7BF2 /* UIElements */,
+				89B60EDE2B966691005A7BF2 /* Reusable UI Components */,
 				89B60ED52B94CF01005A7BF2 /* SuperchargerView.swift */,
-				89F882EF2B8A3DA000C81C85 /* PlotDataView.swift */,
 				893C58D12B8CD11100734A71 /* AutomotiveSalesView.swift */,
 				893C58D32B8D626600734A71 /* FinancialDataView.swift */,
 				893C58D52B8D628900734A71 /* StartScreenView.swift */,
@@ -104,12 +102,12 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		89B60EDE2B966691005A7BF2 /* UIElements */ = {
+		89B60EDE2B966691005A7BF2 /* Reusable UI Components */ = {
 			isa = PBXGroup;
 			children = (
 				89B60ED92B9530C1005A7BF2 /* UIElements.swift */,
 			);
-			path = UIElements;
+			path = "Reusable UI Components";
 			sourceTree = "<group>";
 		};
 		89F882D52B8A355400C81C85 = {
@@ -131,6 +129,7 @@
 		89F882E02B8A355400C81C85 /* Teslanyse */ = {
 			isa = PBXGroup;
 			children = (
+				89B60EE12B97D173005A7BF2 /* Info.plist */,
 				893C58D02B8CD0EA00734A71 /* App */,
 				893C58CF2B8CD0E000734A71 /* ViewModels */,
 				893C58CE2B8CD0DB00734A71 /* Views */,
@@ -232,7 +231,6 @@
 				893C58D82B8D62A700734A71 /* EnergySalesView.swift in Sources */,
 				89F882E42B8A355400C81C85 /* ContentView.swift in Sources */,
 				89B60EE02B9666B5005A7BF2 /* Constants.swift in Sources */,
-				89F882F02B8A3DA000C81C85 /* PlotDataView.swift in Sources */,
 				89B60ED82B952E54005A7BF2 /* Enums.swift in Sources */,
 				893C58DC2B8F8B1600734A71 /* AutomotiveFinancialsView.swift in Sources */,
 				89F882E22B8A355400C81C85 /* TeslanyseApp.swift in Sources */,
@@ -376,6 +374,8 @@
 				DEVELOPMENT_TEAM = AF749FS76L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Teslanyse/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -405,6 +405,8 @@
 				DEVELOPMENT_TEAM = AF749FS76L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Teslanyse/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
