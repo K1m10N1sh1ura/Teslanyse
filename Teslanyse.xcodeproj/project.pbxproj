@@ -71,7 +71,7 @@
 		893C58CE2B8CD0DB00734A71 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				89B60EDE2B966691005A7BF2 /* UIElements */,
+				89B60EDE2B966691005A7BF2 /* Reusable UI Components */,
 				89B60ED52B94CF01005A7BF2 /* SuperchargerView.swift */,
 				89F882EF2B8A3DA000C81C85 /* PlotDataView.swift */,
 				893C58D12B8CD11100734A71 /* AutomotiveSalesView.swift */,
@@ -104,12 +104,12 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		89B60EDE2B966691005A7BF2 /* UIElements */ = {
+		89B60EDE2B966691005A7BF2 /* Reusable UI Components */ = {
 			isa = PBXGroup;
 			children = (
 				89B60ED92B9530C1005A7BF2 /* UIElements.swift */,
 			);
-			path = UIElements;
+			path = "Reusable UI Components";
 			sourceTree = "<group>";
 		};
 		89F882D52B8A355400C81C85 = {
