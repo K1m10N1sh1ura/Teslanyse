@@ -42,7 +42,7 @@ struct AutomotiveSalesView: View {
             .pickerStyle(SegmentedPickerStyle())
             .padding(.horizontal)
             Divider()
-            ExportButtonView()
+            ExportButtonView(chart: Text("Test"))
         }
         .navigationBarTitleDisplayMode(.inline)
     }

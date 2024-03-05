@@ -12,7 +12,7 @@ struct SuperchargerView: View {
     
     @StateObject var plotDataViewModel: PlotDataViewModel
     @State var selection: SuperchargerOption = .stations
-    
+
     var body: some View {
         VStack (alignment: .leading) {
             TitleView(title: "Supercharger")
@@ -25,7 +25,7 @@ struct SuperchargerView: View {
             }
             .pickerStyle(SegmentedPickerStyle())
             .padding(.horizontal)
-            ExportButtonView()
+            ExportButtonView(chart: Text("Test"))
         }
         .navigationBarTitleDisplayMode(.inline)
     }

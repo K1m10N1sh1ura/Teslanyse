@@ -26,7 +26,7 @@ struct EnergySalesView: View {
             }
             .pickerStyle(.palette)
             .padding()
-            ExportButtonView()
+            ExportButtonView(chart: Text("Test"))
         }
         .navigationBarTitleDisplayMode(.inline)
     }

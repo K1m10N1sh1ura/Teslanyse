@@ -24,7 +24,7 @@ struct AutomotiveFinancialsView: View {
             Divider()
             InfoButtonSubView(title: "Select metric")
             PickerAutomotiveFinancialsView(selection: $selection)
-            ExportButtonView()
+            ExportButtonView(chart: Text("Test"))
         }
         .navigationBarTitleDisplayMode(.inline)
     }
