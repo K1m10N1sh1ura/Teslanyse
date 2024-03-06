@@ -21,7 +21,7 @@ struct AutomotiveSalesView: View {
         VStack(alignment: .leading) {
             TitleView(title: "Automotive Sales")
             SubtitleView(subtitle: subtitle)
-            let (xData, yData) = userSelection()
+            let (xData, yData) = fetchChartData()
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
                // .animation(.smooth)
             Divider()
@@ -48,7 +48,7 @@ struct AutomotiveSalesView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
-    private func userSelection() -> ([Date],[Double]) {
+    private func fetchChartData() -> ([Date],[Double]) {
         let xData = vm.extractQuarters()
         let yData: [Double]
         

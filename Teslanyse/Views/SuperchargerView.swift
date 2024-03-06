@@ -17,7 +17,7 @@ struct SuperchargerView: View {
         VStack (alignment: .leading) {
             TitleView(title: "Supercharger")
             SubtitleView(subtitle: selection.desciption + " accumulated")
-            let (xData, yData) = userSelection()
+            let (xData, yData) = fetchChartData()
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
             Divider()
             InfoButtonSubView(title: "Type")
@@ -27,7 +27,7 @@ struct SuperchargerView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
-    private func userSelection() -> ([Date],[Double]) {
+    private func fetchChartData() -> ([Date],[Double]) {
         let xData = vm.extractQuarters()
         let yData: [Double]
         
