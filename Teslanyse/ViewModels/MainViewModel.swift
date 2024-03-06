@@ -1,5 +1,5 @@
 //
-//  PlotDataViewModel.swift
+//  MainViewModel.swift
 //  Teslanyse
 //
 //  Created by Kimio Nishiura on 24.02.24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PlotDataViewModel: ObservableObject {
+class MainViewModel: ObservableObject {
     
     @Published var quarters = [QuarterData]()
     
@@ -20,6 +20,15 @@ class PlotDataViewModel: ObservableObject {
                 self.quarters = self.extractQuarterData(from: dataDict)
             }
         }
+    }
+    
+    func getIndexOfQuarter(_ quarter: String) -> Int? {
+        for (index, quarterObj) in quarters.enumerated() {
+            if quarterObj.quarter == quarter {
+                return index
+            }
+        }
+        return nil // Return nil if the quarter is not found
     }
     
     func extractQuarterData(from dataDictionary: TeslaApiDataModel) -> [QuarterData] {

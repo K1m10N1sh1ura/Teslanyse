@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-var plotDataViewModel = PlotDataViewModel()
+var vm = MainViewModel()
 
 struct ContentView: View {
     var body: some View {

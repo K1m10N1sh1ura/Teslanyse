@@ -10,14 +10,15 @@ import Charts
 
 struct SuperchargerView: View {
     
-    @StateObject var plotDataViewModel: PlotDataViewModel
+    @StateObject var vm: MainViewModel
     @State var selection: SuperchargerOption = .stations
 
     var body: some View {
         VStack (alignment: .leading) {
             TitleView(title: "Supercharger")
-            SubtitleView(subtitle: selection.desciption)
-            SuperchargerChartView(plotDataViewModel: plotDataViewModel, selection: selection)
+            SubtitleView(subtitle: selection.desciption + " accumulated")
+            let (xData, yData) = userSelection()
+            ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
             Picker("", selection: $selection) {
                 ForEach(SuperchargerOption.allCases, id: \.self) {
                     Text($0.desciption)
@@ -25,43 +26,27 @@ struct SuperchargerView: View {
             }
             .pickerStyle(SegmentedPickerStyle())
             .padding(.horizontal)
-            ExportButtonView(chart: Text("Test"))
+            ExportButtonView()
         }
         .navigationBarTitleDisplayMode(.inline)
+    }
+    private func userSelection() -> ([Date],[Double]) {
+        let xData = vm.extractQuarters()
+        let yData: [Double]
+        
+        switch selection {
+        case .stations:
+            yData = vm.extractData(property: .superchargerStationsAccumulated)
+        case .connectors:
+            yData = vm.extractData(property: .superchargerConnectorsAccumulated)
+        }
+        
+        return (xData, yData)
     }
 }
 
 #Preview {
     NavigationStack {
-        SuperchargerView(plotDataViewModel: plotDataViewModel)
-    }
-}
-
-struct SuperchargerChartView: View {
-    
-    @StateObject var plotDataViewModel: PlotDataViewModel
-    let selection: SuperchargerOption
-    var countBarMarks: Int {
-        plotDataViewModel.quarters.count
-    }
-    
-    
-    var body: some View {
-
-        let xData = plotDataViewModel.extractQuarters()
-        let yData: [Double]
-        
-        switch selection {
-        case .stations:
-            yData = plotDataViewModel.extractData(property: .superchargerStationsAccumulated)
-        case .connectors:
-            yData = plotDataViewModel.extractData(property: .superchargerConnectorsAccumulated)
-        }
-        
-        return Chart(0..<countBarMarks, id: \.self) {index in
-            BarMark(x: .value("Quarter", xData[index]),
-                    y: .value(selection.desciption, yData[index]), width: barMarkWidth)
-        }
-        .padding(.horizontal)
+        SuperchargerView(vm: vm)
     }
 }

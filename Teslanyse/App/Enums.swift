@@ -214,3 +214,7 @@ enum SuperchargerOption: CaseIterable {
         }
     }
 }
+
+enum NumberFormatType {
+    case dollar, percent, number, power, energy
+}

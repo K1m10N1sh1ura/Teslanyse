@@ -9,40 +9,40 @@ import SwiftUI
 
 struct StartScreenView: View {
     
-    var vm = PlotDataViewModel()
+    var vm = MainViewModel()
 
     var body: some View {
         List {
             Section("Total") {
-                NavigationLink(destination: FinancialDataView(plotDataViewModel: vm)) {
+                NavigationLink(destination: FinancialDataView(vm: vm)) {
                     Label("Financials", systemImage: "dollarsign.square")
                 }
             }
             Section("Automotive") {
-                NavigationLink(destination: AutomotiveSalesView(plotDataViewModel: vm)) {
+                NavigationLink(destination: AutomotiveSalesView(vm: vm)) {
                     Label("Global sales", systemImage: "car.side")
                 }
-                NavigationLink(destination: AutomotiveSalesView(plotDataViewModel: vm)) {
+                NavigationLink(destination: Text("Coming soon")) {
                     Label("China sales 🇨🇳", systemImage: "car.fill")
                 }
-                NavigationLink(destination: AutomotiveSalesView(plotDataViewModel: vm)) {
+                NavigationLink(destination: Text("Coming soon")) {
                     Label("Europe sales 🇪🇺", systemImage: "car.fill")
                 }
-                NavigationLink(destination: AutomotiveSalesView(plotDataViewModel: vm)) {
+                NavigationLink(destination: Text("Coming soon")) {
                     Label("US sales 🇺🇸", systemImage: "car.fill")
                 }
-                NavigationLink(destination: AutomotiveFinancialsView(plotDataViewModel: vm)) {
+                NavigationLink(destination: AutomotiveFinancialsView(vm: vm)) {
                     Label("Financials", systemImage: "dollarsign.square")
                 }
             }
             Section("Energy") {
-                NavigationLink(destination: EnergySalesView(plotDataViewModel:vm)) {
+                NavigationLink(destination: EnergySalesView(vm:vm)) {
                     Label("Storage", systemImage: "bolt.batteryblock")
                 }
-                NavigationLink(destination: EnergyFinancialsView(plotDataViewModel: vm)) {
+                NavigationLink(destination: EnergyFinancialsView(vm: vm)) {
                     Label("Financials", systemImage: "dollarsign.square")
                 }
-                NavigationLink(destination: SuperchargerView(plotDataViewModel:vm)) {
+                NavigationLink(destination: SuperchargerView(vm:vm)) {
                     Label("Superchargers", systemImage: "ev.charger.fill")
                 }
             }
@@ -51,7 +51,9 @@ struct StartScreenView: View {
                 NavigationLink(destination: CompareQuartersView(vm: vm)) {
                     Label("Quarters", systemImage: "clock.arrow.2.circlepath")
                 }
-                Label("Other manufacturers", systemImage: "car.2.fill")
+                NavigationLink(destination: Text("Coming soon")) {
+                    Label("Other manufacturers", systemImage: "car.2.fill")
+                }
             }
         }
         .navigationTitle("Tesla Analytics")

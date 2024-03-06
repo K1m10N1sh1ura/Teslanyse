@@ -10,29 +10,56 @@ import Charts
 
 struct AutomotiveFinancialsView: View {
     
-    @StateObject var plotDataViewModel: PlotDataViewModel
+    @StateObject var vm: MainViewModel
     @State var selection = AutomotiveFinancialDataOption.revenue
-    var subtitle: String {
-        "Automotive - \(selection.description)"
-    }
+    @State var numberFormat: NumberFormatType = .dollar
     
     var body: some View {
         VStack (alignment: .leading) {
             TitleView(title: "Financials")
-            SubtitleView(subtitle: subtitle)
-            AutomotiveFinancialsChartView(plotDataViewModel: plotDataViewModel, selection: selection)
+            SubtitleView(subtitle: "Automotive - \(selection.description)")
+            let (xData, yData) = userSelection()
+            ChartView(vm: vm, xData: xData, yData: yData, numberFormat: numberFormat)
             Divider()
             InfoButtonSubView(title: "Select metric")
             PickerAutomotiveFinancialsView(selection: $selection)
-            ExportButtonView(chart: Text("Test"))
+            ExportButtonView()
         }
         .navigationBarTitleDisplayMode(.inline)
+        .onChange(of: selection) {
+            switch selection {
+            case .margin:
+                numberFormat = .percent
+            default:
+                numberFormat = .dollar
+            }
+        }
     }
+    
+    private func userSelection() -> ([Date],[Double]) {
+        let xData = vm.extractQuarters()
+        let yData: [Double]
+
+        switch (selection) {
+        case .revenue:
+            yData = vm.extractData(property: .automotiveRevenue)
+        case .costOfRevenue:
+            yData = vm.extractData(property: .automotiveCostOfRevenue)
+        case .profit:
+            yData = vm.extractData(property: .automotiveProfit)
+        case .margin:
+            yData = vm.extractData(property: .automotiveMargin)
+        case .cogs:
+            yData = vm.extractData(property: .automotiveCostOfGoodsSold)
+        }
+        return (xData, yData)
+    }
+    
 }
 
 #Preview {
     NavigationStack {
-        AutomotiveFinancialsView(plotDataViewModel: plotDataViewModel)
+        AutomotiveFinancialsView(vm: vm)
     }
 }
 
@@ -48,65 +75,5 @@ struct PickerAutomotiveFinancialsView: View {
             }
         }
         .pickerStyle(.wheel)
-    }
-}
-
-
-struct AutomotiveFinancialsChartView: View {
-    
-    @StateObject var plotDataViewModel: PlotDataViewModel
-    @State var rawSelectedDate: Date? = nil
-    let selection: AutomotiveFinancialDataOption
-    
-    var body: some View {
-        let xData = plotDataViewModel.extractQuarters()
-        let yData: [Double]
-
-        switch (selection) {
-        case .revenue:
-            yData = plotDataViewModel.extractData(property: .automotiveRevenue)
-        case .costOfRevenue:
-            yData = plotDataViewModel.extractData(property: .automotiveCostOfRevenue)
-        case .profit:
-            yData = plotDataViewModel.extractData(property: .automotiveProfit)
-        case .margin:
-            yData = plotDataViewModel.extractData(property: .automotiveMargin)
-        case .cogs:
-            yData = plotDataViewModel.extractData(property: .automotiveCostOfGoodsSold)
-        }
-        
-        return Chart(0..<plotDataViewModel.quarters.count, id: \.self) {index in
-                BarMark(x: .value("Quarter", xData[index]),
-                        y: .value("$", yData[index]), width: barMarkWidth)
-            if let rawSelectedDate {
-                BarMark(x: .value("Value", rawSelectedDate, unit: .weekOfYear))
-                    .foregroundStyle(.gray)
-                    .zIndex(-1)
-                    .annotation(position: .top,
-                                spacing: 0,
-                                overflowResolution: .init(x: .fit(to: .chart), y: .disabled)) {
-                        selectionPopover()
-
-                    }
-            }
-        }
-        .chartXSelection(value: $rawSelectedDate)
-        .padding(.horizontal)
-    }
-    
-    @ViewBuilder
-    func selectionPopover() -> some View {
-        if let rawSelectedDate {
-            VStack {
-                Text(rawSelectedDate.formatted(.dateTime.year().quarter()))
-                Text("$: 999.999")
-            }
-            .padding(6)
-            .background {
-                RoundedRectangle(cornerRadius: 4)
-                    .fill(.white)
-                    .shadow(color: .blue, radius: 2)
-            }
-        }
     }
 }

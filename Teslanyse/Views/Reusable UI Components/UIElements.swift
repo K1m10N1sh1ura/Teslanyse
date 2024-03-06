@@ -40,11 +40,11 @@ struct SubtitleView: View {
 
 
 struct ExportButtonView: View {
-    var chart: any View
+    var chartView: Image = Image(systemName: "photo")
     
     var body: some View {
         Button(action: {
-            let image = chart.snapshot()
+            let image = chartView.snapshot()
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
         }, label: {
             Label("Export Chart", systemImage: "photo")
@@ -77,19 +77,56 @@ struct InfoButtonSubView: View {
     }
 }
 
-extension View {
-    func snapshot() -> UIImage {
-        let controller = UIHostingController(rootView: self)
-        let view = controller.view
 
-        let targetSize = controller.view.intrinsicContentSize
-        view?.bounds = CGRect(origin: .zero, size: targetSize)
-        view?.backgroundColor = .clear
-
-        let renderer = UIGraphicsImageRenderer(size: targetSize)
-
-        return renderer.image { _ in
-            view?.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
+struct ChartView: View {
+    @StateObject var vm: MainViewModel
+    @State var rawSelectedDate: Date? = nil
+    let xData: [Date]
+    let yData: [Double]
+    let numberFormat: NumberFormatType
+    
+    var body: some View {
+        
+        Chart(0..<vm.quarters.count, id: \.self) {index in
+                BarMark(x: .value("Quarter", xData[index]),
+                        y: .value("$", yData[index]), width: barMarkWidth)
+            if let rawSelectedDate {
+                BarMark(x: .value("Value", rawSelectedDate, unit: .weekOfYear))
+                    .foregroundStyle(.gray)
+                    .zIndex(-1)
+                    .annotation(position: .top,
+                                spacing: 0,
+                                overflowResolution: .init(x: .fit(to: .chart), y: .disabled)) {
+                        selectionPopover(yData: yData)
+                    }
+            }
+        }
+        .chartXSelection(value: $rawSelectedDate)
+        .frame(maxHeight: 300)
+        .padding(.horizontal,20)
+        .padding(.bottom,20)
+    }
+    
+    
+    @ViewBuilder
+    func selectionPopover(yData: [Double]) -> some View {
+        if let rawSelectedDate {
+            VStack {
+                if let indexOfQuarter = vm.getIndexOfQuarter(rawSelectedDate.formatted(.dateTime.year().quarter())) {
+                    Text(vm.quarters[indexOfQuarter].quarter)
+                    Text(yData[indexOfQuarter].customNumberFormat(formatType: numberFormat))
+                }
+                else {
+                    Text("No data")
+                }
+            }
+            .padding(6)
+            .foregroundColor(.black)
+            .background {
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(.white)
+                    .shadow(color: .blue, radius: 2)
+            }
         }
     }
 }

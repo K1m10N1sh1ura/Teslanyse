@@ -10,33 +10,56 @@ import Charts
 
 struct EnergyFinancialsView: View {
     
-    @StateObject var plotDataViewModel: PlotDataViewModel
+    @StateObject var vm: MainViewModel
     @State var selection: EnergyFinancialDataOption = .revenue
-    var subtitle: String {
-        "Energy - \(selection.description)"
-    }
-    let yAxisLabel: String = "$"
-    var countBarMarks: Int {
-        plotDataViewModel.quarters.count
-    }
-    
+    @State var numberFormat: NumberFormatType = .dollar
     
     var body: some View {
 
         VStack (alignment: .leading) {
             TitleView(title: "Financials")
-            SubtitleView(subtitle: subtitle)
-            EnergyFinancialsChartView(plotDataViewModel: plotDataViewModel, selection: selection)
+            SubtitleView(subtitle: "Energy - \(selection.description)")
+            let (xData, yData) = userSelection()
+            ChartView(vm: vm, xData: xData, yData: yData, numberFormat: numberFormat)
+            Divider()
+            InfoButtonSubView(title: "Select metric")
             EnergyFinancialsPickerView(selection: $selection)
-            ExportButtonView(chart: Text("Test"))
+            ExportButtonView()
         }
         .navigationBarTitleDisplayMode(.inline)
+        .onChange(of: selection) {
+            switch selection {
+            case .margin:
+                numberFormat = .percent
+            default:
+                numberFormat = .dollar
+            }
+        }
+
+    }
+    
+    private func userSelection() -> ([Date],[Double]) {
+        let xData = vm.extractQuarters()
+        let yData: [Double]
+        switch (selection) {
+        case .revenue:
+            yData = vm.extractData(property: .energyRevenue)
+        case .costOfRevenue:
+            yData = vm.extractData(property: .energyCostOfRevenue)
+        case .profit:
+            yData = vm.extractData(property: .energyProfit)
+        case .margin:
+            yData = vm.extractData(property: .energyMargin)
+        case .cogs:
+            yData = vm.extractData(property: .energyCostOfGoodsSold)
+        }
+        return (xData, yData)
     }
 }
 
 #Preview {
     NavigationStack {
-        EnergyFinancialsView(plotDataViewModel: plotDataViewModel)
+        EnergyFinancialsView(vm: vm)
     }
 }
 
@@ -49,84 +72,5 @@ struct EnergyFinancialsPickerView: View {
             }
         }
         .pickerStyle(.wheel)
-    }
-}
-
-struct EnergyFinancialsChartView: View {
-    @StateObject var plotDataViewModel: PlotDataViewModel
-    @State var rawSelectedDate: Date? = nil
-    @Environment (\.calendar) var calendar
-    let selection: EnergyFinancialDataOption
-    let yAxisLabel: String = "$"
-    var countBarMarks: Int {
-        plotDataViewModel.quarters.count
-    }
-    var selectedDateValue: Int? {
-        if let rawSelectedDate {
-            let quarter = plotDataViewModel.quarters.first {
-                let startOfQuarter = $0.date
-                let endOfQuarter = calendar.date(byAdding: .quarter, value: 1, to: startOfQuarter) ?? Date()
-                return (startOfQuarter...endOfQuarter).contains(rawSelectedDate)
-            }
-            return nil
-        }
-        else {
-            return nil
-        }
-    }
-    
-    
-    var body: some View {
-        let xData = plotDataViewModel.extractQuarters()
-        let yData: [Double]
-
-        switch (selection) {
-        case .revenue:
-            yData = plotDataViewModel.extractData(property: .energyRevenue)
-        case .costOfRevenue:
-            yData = plotDataViewModel.extractData(property: .energyCostOfRevenue)
-        case .profit:
-            yData = plotDataViewModel.extractData(property: .energyProfit)
-        case .margin:
-            yData = plotDataViewModel.extractData(property: .energyMargin)
-        case .cogs:
-            yData = plotDataViewModel.extractData(property: .energyCostOfGoodsSold)
-        }
-        
-        return Chart(0..<countBarMarks, id: \.self) {index in
-                BarMark(x: .value("Quarter", xData[index]),
-                        y: .value(yAxisLabel, yData[index]), width: barMarkWidth)
-            if let rawSelectedDate {
-                BarMark(x: .value("Value", rawSelectedDate, unit: .weekOfYear))
-                    .foregroundStyle(.gray)
-                    .zIndex(-1)
-                    .annotation(position: .top,
-                                spacing: 0,
-                                overflowResolution: .init(x: .fit(to: .chart), y: .disabled)) {
-                        selectionPopover()
-
-                    }
-            }
-        }
-        .chartXSelection(value: $rawSelectedDate)
-        .frame(maxHeight: 300)
-        .padding(.horizontal,20)
-        .padding(.bottom,20)
-    }
-    
-    @ViewBuilder
-    func selectionPopover() -> some View {
-        if let rawSelectedDate {
-            VStack {
-                Text(rawSelectedDate.formatted(.dateTime.year().quarter()))
-                Text("")
-            }
-            .padding(6)
-            .background {
-                RoundedRectangle(cornerRadius: 4)
-                    .fill(.white)
-                    .shadow(color: .blue, radius: 2)
-            }
-        }
     }
 }
