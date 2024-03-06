@@ -10,7 +10,7 @@ import Charts
 
 struct AutomotiveSalesView: View {
 
-    @StateObject var plotDataViewModel: PlotDataViewModel
+    @StateObject var vm: MainViewModel
     @State var selectedModel: TeslaModel = .model3Y
     @State var selectedCarSaleState: TeslaSaleState = .produced
     var subtitle: String {
@@ -21,8 +21,9 @@ struct AutomotiveSalesView: View {
         VStack(alignment: .leading) {
             TitleView(title: "Automotive Sales")
             SubtitleView(subtitle: subtitle)
-            AutomotiveSalesChartView(plotDataViewModel: plotDataViewModel, model: selectedModel, saleState: selectedCarSaleState)
-                //.animation(.smooth)
+            let (xData, yData) = userSelection()
+            ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
+               // .animation(.smooth)
             Divider()
             InfoButtonSubView(title: "Model")
             Picker("", selection: $selectedModel) {
@@ -42,83 +43,35 @@ struct AutomotiveSalesView: View {
             .pickerStyle(SegmentedPickerStyle())
             .padding(.horizontal)
             Divider()
-            ExportButtonView(chart: Text("Test"))
+            ExportButtonView()
         }
         .navigationBarTitleDisplayMode(.inline)
+    }
+    private func userSelection() -> ([Date],[Double]) {
+        let xData = vm.extractQuarters()
+        let yData: [Double]
+        
+        switch (selectedModel, selectedCarSaleState) {
+        case (.model3Y, .delivered):
+            yData = vm.extractData(property: .deliveredModel3Y)
+        case (.model3Y, .produced):
+            yData = vm.extractData(property: .producedModel3Y)
+        case (.otherModels, .delivered):
+            yData = vm.extractData(property: .deliveredOtherModels)
+        case (.otherModels, .produced):
+            yData = vm.extractData(property: .producedOtherModels)
+        case (.allModels, .delivered):
+            yData = vm.extractData(property: .deliveredCars)
+        case (.allModels, .produced):
+            yData = vm.extractData(property: .producedCars)
+        }
+        return (xData, yData)
     }
 
 }
 
 #Preview {
     NavigationStack {
-        AutomotiveSalesView(plotDataViewModel: plotDataViewModel)
+        AutomotiveSalesView(vm: vm)
     }
 }
-
-struct AutomotiveSalesChartView: View {
-    
-    @StateObject var plotDataViewModel: PlotDataViewModel
-    @State var rawSelectedDate: Date? = nil
-    let model: TeslaModel
-    let saleState: TeslaSaleState
-    let yAxisLabel: String = "Cars"
-    var countBarMarks: Int {
-        plotDataViewModel.quarters.count
-    }
-    
-    var body: some View {
-        
-        let xData = plotDataViewModel.extractQuarters()
-        let yData: [Double]
-        
-        switch (model, saleState) {
-        case (.model3Y, .delivered):
-            yData = plotDataViewModel.extractData(property: .deliveredModel3Y)
-        case (.model3Y, .produced):
-            yData = plotDataViewModel.extractData(property: .producedModel3Y)
-        case (.otherModels, .delivered):
-            yData = plotDataViewModel.extractData(property: .deliveredOtherModels)
-        case (.otherModels, .produced):
-            yData = plotDataViewModel.extractData(property: .producedOtherModels)
-        case (.allModels, .delivered):
-            yData = plotDataViewModel.extractData(property: .deliveredCars)
-        case (.allModels, .produced):
-            yData = plotDataViewModel.extractData(property: .producedCars)
-        }
-                
-        return Chart(0..<countBarMarks, id: \.self) {index in
-                BarMark(x: .value("Quarter", xData[index]),
-                        y: .value(yAxisLabel, yData[index]), width: barMarkWidth)
-            if let rawSelectedDate {
-                BarMark(x: .value("Value", rawSelectedDate, unit: .weekOfYear))
-                    .foregroundStyle(.gray)
-                    .zIndex(-1)
-                    .annotation(position: .top,
-                                spacing: 0,
-                                overflowResolution: .init(x: .fit(to: .chart), y: .disabled)) {
-                        selectionPopover()
-
-                    }
-            }
-        }
-        .chartXSelection(value: $rawSelectedDate)
-        .padding(.horizontal)
-    }
-    
-    @ViewBuilder
-    func selectionPopover() -> some View {
-        if let rawSelectedDate {
-            VStack {
-                Text(rawSelectedDate.formatted(.dateTime.year().quarter()))
-                Text("Cars: 999.999")
-            }
-            .padding(6)
-            .background {
-                RoundedRectangle(cornerRadius: 4)
-                    .fill(.white)
-                    .shadow(color: .blue, radius: 2)
-            }
-        }
-    }
-}
-

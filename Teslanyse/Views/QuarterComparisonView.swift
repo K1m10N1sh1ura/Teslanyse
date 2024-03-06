@@ -9,18 +9,18 @@ import SwiftUI
 
 struct CompareQuartersView: View {
     
-    @StateObject var vm: PlotDataViewModel
+    @StateObject var vm: MainViewModel
     @State var selectionQuarterOne: String = ""
     @State var selectionQuarterTwo: String = ""
 
     var firstQuarterIndex: Int {
-        plotDataViewModel.quarters.firstIndex {
+        vm.quarters.firstIndex {
             $0.quarter == selectionQuarterOne
         } ?? 0
     }
     
     var secondQuarterIndex: Int {
-        plotDataViewModel.quarters.firstIndex {
+        vm.quarters.firstIndex {
             $0.quarter == selectionQuarterTwo
         } ?? 1
     }
@@ -69,7 +69,7 @@ struct CompareQuartersView: View {
 
 #Preview {
     NavigationStack {
-        CompareQuartersView(vm: plotDataViewModel)
+        CompareQuartersView(vm: vm)
     }
 }
 

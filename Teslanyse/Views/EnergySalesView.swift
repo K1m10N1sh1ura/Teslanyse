@@ -10,60 +10,64 @@ import Charts
 
 struct EnergySalesView: View {
     
-    @StateObject var plotDataViewModel: PlotDataViewModel
+    @StateObject var vm: MainViewModel
     @State var selection: EnergyOptions = .storageDeployed
+    @State var numberFormat: NumberFormatType = .power
+    @State var subtitle: String = "Storage deployed in Wh"
+
     var body: some View {
         VStack (alignment: .leading) {
             TitleView(title: "Energy Sales")
-            SubtitleView(subtitle: "Storage in MWh")
-            EnergySalesChartView(plotDataViewModel: plotDataViewModel, selection: selection)
+            SubtitleView(subtitle: subtitle)
+            let (xData, yData) = userSelection()
+            ChartView(vm: vm, xData: xData, yData: yData, numberFormat: numberFormat)
             Divider()
             InfoButtonSubView(title: "Type")
-            Picker("", selection: $selection) {
-                ForEach(EnergyOptions.allCases, id: \.self) {
-                    Text($0.description)
-                }
-            }
-            .pickerStyle(.palette)
-            .padding()
-            ExportButtonView(chart: Text("Test"))
+            EnergySalesPickerView(selection: $selection)
+            ExportButtonView()
         }
         .navigationBarTitleDisplayMode(.inline)
+        .onChange(of: selection) {
+            switch selection {
+            case .solarDeployed:
+                numberFormat = .energy
+                subtitle = "Solar deployed in Watt"
+            case .storageDeployed:
+                numberFormat = .power
+                subtitle = "Storage deployed in Wh"
+            }
+        }
     }
-}
-
-struct EnergySalesChartView: View {
     
-    @StateObject var plotDataViewModel: PlotDataViewModel
-    let selection: EnergyOptions
-    var countBarMarks: Int {
-        plotDataViewModel.quarters.count
-    }
-    
-    
-    var body: some View {
-
-        let xData = plotDataViewModel.extractQuarters()
+    private func userSelection() -> ([Date],[Double]) {
+        let xData = vm.extractQuarters()
         let yData: [Double]
         
         switch selection {
         case .solarDeployed:
-            yData = plotDataViewModel.extractData(property: .solarDeployed)
+            yData = vm.extractData(property: .solarDeployed).map { $0 * 1E6 }
         case .storageDeployed:
-            yData = plotDataViewModel.extractData(property: .energyStorage)
+            yData = vm.extractData(property: .energyStorage).map { $0 * 1E6 }
         }
-        
-        return Chart(0..<countBarMarks, id: \.self) {index in
-            BarMark(x: .value("Quarter", xData[index]),
-                    y: .value(selection.description, yData[index]), width: barMarkWidth)
-        }
-        .padding(.horizontal)
+        return (xData, yData)
     }
 }
 
-
 #Preview {
     NavigationStack {
-        EnergySalesView(plotDataViewModel: plotDataViewModel)
+        EnergySalesView(vm: vm)
+    }
+}
+
+struct EnergySalesPickerView: View {
+    @Binding var selection: EnergyOptions
+    var body: some View {
+        Picker("", selection: $selection) {
+            ForEach(EnergyOptions.allCases, id: \.self) {
+                Text($0.description)
+            }
+        }
+        .pickerStyle(.palette)
+        .padding()
     }
 }

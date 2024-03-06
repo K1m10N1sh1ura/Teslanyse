@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8934E0352B98EB52007C6FF9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8934E0342B98EB52007C6FF9 /* Extensions.swift */; };
 		893C58D22B8CD11100734A71 /* AutomotiveSalesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C58D12B8CD11100734A71 /* AutomotiveSalesView.swift */; };
 		893C58D42B8D626600734A71 /* FinancialDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C58D32B8D626600734A71 /* FinancialDataView.swift */; };
 		893C58D62B8D628900734A71 /* StartScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C58D52B8D628900734A71 /* StartScreenView.swift */; };
@@ -22,11 +23,12 @@
 		89F882E42B8A355400C81C85 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882E32B8A355400C81C85 /* ContentView.swift */; };
 		89F882E62B8A355600C81C85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F882E52B8A355600C81C85 /* Assets.xcassets */; };
 		89F882E92B8A355600C81C85 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F882E82B8A355600C81C85 /* Preview Assets.xcassets */; };
-		89F882F22B8A3DB100C81C85 /* PlotDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882F12B8A3DB100C81C85 /* PlotDataViewModel.swift */; };
+		89F882F22B8A3DB100C81C85 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882F12B8A3DB100C81C85 /* MainViewModel.swift */; };
 		89F882F42B8A3DC800C81C85 /* AppModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882F32B8A3DC800C81C85 /* AppModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8934E0342B98EB52007C6FF9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		893C58D12B8CD11100734A71 /* AutomotiveSalesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomotiveSalesView.swift; sourceTree = "<group>"; };
 		893C58D32B8D626600734A71 /* FinancialDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialDataView.swift; sourceTree = "<group>"; };
 		893C58D52B8D628900734A71 /* StartScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenView.swift; sourceTree = "<group>"; };
@@ -44,7 +46,7 @@
 		89F882E32B8A355400C81C85 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		89F882E52B8A355600C81C85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89F882E82B8A355600C81C85 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		89F882F12B8A3DB100C81C85 /* PlotDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotDataViewModel.swift; sourceTree = "<group>"; };
+		89F882F12B8A3DB100C81C85 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		89F882F32B8A3DC800C81C85 /* AppModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,7 +88,7 @@
 		893C58CF2B8CD0E000734A71 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				89F882F12B8A3DB100C81C85 /* PlotDataViewModel.swift */,
+				89F882F12B8A3DB100C81C85 /* MainViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -98,6 +100,7 @@
 				89F882E32B8A355400C81C85 /* ContentView.swift */,
 				89B60ED72B952E54005A7BF2 /* Enums.swift */,
 				89B60EDF2B9666B5005A7BF2 /* Constants.swift */,
+				8934E0342B98EB52007C6FF9 /* Extensions.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -234,8 +237,9 @@
 				89B60ED82B952E54005A7BF2 /* Enums.swift in Sources */,
 				893C58DC2B8F8B1600734A71 /* AutomotiveFinancialsView.swift in Sources */,
 				89F882E22B8A355400C81C85 /* TeslanyseApp.swift in Sources */,
+				8934E0352B98EB52007C6FF9 /* Extensions.swift in Sources */,
 				893C58D22B8CD11100734A71 /* AutomotiveSalesView.swift in Sources */,
-				89F882F22B8A3DB100C81C85 /* PlotDataViewModel.swift in Sources */,
+				89F882F22B8A3DB100C81C85 /* MainViewModel.swift in Sources */,
 				89B60EDC2B953D3E005A7BF2 /* QuarterComparisonView.swift in Sources */,
 				893C58D42B8D626600734A71 /* FinancialDataView.swift in Sources */,
 			);

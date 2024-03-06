@@ -10,55 +10,52 @@ import Charts
 
 struct FinancialDataView: View {
     
-    @StateObject var plotDataViewModel: PlotDataViewModel
+    @StateObject var vm: MainViewModel
     @State var selection: FinancialDataOption = .revenue
+    @State var numberFormat: NumberFormatType = .dollar
+
     var body: some View {
         VStack (alignment: .leading) {
             TitleView(title: "Financials")
             SubtitleView(subtitle: "Summary")
-            FinancialsChartView(plotDataViewModel: plotDataViewModel, selection: $selection)
+            let (xData, yData) = userSelection()
+            ChartView(vm: vm, xData: xData, yData: yData, numberFormat: numberFormat)
             FinancialsPickerView(selection: $selection)
-            ExportButtonView(chart: Text("Test"))
+            ExportButtonView()
         }
         .navigationBarTitleDisplayMode(.inline)
-    }
-}
-
-#Preview {
-    NavigationStack {
-        FinancialDataView(plotDataViewModel: plotDataViewModel)
-    }
-}
-
-
-struct FinancialsChartView: View {
-    @StateObject var plotDataViewModel: PlotDataViewModel
-    @Binding var selection: FinancialDataOption
-    var countBarMarks: Int {
-        plotDataViewModel.quarters.count
+        .onChange(of: selection) {
+            switch selection {
+            case .grossGAAPMargin:
+                numberFormat = .percent
+            default:
+                numberFormat = .dollar
+            }
+        }
     }
     
-    var body: some View {
-        let xData = plotDataViewModel.extractQuarters()
+    private func userSelection() -> ([Date],[Double]) {
+        let xData = vm.extractQuarters()
         let yData: [Double]
 
         switch (selection) {
         case .revenue:
-            yData = plotDataViewModel.extractData(property: .revenue)
+            yData = vm.extractData(property: .revenue)
         case .profit:
-            yData = plotDataViewModel.extractData(property: .profit)
+            yData = vm.extractData(property: .profit)
         case .grossGAAPMargin:
-            yData = plotDataViewModel.extractData(property: .margin)
+            yData = vm.extractData(property: .margin)
         }
-        
-        return Chart(0..<countBarMarks, id: \.self) {index in
-                BarMark(x: .value("Quarter", xData[index]),
-                        y: .value("$", yData[index]), width: barMarkWidth)
-        }
-        .padding(.horizontal)
+        return (xData, yData)
     }
+    
 }
 
+#Preview {
+    NavigationStack {
+        FinancialDataView(vm: vm)
+    }
+}
 
 struct FinancialsPickerView: View {
     @Binding var selection: FinancialDataOption
