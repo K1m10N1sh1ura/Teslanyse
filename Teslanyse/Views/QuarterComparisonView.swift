@@ -10,8 +10,8 @@ import SwiftUI
 struct CompareQuartersView: View {
     
     @StateObject var vm: MainViewModel
-    @State var selectionQuarterOne: String = ""
-    @State var selectionQuarterTwo: String = ""
+    @State private var selectionQuarterOne: String = ""
+    @State private var selectionQuarterTwo: String = ""
 
     var firstQuarterIndex: Int {
         vm.quarters.firstIndex {

@@ -11,7 +11,7 @@ import Charts
 struct SuperchargerView: View {
     
     @StateObject var vm: MainViewModel
-    @State var selection: SuperchargerOption = .stations
+    @State private var selection: SuperchargerOption = .stations
 
     var body: some View {
         VStack (alignment: .leading) {
@@ -19,17 +19,14 @@ struct SuperchargerView: View {
             SubtitleView(subtitle: selection.desciption + " accumulated")
             let (xData, yData) = userSelection()
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
-            Picker("", selection: $selection) {
-                ForEach(SuperchargerOption.allCases, id: \.self) {
-                    Text($0.desciption)
-                }
-            }
-            .pickerStyle(SegmentedPickerStyle())
-            .padding(.horizontal)
+            Divider()
+            InfoButtonSubView(title: "Type")
+            SuperchargerPickerView(selection: $selection)
             ExportButtonView()
         }
         .navigationBarTitleDisplayMode(.inline)
     }
+    
     private func userSelection() -> ([Date],[Double]) {
         let xData = vm.extractQuarters()
         let yData: [Double]
@@ -48,5 +45,18 @@ struct SuperchargerView: View {
 #Preview {
     NavigationStack {
         SuperchargerView(vm: vm)
+    }
+}
+
+struct SuperchargerPickerView: View {
+    @Binding var selection: SuperchargerOption
+    var body: some View {
+        Picker("", selection: $selection) {
+            ForEach(SuperchargerOption.allCases, id: \.self) {
+                Text($0.desciption)
+            }
+        }
+        .pickerStyle(SegmentedPickerStyle())
+        .padding(.horizontal)
     }
 }

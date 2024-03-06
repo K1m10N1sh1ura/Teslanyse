@@ -11,8 +11,8 @@ import Charts
 struct AutomotiveFinancialsView: View {
     
     @StateObject var vm: MainViewModel
-    @State var selection = AutomotiveFinancialDataOption.revenue
-    @State var numberFormat: NumberFormatType = .dollar
+    @State private var selection = AutomotiveFinancialDataOption.revenue
+    @State private var numberFormat: NumberFormatType = .dollar
     
     var body: some View {
         VStack (alignment: .leading) {
