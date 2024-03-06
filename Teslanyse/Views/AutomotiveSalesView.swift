@@ -11,9 +11,9 @@ import Charts
 struct AutomotiveSalesView: View {
 
     @StateObject var vm: MainViewModel
-    @State var selectedModel: TeslaModel = .model3Y
-    @State var selectedCarSaleState: TeslaSaleState = .produced
-    var subtitle: String {
+    @State private var selectedModel: TeslaModel = .model3Y
+    @State private var selectedCarSaleState: TeslaSaleState = .produced
+    private var subtitle: String {
         "\(selectedModel.description) - \(selectedCarSaleState.description)"
     }
 
@@ -27,8 +27,8 @@ struct AutomotiveSalesView: View {
             Divider()
             InfoButtonSubView(title: "Model")
             Picker("", selection: $selectedModel) {
-                ForEach(TeslaModel.allCases, id: \.self) { model in
-                    Text(model.description)
+                ForEach(TeslaModel.allCases, id: \.self) {
+                    Text($0.description)
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
@@ -36,8 +36,8 @@ struct AutomotiveSalesView: View {
             Divider()
             InfoButtonSubView(title: "State")
             Picker("Select sale state", selection: $selectedCarSaleState) {
-                ForEach(TeslaSaleState.allCases, id: \.self) { saleState in
-                    Text(saleState.description)
+                ForEach(TeslaSaleState.allCases, id: \.self) {
+                    Text($0.description)
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
@@ -47,6 +47,7 @@ struct AutomotiveSalesView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
     }
+    
     private func userSelection() -> ([Date],[Double]) {
         let xData = vm.extractQuarters()
         let yData: [Double]
@@ -69,6 +70,8 @@ struct AutomotiveSalesView: View {
     }
 
 }
+
+
 
 #Preview {
     NavigationStack {

@@ -11,8 +11,8 @@ import Charts
 struct EnergyFinancialsView: View {
     
     @StateObject var vm: MainViewModel
-    @State var selection: EnergyFinancialDataOption = .revenue
-    @State var numberFormat: NumberFormatType = .dollar
+    @State private var selection: EnergyFinancialDataOption = .revenue
+    @State private var numberFormat: NumberFormatType = .dollar
     
     var body: some View {
 

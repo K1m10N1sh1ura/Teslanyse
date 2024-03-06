@@ -11,8 +11,8 @@ import Charts
 struct FinancialDataView: View {
     
     @StateObject var vm: MainViewModel
-    @State var selection: FinancialDataOption = .revenue
-    @State var numberFormat: NumberFormatType = .dollar
+    @State private var selection: FinancialDataOption = .revenue
+    @State private var numberFormat: NumberFormatType = .dollar
 
     var body: some View {
         VStack (alignment: .leading) {
@@ -20,6 +20,8 @@ struct FinancialDataView: View {
             SubtitleView(subtitle: "Summary")
             let (xData, yData) = userSelection()
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: numberFormat)
+            Divider()
+            InfoButtonSubView(title: "Metric")
             FinancialsPickerView(selection: $selection)
             ExportButtonView()
         }

@@ -80,7 +80,7 @@ struct InfoButtonSubView: View {
 
 struct ChartView: View {
     @StateObject var vm: MainViewModel
-    @State var rawSelectedDate: Date? = nil
+    @State private var rawSelectedDate: Date? = nil
     let xData: [Date]
     let yData: [Double]
     let numberFormat: NumberFormatType

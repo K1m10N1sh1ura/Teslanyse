@@ -11,9 +11,9 @@ import Charts
 struct EnergySalesView: View {
     
     @StateObject var vm: MainViewModel
-    @State var selection: EnergyOptions = .storageDeployed
-    @State var numberFormat: NumberFormatType = .power
-    @State var subtitle: String = "Storage deployed in Wh"
+    @State private var selection: EnergyOptions = .storageDeployed
+    @State private var numberFormat: NumberFormatType = .power
+    @State private var subtitle: String = "Storage deployed in Wh"
 
     var body: some View {
         VStack (alignment: .leading) {

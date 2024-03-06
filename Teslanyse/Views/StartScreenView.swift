@@ -57,6 +57,7 @@ struct StartScreenView: View {
             }
         }
         .navigationTitle("Tesla Analytics")
+        
     }
 }
 
