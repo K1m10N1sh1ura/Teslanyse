@@ -51,6 +51,8 @@ class MainViewModel: ObservableObject {
             let productionModel3Y = dataDictionary.producedModel3Y[String(i)]!
             let productionOtherModels = dataDictionary.producedOtherModels[String(i)]!
             let solarDeployed = dataDictionary.solarDeployed[String(i)]!
+            let superchargerStations = dataDictionary.superchargerStationsAccumulated[String(i)]! - (dataDictionary.superchargerStationsAccumulated[String(i - 1)] ?? 0)
+            let superchargerConnectors = dataDictionary.superchargerConnectorsAccumulated[String(i)]! - (dataDictionary.superchargerConnectorsAccumulated[String(i - 1)] ?? 0)
             let superchargerStationsAccumulated = dataDictionary.superchargerStationsAccumulated[String(i)]!
             let superchargerConnectorsAccumulated = dataDictionary.superchargerConnectorsAccumulated[String(i)]!
 
@@ -69,6 +71,8 @@ class MainViewModel: ObservableObject {
                                            producedModel3Y: productionModel3Y,
                                            producedOtherModels: productionOtherModels,
                                            solarDeployed: solarDeployed,
+                                           superchargerStations: superchargerStations,
+                                           superchargerConnectors: superchargerConnectors,
                                            superchargerStationsAccumulated: superchargerStationsAccumulated,
                                            superchargerConnectorsAccumulated: superchargerConnectorsAccumulated
             )
@@ -173,6 +177,14 @@ class MainViewModel: ObservableObject {
         case .solarDeployed:
             for quarter in quarters {
                 data.append(Double(quarter.solarDeployed))
+            }
+        case .superchargerStations:
+            for quarter in quarters {
+                data.append(Double(quarter.superchargerStations))
+            }
+        case .superchargerConnectors:
+            for quarter in quarters {
+                data.append(Double(quarter.superchargerConnectors))
             }
         case .superchargerStationsAccumulated:
             for quarter in quarters {

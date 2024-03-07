@@ -45,9 +45,9 @@ struct EnergySalesView: View {
         
         switch selection {
         case .solarDeployed:
-            yData = vm.extractData(property: .solarDeployed).map { $0 * 1E6 }
+            yData = vm.extractData(property: .solarDeployed)
         case .storageDeployed:
-            yData = vm.extractData(property: .energyStorage).map { $0 * 1E6 }
+            yData = vm.extractData(property: .energyStorage)
         }
         return (xData, yData)
     }

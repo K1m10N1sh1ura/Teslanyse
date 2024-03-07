@@ -30,6 +30,8 @@ enum QuarterDataEnum: CaseIterable {
     case energyMargin
     case energyCostOfGoodsSold
     case solarDeployed
+    case superchargerStations
+    case superchargerConnectors
     case superchargerStationsAccumulated
     case superchargerConnectorsAccumulated
     
@@ -77,6 +79,10 @@ enum QuarterDataEnum: CaseIterable {
             "Energy cost of goods sold"
         case .solarDeployed:
             "Solar deployed"
+        case .superchargerStations:
+            "Supercharger stations"
+        case .superchargerConnectors:
+            "Supercharger connectors"
         case .superchargerStationsAccumulated:
             "Supercharger stations accumulated"
         case .superchargerConnectorsAccumulated:
@@ -203,7 +209,7 @@ enum EnergyFinancialDataOption: CaseIterable {
 }
 
 enum SuperchargerOption: CaseIterable {
-    case stations, connectors
+    case stations, connectors, stationsAccumulated, connectorsAccumulated
     
     var desciption: String {
         switch self {
@@ -211,6 +217,10 @@ enum SuperchargerOption: CaseIterable {
             return "Stations"
         case .connectors:
             return "Connectors"
+        case .stationsAccumulated:
+            return "Stations accumulated"
+        case .connectorsAccumulated:
+            return "Connectors accumulated"
         }
     }
 }

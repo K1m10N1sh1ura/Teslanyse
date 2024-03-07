@@ -11,8 +11,10 @@ import Charts
 struct SuperchargerView: View {
     
     @StateObject var vm: MainViewModel
-    @State private var selection: SuperchargerOption = .stations
-
+    @State private var selectionType = "Stations"
+    @State private var selectionAccumulated = "No"
+    @State var selection: SuperchargerOption = .stations
+    
     var body: some View {
         VStack (alignment: .leading) {
             TitleView(title: "Supercharger")
@@ -21,21 +23,42 @@ struct SuperchargerView: View {
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
             Divider()
             InfoButtonSubView(title: "Type")
-            SuperchargerPickerView(selection: $selection)
+            SuperchargerPickerView(selectionType: $selectionType, selectionAccumulated: $selectionAccumulated)
             ExportButtonView()
         }
         .navigationBarTitleDisplayMode(.inline)
+        .onChange(of: selectionType) {
+            chartSelection()
+        }
+        .onChange(of: selectionAccumulated) {
+            chartSelection()
+        }
     }
     
+    private func chartSelection() {
+        switch selectionType {
+        case "Connectors":
+            selection = selectionAccumulated == "Yes" ? .connectorsAccumulated : .connectors
+        case "Stations":
+            selection = selectionAccumulated == "Yes" ? .stationsAccumulated : .stations
+        default:
+            selection = .connectors
+        }
+    }
     private func fetchChartData() -> ([Date],[Double]) {
         let xData = vm.extractQuarters()
         let yData: [Double]
         
         switch selection {
         case .stations:
-            yData = vm.extractData(property: .superchargerStationsAccumulated)
+            yData = vm.extractData(property: .superchargerStations)
         case .connectors:
+            yData = vm.extractData(property: .superchargerConnectors)
+        case .stationsAccumulated:
+            yData = vm.extractData(property: .superchargerStationsAccumulated)
+        case .connectorsAccumulated:
             yData = vm.extractData(property: .superchargerConnectorsAccumulated)
+
         }
         
         return (xData, yData)
@@ -49,14 +72,26 @@ struct SuperchargerView: View {
 }
 
 struct SuperchargerPickerView: View {
-    @Binding var selection: SuperchargerOption
+    @Binding var selectionType: String
+    @Binding var selectionAccumulated: String
+
     var body: some View {
-        Picker("", selection: $selection) {
-            ForEach(SuperchargerOption.allCases, id: \.self) {
-                Text($0.desciption)
-            }
+        Picker("", selection: $selectionType) {
+            Text("Stations")
+                .tag("Stations")
+            Text("Connectors")
+                .tag("Connectors")
         }
-        .pickerStyle(SegmentedPickerStyle())
+        .pickerStyle(.palette)
+        .padding(.horizontal)
+        InfoButtonSubView(title: "Accumulated")
+        Picker("", selection: $selectionAccumulated) {
+            Text("No")
+                .tag("No")
+            Text("Yes")
+                .tag("Yes")
+        }
+        .pickerStyle(.segmented)
         .padding(.horizontal)
     }
 }
