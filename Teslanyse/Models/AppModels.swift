@@ -47,6 +47,8 @@ struct QuarterData: Identifiable {
     let producedModel3Y: Int
     let producedOtherModels: Int
     let solarDeployed: Int
+    let superchargerStations: Int
+    let superchargerConnectors: Int
     let superchargerStationsAccumulated: Int
     let superchargerConnectorsAccumulated: Int
     var margin: Double { Double(profit) / Double(revenue) }

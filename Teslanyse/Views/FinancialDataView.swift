@@ -18,7 +18,7 @@ struct FinancialDataView: View {
         VStack (alignment: .leading) {
             TitleView(title: "Financials")
             SubtitleView(subtitle: "Summary")
-            let (xData, yData) = userSelection()
+            let (xData, yData) = fetchChartData()
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: numberFormat)
             Divider()
             InfoButtonSubView(title: "Metric")
@@ -36,7 +36,7 @@ struct FinancialDataView: View {
         }
     }
     
-    private func userSelection() -> ([Date],[Double]) {
+    private func fetchChartData() -> ([Date],[Double]) {
         let xData = vm.extractQuarters()
         let yData: [Double]
 
