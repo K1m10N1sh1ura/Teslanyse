@@ -105,6 +105,7 @@ struct ChartView: View {
         .frame(maxHeight: 300)
         .padding(.horizontal,20)
         .padding(.bottom,20)
+        .animation(.smooth, value: yData)
     }
     
     
