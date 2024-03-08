@@ -23,7 +23,6 @@ struct AutomotiveSalesView: View {
             SubtitleView(subtitle: subtitle)
             let (xData, yData) = fetchChartData()
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
-               // .animation(.smooth)
             Divider()
             InfoButtonSubView(title: "Model")
             Picker("", selection: $selectedModel) {
