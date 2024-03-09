@@ -14,6 +14,8 @@
 		893C58D82B8D62A700734A71 /* EnergySalesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C58D72B8D62A700734A71 /* EnergySalesView.swift */; };
 		893C58DC2B8F8B1600734A71 /* AutomotiveFinancialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C58DB2B8F8B1600734A71 /* AutomotiveFinancialsView.swift */; };
 		893C58DE2B8FC42300734A71 /* EnergyFinancialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C58DD2B8FC42300734A71 /* EnergyFinancialsView.swift */; };
+		898B6CD82B9BE3080064C5EA /* ChartStyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B6CD72B9BE3080064C5EA /* ChartStyleView.swift */; };
+		898B6CDA2B9BE3140064C5EA /* ChartColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B6CD92B9BE3140064C5EA /* ChartColorView.swift */; };
 		89B60ED62B94CF01005A7BF2 /* SuperchargerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B60ED52B94CF01005A7BF2 /* SuperchargerView.swift */; };
 		89B60ED82B952E54005A7BF2 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B60ED72B952E54005A7BF2 /* Enums.swift */; };
 		89B60EDA2B9530C1005A7BF2 /* UIElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B60ED92B9530C1005A7BF2 /* UIElements.swift */; };
@@ -35,6 +37,8 @@
 		893C58D72B8D62A700734A71 /* EnergySalesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergySalesView.swift; sourceTree = "<group>"; };
 		893C58DB2B8F8B1600734A71 /* AutomotiveFinancialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomotiveFinancialsView.swift; sourceTree = "<group>"; };
 		893C58DD2B8FC42300734A71 /* EnergyFinancialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyFinancialsView.swift; sourceTree = "<group>"; };
+		898B6CD72B9BE3080064C5EA /* ChartStyleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartStyleView.swift; sourceTree = "<group>"; };
+		898B6CD92B9BE3140064C5EA /* ChartColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartColorView.swift; sourceTree = "<group>"; };
 		89B60ED52B94CF01005A7BF2 /* SuperchargerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuperchargerView.swift; sourceTree = "<group>"; };
 		89B60ED72B952E54005A7BF2 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		89B60ED92B9530C1005A7BF2 /* UIElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIElements.swift; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 		893C58CE2B8CD0DB00734A71 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				898B6CD62B9BE2E40064C5EA /* Setting Views */,
 				89B60EDE2B966691005A7BF2 /* Reusable UI Components */,
 				89B60ED52B94CF01005A7BF2 /* SuperchargerView.swift */,
 				893C58D12B8CD11100734A71 /* AutomotiveSalesView.swift */,
@@ -103,6 +108,15 @@
 				8934E0342B98EB52007C6FF9 /* Extensions.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		898B6CD62B9BE2E40064C5EA /* Setting Views */ = {
+			isa = PBXGroup;
+			children = (
+				898B6CD72B9BE3080064C5EA /* ChartStyleView.swift */,
+				898B6CD92B9BE3140064C5EA /* ChartColorView.swift */,
+			);
+			path = "Setting Views";
 			sourceTree = "<group>";
 		};
 		89B60EDE2B966691005A7BF2 /* Reusable UI Components */ = {
@@ -235,7 +249,9 @@
 				89F882E42B8A355400C81C85 /* ContentView.swift in Sources */,
 				89B60EE02B9666B5005A7BF2 /* Constants.swift in Sources */,
 				89B60ED82B952E54005A7BF2 /* Enums.swift in Sources */,
+				898B6CD82B9BE3080064C5EA /* ChartStyleView.swift in Sources */,
 				893C58DC2B8F8B1600734A71 /* AutomotiveFinancialsView.swift in Sources */,
+				898B6CDA2B9BE3140064C5EA /* ChartColorView.swift in Sources */,
 				89F882E22B8A355400C81C85 /* TeslanyseApp.swift in Sources */,
 				8934E0352B98EB52007C6FF9 /* Extensions.swift in Sources */,
 				893C58D22B8CD11100734A71 /* AutomotiveSalesView.swift in Sources */,

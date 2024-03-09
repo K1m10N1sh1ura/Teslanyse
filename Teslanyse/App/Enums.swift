@@ -211,7 +211,7 @@ enum EnergyFinancialDataOption: CaseIterable {
 enum SuperchargerOption: CaseIterable {
     case stations, connectors, stationsAccumulated, connectorsAccumulated
     
-    var desciption: String {
+    var description: String {
         switch self {
         case .stations:
             return "Stations"
@@ -228,3 +228,36 @@ enum SuperchargerOption: CaseIterable {
 enum NumberFormatType {
     case dollar, percent, number, power, energy
 }
+
+enum ChartStyle: CaseIterable {
+    case barChart, lineChart
+    
+    var description: String {
+        switch self {
+        case .barChart:
+            "Bar Chart"
+        case .lineChart:
+            "Line Chart"
+        }
+    }
+}
+
+enum ChartColor: CaseIterable {
+    case gray, blue, green, red, yellow
+    
+    var description: String {
+        switch self {
+        case .gray:
+            "Gray"
+        case .blue:
+            "Blue"
+        case .green:
+            "Green"
+        case .red:
+            "Red"
+        case .yellow:
+            "Yellow"
+        }
+    }
+}
+
