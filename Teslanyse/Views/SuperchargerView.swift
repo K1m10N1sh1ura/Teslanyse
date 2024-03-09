@@ -18,7 +18,7 @@ struct SuperchargerView: View {
     var body: some View {
         VStack (alignment: .leading) {
             TitleView(title: "Supercharger")
-            SubtitleView(subtitle: selection.desciption + " accumulated")
+            SubtitleView(subtitle: selection.description)
             let (xData, yData) = fetchChartData()
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
             Divider()

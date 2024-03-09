@@ -88,8 +88,16 @@ struct ChartView: View {
     var body: some View {
         
         Chart(0..<vm.quarters.count, id: \.self) {index in
+            switch chartStyle {
+            case .barChart:
                 BarMark(x: .value("Quarter", xData[index]),
                         y: .value("$", yData[index]), width: barMarkWidth)
+                .foregroundStyle(chartColor)
+            case .lineChart:
+                LineMark(x: .value("Quarter", xData[index]),
+                        y: .value("$", yData[index]))
+                .foregroundStyle(chartColor)
+            }
             if let rawSelectedDate {
                 BarMark(x: .value("Value", rawSelectedDate, unit: .weekOfYear))
                     .foregroundStyle(.gray)

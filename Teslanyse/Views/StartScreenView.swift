@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StartScreenView: View {
     
-    var vm = MainViewModel()
+    var vm: MainViewModel
 
     var body: some View {
         List {
@@ -55,6 +55,14 @@ struct StartScreenView: View {
                     Label("Other manufacturers", systemImage: "car.2.fill")
                 }
             }
+            Section("Settings") {
+                NavigationLink(destination: ChartStyleView()) {
+                    Label("Chart style", systemImage: "chart.xyaxis.line")
+                }
+                NavigationLink(destination: ChartColorView()) {
+                    Label("Chart color", systemImage: "paintbrush")
+                }
+            }
         }
         .navigationTitle("Tesla Analytics")
         
@@ -63,6 +71,6 @@ struct StartScreenView: View {
 
 #Preview {
     NavigationView {
-        StartScreenView()
+        StartScreenView(vm: vm)
     }
 }
