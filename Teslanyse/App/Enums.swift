@@ -70,7 +70,7 @@ enum QuarterDataEnum: CaseIterable {
         case .energyCostOfRevenue:
             "Energy cost of revenue"
         case .energyStorage:
-            "Energy sorage"
+            "Energy storage"
         case .energyProfit:
             "Energy profit"
         case .energyMargin:
