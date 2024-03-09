@@ -88,22 +88,28 @@ struct ChartView: View {
     var body: some View {
         
         Chart(0..<vm.quarters.count, id: \.self) {index in
-            switch chartStyle {
+            switch SettingsClass.shared.chartStyle {
             case .barChart:
                 BarMark(x: .value("Quarter", xData[index]),
                         y: .value("$", yData[index]), width: barMarkWidth)
-                .foregroundStyle(chartColor)
+                .foregroundStyle(SettingsClass.shared.chartColor)
             case .lineChart:
                 LineMark(x: .value("Quarter", xData[index]),
                         y: .value("$", yData[index]))
-                .foregroundStyle(chartColor)
+                .foregroundStyle(SettingsClass.shared.chartColor)
+            case .pointChart:
+                PointMark(x: .value("Quarter", xData[index]),
+                        y: .value("$", yData[index]))
+                .foregroundStyle(SettingsClass.shared.chartColor)
             }
+
             if let rawSelectedDate {
-                BarMark(x: .value("Value", rawSelectedDate, unit: .weekOfYear))
-                    .foregroundStyle(.gray)
+                PointMark(x: .value("Value", rawSelectedDate, unit: .quarter),
+                          y: .value("Value", yData[vm.getIndexOfQuarter(rawSelectedDate.formatted(.dateTime.year().quarter())) ?? 0]))
+                    .foregroundStyle(.red)
                     .zIndex(-1)
                     .annotation(position: .top,
-                                spacing: 0,
+                                spacing: 40,
                                 overflowResolution: .init(x: .fit(to: .chart), y: .disabled)) {
                         selectionPopover(yData: yData)
                     }
