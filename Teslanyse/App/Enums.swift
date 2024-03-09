@@ -230,7 +230,7 @@ enum NumberFormatType {
 }
 
 enum ChartStyle: CaseIterable {
-    case barChart, lineChart
+    case barChart, lineChart, pointChart
     
     var description: String {
         switch self {
@@ -238,6 +238,8 @@ enum ChartStyle: CaseIterable {
             "Bar Chart"
         case .lineChart:
             "Line Chart"
+        case .pointChart:
+            "Point Chart"
         }
     }
 }

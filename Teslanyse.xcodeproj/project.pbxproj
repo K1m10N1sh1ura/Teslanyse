@@ -76,16 +76,9 @@
 		893C58CE2B8CD0DB00734A71 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				898B6CDB2B9BEAE70064C5EA /* Data Views */,
 				898B6CD62B9BE2E40064C5EA /* Setting Views */,
 				89B60EDE2B966691005A7BF2 /* Reusable UI Components */,
-				89B60ED52B94CF01005A7BF2 /* SuperchargerView.swift */,
-				893C58D12B8CD11100734A71 /* AutomotiveSalesView.swift */,
-				893C58D32B8D626600734A71 /* FinancialDataView.swift */,
-				893C58D52B8D628900734A71 /* StartScreenView.swift */,
-				893C58D72B8D62A700734A71 /* EnergySalesView.swift */,
-				893C58DB2B8F8B1600734A71 /* AutomotiveFinancialsView.swift */,
-				893C58DD2B8FC42300734A71 /* EnergyFinancialsView.swift */,
-				89B60EDB2B953D3E005A7BF2 /* QuarterComparisonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -103,6 +96,7 @@
 			children = (
 				89F882E12B8A355400C81C85 /* TeslanyseApp.swift */,
 				89F882E32B8A355400C81C85 /* ContentView.swift */,
+				893C58D52B8D628900734A71 /* StartScreenView.swift */,
 				89B60ED72B952E54005A7BF2 /* Enums.swift */,
 				89B60EDF2B9666B5005A7BF2 /* Constants.swift */,
 				8934E0342B98EB52007C6FF9 /* Extensions.swift */,
@@ -117,6 +111,20 @@
 				898B6CD92B9BE3140064C5EA /* ChartColorView.swift */,
 			);
 			path = "Setting Views";
+			sourceTree = "<group>";
+		};
+		898B6CDB2B9BEAE70064C5EA /* Data Views */ = {
+			isa = PBXGroup;
+			children = (
+				89B60ED52B94CF01005A7BF2 /* SuperchargerView.swift */,
+				893C58D12B8CD11100734A71 /* AutomotiveSalesView.swift */,
+				893C58D32B8D626600734A71 /* FinancialDataView.swift */,
+				893C58D72B8D62A700734A71 /* EnergySalesView.swift */,
+				893C58DB2B8F8B1600734A71 /* AutomotiveFinancialsView.swift */,
+				893C58DD2B8FC42300734A71 /* EnergyFinancialsView.swift */,
+				89B60EDB2B953D3E005A7BF2 /* QuarterComparisonView.swift */,
+			);
+			path = "Data Views";
 			sourceTree = "<group>";
 		};
 		89B60EDE2B966691005A7BF2 /* Reusable UI Components */ = {
