@@ -8,8 +8,6 @@
 import SwiftUI
 
 var vm = MainViewModel()
-var chartStyle: ChartStyle = .barChart
-var chartColor: Color = .blue
 
 struct ContentView: View {
     var vm = MainViewModel()

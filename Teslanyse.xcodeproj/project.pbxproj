@@ -16,6 +16,7 @@
 		893C58DE2B8FC42300734A71 /* EnergyFinancialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C58DD2B8FC42300734A71 /* EnergyFinancialsView.swift */; };
 		898B6CD82B9BE3080064C5EA /* ChartStyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B6CD72B9BE3080064C5EA /* ChartStyleView.swift */; };
 		898B6CDA2B9BE3140064C5EA /* ChartColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B6CD92B9BE3140064C5EA /* ChartColorView.swift */; };
+		898B6CDD2B9CC3130064C5EA /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B6CDC2B9CC3120064C5EA /* Settings.swift */; };
 		89B60ED62B94CF01005A7BF2 /* SuperchargerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B60ED52B94CF01005A7BF2 /* SuperchargerView.swift */; };
 		89B60ED82B952E54005A7BF2 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B60ED72B952E54005A7BF2 /* Enums.swift */; };
 		89B60EDA2B9530C1005A7BF2 /* UIElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B60ED92B9530C1005A7BF2 /* UIElements.swift */; };
@@ -39,6 +40,7 @@
 		893C58DD2B8FC42300734A71 /* EnergyFinancialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyFinancialsView.swift; sourceTree = "<group>"; };
 		898B6CD72B9BE3080064C5EA /* ChartStyleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartStyleView.swift; sourceTree = "<group>"; };
 		898B6CD92B9BE3140064C5EA /* ChartColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartColorView.swift; sourceTree = "<group>"; };
+		898B6CDC2B9CC3120064C5EA /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		89B60ED52B94CF01005A7BF2 /* SuperchargerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuperchargerView.swift; sourceTree = "<group>"; };
 		89B60ED72B952E54005A7BF2 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		89B60ED92B9530C1005A7BF2 /* UIElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIElements.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				89B60ED72B952E54005A7BF2 /* Enums.swift */,
 				89B60EDF2B9666B5005A7BF2 /* Constants.swift */,
 				8934E0342B98EB52007C6FF9 /* Extensions.swift */,
+				898B6CDC2B9CC3120064C5EA /* Settings.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				89F882F22B8A3DB100C81C85 /* MainViewModel.swift in Sources */,
 				89B60EDC2B953D3E005A7BF2 /* QuarterComparisonView.swift in Sources */,
 				893C58D42B8D626600734A71 /* FinancialDataView.swift in Sources */,
+				898B6CDD2B9CC3130064C5EA /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

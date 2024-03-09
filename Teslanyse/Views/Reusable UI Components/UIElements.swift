@@ -88,19 +88,19 @@ struct ChartView: View {
     var body: some View {
         
         Chart(0..<vm.quarters.count, id: \.self) {index in
-            switch chartStyle {
+            switch SettingsClass.shared.chartStyle {
             case .barChart:
                 BarMark(x: .value("Quarter", xData[index]),
                         y: .value("$", yData[index]), width: barMarkWidth)
-                .foregroundStyle(chartColor)
+                .foregroundStyle(SettingsClass.shared.chartColor)
             case .lineChart:
                 LineMark(x: .value("Quarter", xData[index]),
                         y: .value("$", yData[index]))
-                .foregroundStyle(chartColor)
+                .foregroundStyle(SettingsClass.shared.chartColor)
             case .pointChart:
                 PointMark(x: .value("Quarter", xData[index]),
                         y: .value("$", yData[index]))
-                .foregroundStyle(chartColor)
+                .foregroundStyle(SettingsClass.shared.chartColor)
             }
 
             if let rawSelectedDate {

@@ -11,7 +11,7 @@ struct ChartColorView: View {
     @State private var selection: ChartColor
     
     init() {
-        switch chartColor {
+        switch SettingsClass.shared.chartColor {
         case .blue:
             selection = .blue
         case .green:
@@ -39,15 +39,15 @@ struct ChartColorView: View {
             .onChange(of: selection) {
                 switch selection {
                 case .blue:
-                    chartColor = .blue
+                    SettingsClass.shared.chartColor = .blue
                 case .green:
-                    chartColor = .green
+                    SettingsClass.shared.chartColor = .green
                 case .red:
-                    chartColor = .red
+                    SettingsClass.shared.chartColor = .red
                 case .gray:
-                    chartColor = .gray
+                    SettingsClass.shared.chartColor = .gray
                 case .yellow:
-                    chartColor = .yellow
+                    SettingsClass.shared.chartColor = .yellow
                 }
             }
         }
