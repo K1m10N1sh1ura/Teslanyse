@@ -104,12 +104,11 @@ struct ChartView: View {
             }
 
             if let rawSelectedDate {
-                PointMark(x: .value("Value", rawSelectedDate, unit: .quarter),
-                          y: .value("Value", yData[vm.getIndexOfQuarter(rawSelectedDate.formatted(.dateTime.year().quarter())) ?? 0]))
+                BarMark(x: .value("Value", rawSelectedDate, unit: .weekOfYear))
                     .foregroundStyle(.red)
                     .zIndex(-1)
                     .annotation(position: .top,
-                                spacing: 40,
+                                spacing: 0,
                                 overflowResolution: .init(x: .fit(to: .chart), y: .disabled)) {
                         selectionPopover(yData: yData)
                     }
