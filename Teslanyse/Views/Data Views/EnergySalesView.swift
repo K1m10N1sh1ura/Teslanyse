@@ -55,7 +55,7 @@ struct EnergySalesView: View {
 
 #Preview {
     NavigationStack {
-        EnergySalesView(vm: vm)
+        EnergySalesView(vm: vmPreview)
     }
 }
 

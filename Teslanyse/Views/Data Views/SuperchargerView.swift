@@ -67,7 +67,7 @@ struct SuperchargerView: View {
 
 #Preview {
     NavigationStack {
-        SuperchargerView(vm: vm)
+        SuperchargerView(vm: vmPreview)
     }
 }
 

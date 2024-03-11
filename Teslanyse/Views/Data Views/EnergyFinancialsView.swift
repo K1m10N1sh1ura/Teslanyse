@@ -59,7 +59,7 @@ struct EnergyFinancialsView: View {
 
 #Preview {
     NavigationStack {
-        EnergyFinancialsView(vm: vm)
+        EnergyFinancialsView(vm: vmPreview)
     }
 }
 
