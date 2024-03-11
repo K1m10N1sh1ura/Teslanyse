@@ -200,6 +200,7 @@ class MainViewModel: ObservableObject {
     
     func fetchData() async throws -> TeslaApiDataModel? {
         let endpoint = "http://192.168.178.20:5001/tesla_earnings"
+        //let endpoint = "https://teslanyse-server-320ff9c71971.herokuapp.com/tesla_earnings"
         guard let url = URL(string: endpoint) else {
             print("[ERROR] invalid url")
             return nil

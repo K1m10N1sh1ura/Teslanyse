@@ -109,7 +109,7 @@ struct CompareQuartersView: View {
 
 #Preview {
     NavigationStack {
-        CompareQuartersView(vm: vm)
+        CompareQuartersView(vm: vmPreview)
     }
 }
 

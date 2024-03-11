@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-var vm = MainViewModel()
+// used for previews only
+let vmPreview = MainViewModel()
 
 struct ContentView: View {
-    var vm = MainViewModel()
+    let vm = MainViewModel()
 
     var body: some View {
         NavigationStack {

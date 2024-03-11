@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StartScreenView: View {
     
-    var vm: MainViewModel
+    let vm: MainViewModel
 
     var body: some View {
         List {
@@ -71,6 +71,6 @@ struct StartScreenView: View {
 
 #Preview {
     NavigationView {
-        StartScreenView(vm: vm)
+        StartScreenView(vm: vmPreview)
     }
 }

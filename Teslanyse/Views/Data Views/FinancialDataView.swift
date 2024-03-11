@@ -10,63 +10,40 @@ import Charts
 
 struct FinancialDataView: View {
     
-    @StateObject var vm: MainViewModel
+    @StateObject private var vm: MainViewModel
+    @StateObject private var financialDataVm: FinancialDataViewModel
     @State private var selection: FinancialDataOption = .revenue
     @State private var numberFormat: NumberFormatType = .dollar
-
+    
+    init(vm: MainViewModel) {
+        _vm = StateObject(wrappedValue: vm)
+        _financialDataVm = StateObject(wrappedValue: FinancialDataViewModel(mainViewModel: vm))
+    }
     var body: some View {
         VStack (alignment: .leading) {
             TitleView(title: "Financials")
             SubtitleView(subtitle: "Summary")
-            let (xData, yData) = fetchChartData()
+            let (xData, yData) = financialDataVm.fetchChartData(from: selection)
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: numberFormat)
             Divider()
             InfoButtonSubView(title: "Metric")
-            FinancialsPickerView(selection: $selection)
+            Picker("", selection: $selection) {
+                ForEach(FinancialDataOption.allCases, id: \.self) {
+                    Text($0.description)
+                }
+            }
+            .pickerStyle(.wheel)
             ExportButtonView()
         }
         .navigationBarTitleDisplayMode(.inline)
         .onChange(of: selection) {
-            switch selection {
-            case .grossGAAPMargin:
-                numberFormat = .percent
-            default:
-                numberFormat = .dollar
-            }
+            numberFormat = financialDataVm.selectNumberFormat(for: selection)
         }
     }
-    
-    private func fetchChartData() -> ([Date],[Double]) {
-        let xData = vm.extractQuarters()
-        let yData: [Double]
-
-        switch (selection) {
-        case .revenue:
-            yData = vm.extractData(property: .revenue)
-        case .profit:
-            yData = vm.extractData(property: .profit)
-        case .grossGAAPMargin:
-            yData = vm.extractData(property: .margin)
-        }
-        return (xData, yData)
-    }
-    
 }
 
 #Preview {
     NavigationStack {
-        FinancialDataView(vm: vm)
-    }
-}
-
-struct FinancialsPickerView: View {
-    @Binding var selection: FinancialDataOption
-    var body: some View {
-        Picker("", selection: $selection) {
-            ForEach(FinancialDataOption.allCases, id: \.self) {
-                Text($0.description)
-            }
-        }
-        .pickerStyle(.wheel)
+        FinancialDataView(vm: vmPreview)
     }
 }

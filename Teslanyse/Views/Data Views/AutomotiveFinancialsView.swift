@@ -59,7 +59,7 @@ struct AutomotiveFinancialsView: View {
 
 #Preview {
     NavigationStack {
-        AutomotiveFinancialsView(vm: vm)
+        AutomotiveFinancialsView(vm: vmPreview)
     }
 }
 
