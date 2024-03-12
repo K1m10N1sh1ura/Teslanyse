@@ -12,7 +12,7 @@ class SettingsClass {
     var chartStyle: ChartStyle = .barChart
     var chartColor: Color = .blue
     
-    static let shared = SettingsClass()
+    static let shared = SettingsClass() // Singleton shared access
     
     private init() {}
     
