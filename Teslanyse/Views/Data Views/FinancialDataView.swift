@@ -27,12 +27,8 @@ struct FinancialDataView: View {
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: numberFormat)
             Divider()
             InfoButtonSubViewNew<InfoView<FinancialDataOption>>(title: "Select metric", infoView: InfoView())
-            Picker("", selection: $selection) {
-                ForEach(FinancialDataOption.allCases, id: \.self) {
-                    Text($0.description)
-                }
-            }
-            .pickerStyle(.wheel)
+            PickerView<FinancialDataOption>(selection: $selection)
+                .pickerStyle(.wheel)
             ExportButtonView()
         }
         .navigationBarTitleDisplayMode(.inline)

@@ -21,8 +21,9 @@ struct AutomotiveFinancialsView: View {
             let (xData, yData) = fetchChartData()
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: numberFormat)
             Divider()
-            InfoButtonSubViewNew<InfoView<EnergyFinancialDataOption>>(title: "Select metric", infoView: InfoView())
-            PickerAutomotiveFinancialsView(selection: $selection)
+            InfoButtonSubViewNew<InfoView<AutomotiveFinancialDataOption>>(title: "Select metric", infoView: InfoView())
+            PickerView<AutomotiveFinancialDataOption>(selection: $selection)
+                .pickerStyle(.wheel)
             ExportButtonView()
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -60,20 +61,5 @@ struct AutomotiveFinancialsView: View {
 #Preview {
     NavigationStack {
         AutomotiveFinancialsView(vm: vmPreview)
-    }
-}
-
-
-struct PickerAutomotiveFinancialsView: View {
-    
-    @Binding var selection: AutomotiveFinancialDataOption
-    
-    var body: some View {
-        Picker("", selection: $selection) {
-            ForEach(AutomotiveFinancialDataOption.allCases, id: \.self) {
-                Text($0.description)
-            }
-        }
-        .pickerStyle(.wheel)
     }
 }

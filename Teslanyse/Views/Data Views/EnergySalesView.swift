@@ -23,7 +23,8 @@ struct EnergySalesView: View {
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: numberFormat)
             Divider()
             InfoButtonSubViewNew<InfoView<EnergyOptions>>(title: "Type", infoView: InfoView())
-            EnergySalesPickerView(selection: $selection)
+            PickerView<EnergyOptions>(selection: $selection)
+                .pickerStyle(.palette)
             ExportButtonView()
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -59,15 +60,3 @@ struct EnergySalesView: View {
     }
 }
 
-struct EnergySalesPickerView: View {
-    @Binding var selection: EnergyOptions
-    var body: some View {
-        Picker("", selection: $selection) {
-            ForEach(EnergyOptions.allCases, id: \.self) {
-                Text($0.description)
-            }
-        }
-        .pickerStyle(.palette)
-        .padding()
-    }
-}

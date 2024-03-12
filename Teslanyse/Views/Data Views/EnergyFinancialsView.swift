@@ -23,7 +23,8 @@ struct EnergyFinancialsView: View {
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: numberFormat)
             Divider()
             InfoButtonSubViewNew<InfoView<EnergyFinancialDataOption>>(title: "Select metric", infoView: InfoView())
-            EnergyFinancialsPickerView(selection: $selection)
+            PickerView<EnergyFinancialDataOption>(selection: $selection)
+                .pickerStyle(.wheel)
             ExportButtonView()
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -36,10 +37,6 @@ struct EnergyFinancialsView: View {
             }
         }
 
-    }
-    
-    private var infoView: any View {
-        Text("Test")
     }
     
     private func fetchChartData() -> ([Date],[Double]) {
@@ -66,16 +63,3 @@ struct EnergyFinancialsView: View {
         EnergyFinancialsView(vm: vmPreview)
     }
 }
-
-struct EnergyFinancialsPickerView: View {
-    @Binding var selection: EnergyFinancialDataOption
-    var body: some View {
-        Picker("", selection: $selection) {
-            ForEach(EnergyFinancialDataOption.allCases, id: \.self) {
-                Text($0.description)
-            }
-        }
-        .pickerStyle(.wheel)
-    }
-}
-
