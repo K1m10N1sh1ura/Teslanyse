@@ -22,7 +22,7 @@ struct EnergyFinancialsView: View {
             let (xData, yData) = fetchChartData()
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: numberFormat)
             Divider()
-            InfoButtonSubView(title: "Select metric")
+            InfoButtonSubViewNew<InfoView<EnergyFinancialDataOption>>(title: "Select metric", infoView: InfoView())
             EnergyFinancialsPickerView(selection: $selection)
             ExportButtonView()
         }
@@ -36,6 +36,10 @@ struct EnergyFinancialsView: View {
             }
         }
 
+    }
+    
+    private var infoView: any View {
+        Text("Test")
     }
     
     private func fetchChartData() -> ([Date],[Double]) {
@@ -74,3 +78,4 @@ struct EnergyFinancialsPickerView: View {
         .pickerStyle(.wheel)
     }
 }
+

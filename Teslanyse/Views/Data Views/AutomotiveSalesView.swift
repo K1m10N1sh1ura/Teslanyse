@@ -24,7 +24,7 @@ struct AutomotiveSalesView: View {
             let (xData, yData) = fetchChartData()
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
             Divider()
-            InfoButtonSubView(title: "Model")
+            InfoButtonSubViewNew<InfoView<TeslaModel>>(title: "Model", infoView: InfoView())
             Picker("", selection: $selectedModel) {
                 ForEach(TeslaModel.allCases, id: \.self) {
                     Text($0.description)
@@ -33,7 +33,7 @@ struct AutomotiveSalesView: View {
             .pickerStyle(SegmentedPickerStyle())
             .padding(.horizontal)
             Divider()
-            InfoButtonSubView(title: "State")
+            InfoButtonSubViewNew<InfoView<TeslaSaleState>>(title: "State", infoView: InfoView())
             Picker("Select sale state", selection: $selectedCarSaleState) {
                 ForEach(TeslaSaleState.allCases, id: \.self) {
                     Text($0.description)

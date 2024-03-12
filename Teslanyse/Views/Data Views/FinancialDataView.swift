@@ -26,7 +26,7 @@ struct FinancialDataView: View {
             let (xData, yData) = financialDataVm.fetchChartData(from: selection)
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: numberFormat)
             Divider()
-            InfoButtonSubView(title: "Metric")
+            InfoButtonSubViewNew<InfoView<FinancialDataOption>>(title: "Select metric", infoView: InfoView())
             Picker("", selection: $selection) {
                 ForEach(FinancialDataOption.allCases, id: \.self) {
                     Text($0.description)

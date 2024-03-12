@@ -22,8 +22,24 @@ struct SuperchargerView: View {
             let (xData, yData) = fetchChartData()
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
             Divider()
-            InfoButtonSubView(title: "Type")
-            SuperchargerPickerView(selectionType: $selectionType, selectionAccumulated: $selectionAccumulated)
+            InfoButtonSubViewNew<InfoView<SuperchargerOption>>(title: "Type", infoView: InfoView())
+            Picker("", selection: $selectionType) {
+                Text("Stations")
+                    .tag("Stations")
+                Text("Connectors")
+                    .tag("Connectors")
+            }
+            .pickerStyle(.palette)
+            .padding(.horizontal)
+            InfoButtonSubViewNew<InfoView<SuperchargerOption>>(title: "Accumulated", infoView: InfoView())
+            Picker("", selection: $selectionAccumulated) {
+                Text("No")
+                    .tag("No")
+                Text("Yes")
+                    .tag("Yes")
+            }
+            .pickerStyle(.segmented)
+            .padding(.horizontal)
             ExportButtonView()
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -71,27 +87,3 @@ struct SuperchargerView: View {
     }
 }
 
-struct SuperchargerPickerView: View {
-    @Binding var selectionType: String
-    @Binding var selectionAccumulated: String
-
-    var body: some View {
-        Picker("", selection: $selectionType) {
-            Text("Stations")
-                .tag("Stations")
-            Text("Connectors")
-                .tag("Connectors")
-        }
-        .pickerStyle(.palette)
-        .padding(.horizontal)
-        InfoButtonSubView(title: "Accumulated")
-        Picker("", selection: $selectionAccumulated) {
-            Text("No")
-                .tag("No")
-            Text("Yes")
-                .tag("Yes")
-        }
-        .pickerStyle(.segmented)
-        .padding(.horizontal)
-    }
-}
