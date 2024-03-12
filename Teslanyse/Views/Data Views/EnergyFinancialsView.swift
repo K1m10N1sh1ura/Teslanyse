@@ -39,10 +39,6 @@ struct EnergyFinancialsView: View {
 
     }
     
-    private var infoView: any View {
-        Text("Test")
-    }
-    
     private func fetchChartData() -> ([Date],[Double]) {
         let xData = vm.extractQuarters()
         let yData: [Double]
