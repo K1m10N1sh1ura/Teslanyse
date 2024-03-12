@@ -76,25 +76,6 @@ struct InfoButtonSubView: View {
     }
 }
 
-struct InfoButtonSubViewNew<InfoView: View>: View {
-    let title: String
-    let infoView: InfoView
-    var body: some View {
-        HStack {
-            Text(title) // Explicitly add the label here
-                .font(.headline)
-                .padding(.horizontal)
-            Spacer()
-            NavigationLink(destination: infoView) {
-                Image(systemName: "info.circle")
-                    .foregroundStyle(.blue)
-                    .padding(.horizontal,20)
-            }
-        }
-    }
-}
-
-
 struct ChartView: View {
     @StateObject var vm: MainViewModel
     @State private var rawSelectedDate: Date? = nil
@@ -157,6 +138,24 @@ struct ChartView: View {
                 RoundedRectangle(cornerRadius: 4)
                     .fill(.white)
                     .shadow(color: .blue, radius: 2)
+            }
+        }
+    }
+}
+
+struct InfoButtonSubViewNew<InfoView: View>: View {
+    let title: String
+    let infoView: InfoView
+    var body: some View {
+        HStack {
+            Text(title) // Explicitly add the label here
+                .font(.headline)
+                .padding(.horizontal)
+            Spacer()
+            NavigationLink(destination: infoView) {
+                Image(systemName: "info.circle")
+                    .foregroundStyle(.blue)
+                    .padding(.horizontal,20)
             }
         }
     }
