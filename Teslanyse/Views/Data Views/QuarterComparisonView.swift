@@ -130,7 +130,10 @@ struct ExtractedView: View {
     let valueSecondQuarter: Double
     let numberFormat: NumberFormatType
     
-    var deviation: Double { (valueSecondQuarter - valueFirstQuarter) / valueFirstQuarter }
+    var deviation: Double {
+        guard valueFirstQuarter != 0 else { return 0 }
+        return (valueSecondQuarter - valueFirstQuarter) / valueFirstQuarter
+    }
     
     var body: some View {
         VStack {
