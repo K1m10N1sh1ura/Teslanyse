@@ -31,22 +31,17 @@ struct CompareQuartersView: View {
             SubtitleView(subtitle: "Comparison")
             Divider()
             HStack {
-                VStack {
-                    Text("From")
-                    Picker("", selection: $selectionQuarterOne) {
-                        ForEach(vm.quarters) {
-                            Text($0.quarter)
-                                .tag($0.quarter)
-                        }
+                Picker("", selection: $selectionQuarterOne) {
+                    ForEach(vm.quarters) {
+                        Text($0.quarter)
+                            .tag($0.quarter)
                     }
                 }
-                VStack {
-                    Text("To")
-                    Picker("", selection: $selectionQuarterTwo) {
-                        ForEach(vm.quarters) {
-                            Text($0.quarter)
-                                .tag($0.quarter)
-                        }
+                Text("vs")
+                Picker("", selection: $selectionQuarterTwo) {
+                    ForEach(vm.quarters) {
+                        Text($0.quarter)
+                            .tag($0.quarter)
                     }
                 }
             }
