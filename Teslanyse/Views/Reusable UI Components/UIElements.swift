@@ -179,3 +179,16 @@ struct InfoView<Info: WithDefinition & WithDescription & CaseIterable & Hashable
         }
     }
 }
+
+struct PickerView<Info: CaseIterable & Hashable & WithDescription>: View {
+    @Binding var selection: Info
+    var body: some View {
+        Picker("", selection: $selection) {
+            ForEach(Array(Info.allCases), id: \.self) {
+                Text($0.description)
+            }
+        }
+        .padding()
+    }
+}
+

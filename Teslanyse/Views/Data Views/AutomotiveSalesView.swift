@@ -25,22 +25,12 @@ struct AutomotiveSalesView: View {
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
             Divider()
             InfoButtonSubViewNew<InfoView<TeslaModel>>(title: "Model", infoView: InfoView())
-            Picker("", selection: $selectedModel) {
-                ForEach(TeslaModel.allCases, id: \.self) {
-                    Text($0.description)
-                }
-            }
-            .pickerStyle(SegmentedPickerStyle())
-            .padding(.horizontal)
+            PickerView<TeslaModel>(selection: $selectedModel)
+                .pickerStyle(.palette)
             Divider()
             InfoButtonSubViewNew<InfoView<TeslaSaleState>>(title: "State", infoView: InfoView())
-            Picker("Select sale state", selection: $selectedCarSaleState) {
-                ForEach(TeslaSaleState.allCases, id: \.self) {
-                    Text($0.description)
-                }
-            }
-            .pickerStyle(SegmentedPickerStyle())
-            .padding(.horizontal)
+            PickerView<TeslaSaleState>(selection: $selectedCarSaleState)
+                .pickerStyle(.palette)
             Divider()
             ExportButtonView()
         }
