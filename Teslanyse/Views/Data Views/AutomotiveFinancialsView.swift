@@ -21,7 +21,7 @@ struct AutomotiveFinancialsView: View {
             let (xData, yData) = fetchChartData()
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: numberFormat)
             Divider()
-            InfoButtonSubView(title: "Select metric")
+            InfoButtonSubViewNew<InfoView<EnergyFinancialDataOption>>(title: "Select metric", infoView: InfoView())
             PickerAutomotiveFinancialsView(selection: $selection)
             ExportButtonView()
         }

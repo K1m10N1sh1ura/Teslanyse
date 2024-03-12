@@ -67,12 +67,29 @@ struct InfoButtonSubView: View {
                 .font(.headline)
                 .padding(.horizontal)
             Spacer()
-            NavigationLink(destination: Text("Info")) {
+            NavigationLink(destination: Text("TBD")) {
                 Image(systemName: "info.circle")
                     .foregroundStyle(.blue)
                     .padding(.horizontal,20)
             }
-            
+        }
+    }
+}
+
+struct InfoButtonSubViewNew<InfoView: View>: View {
+    let title: String
+    let infoView: InfoView
+    var body: some View {
+        HStack {
+            Text(title) // Explicitly add the label here
+                .font(.headline)
+                .padding(.horizontal)
+            Spacer()
+            NavigationLink(destination: infoView) {
+                Image(systemName: "info.circle")
+                    .foregroundStyle(.blue)
+                    .padding(.horizontal,20)
+            }
         }
     }
 }
@@ -140,6 +157,24 @@ struct ChartView: View {
                 RoundedRectangle(cornerRadius: 4)
                     .fill(.white)
                     .shadow(color: .blue, radius: 2)
+            }
+        }
+    }
+}
+
+struct InfoView<Info: WithDefinition & WithDescription & CaseIterable & Hashable>: View {
+    var body: some View {
+        ScrollView {
+            ForEach(Array(Info.allCases), id: \.self) { item in
+                VStack(alignment: .leading) {
+                    Text(item.description)
+                        .font(.title)
+                    Text(item.definition)
+                        .font(.footnote)
+                        .padding(.vertical, 20)
+                }
+                .padding(.horizontal)
+                .frame(maxWidth: .infinity, alignment: .leading) // Ensure VStack takes full width
             }
         }
     }

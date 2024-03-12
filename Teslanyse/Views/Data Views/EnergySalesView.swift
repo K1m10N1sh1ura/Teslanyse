@@ -22,7 +22,7 @@ struct EnergySalesView: View {
             let (xData, yData) = fetchChartData()
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: numberFormat)
             Divider()
-            InfoButtonSubView(title: "Type")
+            InfoButtonSubViewNew<InfoView<EnergyOptions>>(title: "Type", infoView: InfoView())
             EnergySalesPickerView(selection: $selection)
             ExportButtonView()
         }
