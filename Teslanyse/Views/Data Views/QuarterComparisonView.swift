@@ -29,37 +29,53 @@ struct CompareQuartersView: View {
         VStack (alignment: .leading) {
             TitleView(title: "Quarter")
             SubtitleView(subtitle: "Comparison")
-            Divider()
-            HStack {
-                Picker("", selection: $selectionQuarterOne) {
-                    ForEach(vm.quarters) {
-                        Text($0.quarter)
-                            .tag($0.quarter)
+        ScrollView {
+                Divider()
+                HStack {
+                    Picker("", selection: $selectionQuarterOne) {
+                        ForEach(vm.quarters) {
+                            Text($0.quarter)
+                                .tag($0.quarter)
+                        }
+                    }
+                    Text("vs")
+                    Picker("", selection: $selectionQuarterTwo) {
+                        ForEach(vm.quarters) {
+                            Text($0.quarter)
+                                .tag($0.quarter)
+                        }
                     }
                 }
-                Text("vs")
-                Picker("", selection: $selectionQuarterTwo) {
-                    ForEach(vm.quarters) {
-                        Text($0.quarter)
-                            .tag($0.quarter)
+                .bold()
+                .pickerStyle(.inline)
+                .frame(height: 120)
+                .animation(.easeIn, value: selectionQuarterOne)
+                .animation(.easeIn, value: selectionQuarterTwo)
+                Button(action: {
+                    selectionQuarterOne = "Q3 2023"
+                    selectionQuarterTwo = "Q4 2023"
+                }, label: {
+                    Label("Latest", systemImage: "chart.line.uptrend.xyaxis")
+                        .font(.headline)
+                        .foregroundStyle(.white)
+                        .frame(height: 55)
+                        .frame(maxWidth: .infinity)
+                        .background(.blue)
+                        .cornerRadius(10.0)
+                        .padding()
+                        .frame(height: 60)
+                })
+                Divider()
+                    ForEach(QuarterDataEnum.allCases, id: \.self) {param in
+                        if !vm.quarters.isEmpty {
+                            ExtractedView(title: param.description,
+                                          valueFirstQuarter: vm.extractData(property: param)[firstQuarterIndex],
+                                          valueSecondQuarter: vm.extractData(property: param)[secondQuarterIndex], numberFormat: getNumberFormat(of: param))
+                        }
                     }
-                }
             }
-            .bold()
-            .pickerStyle(.inline)
-            .frame(height: 150)
-            Divider()
-            ScrollView {
-                ForEach(QuarterDataEnum.allCases, id: \.self) {param in
-                    if !vm.quarters.isEmpty {
-                        ExtractedView(title: param.description,
-                                      valueFirstQuarter: vm.extractData(property: param)[firstQuarterIndex],
-                                      valueSecondQuarter: vm.extractData(property: param)[secondQuarterIndex], numberFormat: getNumberFormat(of: param))
-                    }
-                }
-            }
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationBarTitleDisplayMode(.inline)
     }
     private func getNumberFormat(of param: QuarterDataEnum) -> NumberFormatType {
         let numberFormat: NumberFormatType

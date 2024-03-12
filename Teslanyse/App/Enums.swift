@@ -15,101 +15,45 @@ protocol WithDefinition {
     var definition: String { get }
 }
 
-enum QuarterDataEnum: CaseIterable, WithDescription {
-    case revenue
-    case profit
-    case margin
-    case automotiveRevenue
-    case automotiveCostOfRevenue
-    case automotiveProfit
-    case automotiveMargin
-    case automotiveCostOfGoodsSold
-    case deliveredCars
-    case producedCars
-    case deliveredModel3Y
-    case deliveredOtherModels
-    case producedModel3Y
-    case producedOtherModels
-    case energyRevenue
-    case energyCostOfRevenue
-    case energyStorage
-    case energyProfit
-    case energyMargin
-    case energyCostOfGoodsSold
-    case solarDeployed
-    case superchargerStations
-    case superchargerConnectors
-    case superchargerStationsAccumulated
-    case superchargerConnectorsAccumulated
+enum QuarterDataEnum: String, CaseIterable, WithDescription {
+    case revenue = "Revenue"
+    case profit = "Profit"
+    case margin = "Margin"
+    case automotiveRevenue = "Automotive revenue"
+    case automotiveCostOfRevenue = "Automotive cost of revenue"
+    case automotiveProfit = "Automotive profit"
+    case automotiveMargin = "Automotive margin"
+    case automotiveCostOfGoodsSold = "Automotive cost of goods sold"
+    case deliveredCars = "Delivered cars"
+    case producedCars = "Produced cars"
+    case deliveredModel3Y = "Delivered Model 3 and Y"
+    case deliveredOtherModels = "Delivered other models"
+    case producedModel3Y = "Produced Model 3 and Y"
+    case producedOtherModels = "Produced other models"
+    case energyRevenue = "Energy revenue"
+    case energyCostOfRevenue = "Energy cost of revenue"
+    case energyStorage = "Energy storage"
+    case energyProfit = "Energy profit"
+    case energyMargin = "Energy margin"
+    case energyCostOfGoodsSold = "Energy cost of goods sold"
+    case solarDeployed = "Solar deployed"
+    case superchargerStations = "Supercharger stations"
+    case superchargerConnectors = "Supercharger connectors"
+    case superchargerStationsAccumulated = "Supercharger stations accumulated"
+    case superchargerConnectorsAccumulated = "Supercharger connectors accumulated"
     
     var description: String {
-        switch self {
-        case .revenue:
-            "Revenue"
-        case .profit:
-            "Profit"
-        case .margin:
-            "Margin"
-        case .automotiveRevenue:
-            "Automotive revenue"
-        case .automotiveCostOfRevenue:
-            "Automotive cost of revenue"
-        case .automotiveProfit:
-            "Automotive profit"
-        case .automotiveMargin:
-            "Automotive margin"
-        case .automotiveCostOfGoodsSold:
-            "Automotive cost of goods sold"
-        case .deliveredCars:
-            "Delivered cars"
-        case .producedCars:
-            "Produced cars"
-        case .deliveredModel3Y:
-            "Delivered Model 3 and Y"
-        case .deliveredOtherModels:
-            "Delivered other models"
-        case .producedModel3Y:
-            "Produced Model 3 and Y"
-        case .producedOtherModels:
-            "Produced other models"
-        case .energyRevenue:
-            "Energy revenue"
-        case .energyCostOfRevenue:
-            "Energy cost of revenue"
-        case .energyStorage:
-            "Energy storage"
-        case .energyProfit:
-            "Energy profit"
-        case .energyMargin:
-            "Energy margin"
-        case .energyCostOfGoodsSold:
-            "Energy cost of goods sold"
-        case .solarDeployed:
-            "Solar deployed"
-        case .superchargerStations:
-            "Supercharger stations"
-        case .superchargerConnectors:
-            "Supercharger connectors"
-        case .superchargerStationsAccumulated:
-            "Supercharger stations accumulated"
-        case .superchargerConnectorsAccumulated:
-            "Supercharger connectors accumulated"
-        }
+        return self.rawValue
     }
 }
 
-enum TeslaModel: CaseIterable, WithDescription, WithDefinition {
-    case model3Y, otherModels, allModels
+enum TeslaModel: String, CaseIterable, WithDescription, WithDefinition {
+    case model3Y = "Model 3/Y"
+    case otherModels = "Other models"
+    case allModels = "Total"
     
     var description: String {
-        switch self {
-        case .model3Y:
-            return "Model 3/Y"
-        case .otherModels:
-            return "Other models"
-        case .allModels:
-            return "Total"
-        }
+        return self.rawValue
     }
     
     var definition: String {
@@ -124,17 +68,14 @@ enum TeslaModel: CaseIterable, WithDescription, WithDefinition {
     }
 }
 
-enum TeslaSaleState: CaseIterable, WithDescription, WithDefinition {
-    case produced, delivered
+enum TeslaSaleState: String, CaseIterable, WithDescription, WithDefinition {
+    case produced = "Produced"
+    case delivered = "Delivered"
     
     var description: String {
-        switch self {
-        case .produced:
-            return "Produced"
-        case .delivered:
-            return "Delivered"
-        }
+        return self.rawValue
     }
+    
     var definition: String {
         switch self {
         case .produced:
@@ -146,34 +87,13 @@ enum TeslaSaleState: CaseIterable, WithDescription, WithDefinition {
 }
 
 
-enum FinancialDataOption: CaseIterable, WithDescription, WithDefinition {
-    case revenue, profit, grossGAAPMargin
-//  case costOfRevenue
-//    case operatingExpenses
-//    case incomeFromOperations
-//    case adjustedEBITDA
-//    case adjustedEBITDAMargin
-//    case netIncomeGAAP
-//    case netIncomeNonGAAP
-//    case EPSGAAP
-//    case EPSNonGAAP
-//    case cash
-//    case freeCashFlow
-//    case netCashProvidedByOperatingActivities
-//    case capitalExpenditures
-//    case researchAndDevelopementOperatingExpenses
-//    case sellingGeneralAndAdministrativeOperatingExpenses
-//    case restructuringAndOtherOperatingExpenses
-    
+enum FinancialDataOption: String, CaseIterable, WithDescription, WithDefinition {
+    case revenue = "Revenue"
+    case profit = "Profit"
+    case grossGAAPMargin = "Grosw GAAP margin"
+
     var description: String {
-        switch self {
-        case .revenue:
-            return "Revenue"
-        case .profit:
-            return "Profit"
-        case .grossGAAPMargin:
-            return "Gross GAAP margin"
-        }
+        return self.rawValue
     }
     
     var definition: String {
@@ -188,28 +108,15 @@ enum FinancialDataOption: CaseIterable, WithDescription, WithDefinition {
     }
 }
 
-enum AutomotiveFinancialDataOption: CaseIterable, WithDescription, WithDefinition {
-    case revenue, costOfRevenue, profit, margin, cogs
-    
-//    case automotiveSalesRevenue
-//    case regulatoryCreditRevenue
-//    case automotiveLeasingRevenue
-//    case automotiveCostOfRevenue
-//    case leasingCostOfRevenue
-    
+enum AutomotiveFinancialDataOption: String, CaseIterable, WithDescription, WithDefinition {
+    case revenue = "Revenue"
+    case costOfRevenue = "Cost of revenue"
+    case profit = "Profit"
+    case margin = "Margin"
+    case cogs = "Cost of goods sold"
+
     var description: String {
-        switch self {
-        case .revenue:
-            return "Revenue"
-        case .costOfRevenue:
-            return "Cost of revenue"
-        case .profit:
-            return "Profit"
-        case .margin:
-            return "Margin"
-        case .cogs:
-            return "Cost of goods sold"
-        }
+        return self.rawValue
     }
     
     var definition: String {
@@ -228,16 +135,12 @@ enum AutomotiveFinancialDataOption: CaseIterable, WithDescription, WithDefinitio
     }
 }
 
-enum EnergyOptions: CaseIterable, WithDescription, WithDefinition {
-    case storageDeployed, solarDeployed
+enum EnergyOptions: String, CaseIterable, WithDescription, WithDefinition {
+    case storageDeployed = "Storage"
+    case solarDeployed = "Solar"
     
     var description: String {
-        switch self {
-        case .storageDeployed:
-            return "Storage"
-        case .solarDeployed:
-            return "Solar"
-        }
+        return self.rawValue
     }
     
     var definition: String {
@@ -250,22 +153,15 @@ enum EnergyOptions: CaseIterable, WithDescription, WithDefinition {
     }
 }
 
-enum EnergyFinancialDataOption: CaseIterable, WithDescription, WithDefinition {
-    case revenue, costOfRevenue, profit, margin, cogs
+enum EnergyFinancialDataOption: String, CaseIterable, WithDescription, WithDefinition {
+    case revenue = "Revenue"
+    case costOfRevenue = "Cost of revenue"
+    case profit = "Profit"
+    case margin = "Margin"
+    case cogs = "Cost of goods sold"
     
     var description: String {
-        switch self {
-        case .revenue:
-            return "Revenue"
-        case .costOfRevenue:
-            return "Cost of revenue"
-        case .profit:
-            return "Profit"
-        case .margin:
-            return "Margin"
-        case .cogs:
-            return "Cost of goods sold"
-        }
+        return self.rawValue
     }
     
     var definition: String {
@@ -284,20 +180,14 @@ enum EnergyFinancialDataOption: CaseIterable, WithDescription, WithDefinition {
     }
 }
 
-enum SuperchargerOption: CaseIterable, WithDescription, WithDefinition {
-    case stations, connectors, stationsAccumulated, connectorsAccumulated
+enum SuperchargerOption: String, CaseIterable, WithDescription, WithDefinition {
+    case stations = "Stations"
+    case connectors = "Connectors"
+    case stationsAccumulated = "Stations accumulated"
+    case connectorsAccumulated = "Connectors accumulated"
     
     var description: String {
-        switch self {
-        case .stations:
-            return "Stations"
-        case .connectors:
-            return "Connectors"
-        case .stationsAccumulated:
-            return "Stations accumulated"
-        case .connectorsAccumulated:
-            return "Connectors accumulated"
-        }
+        return self.rawValue
     }
     
     var definition: String {
@@ -320,37 +210,25 @@ enum NumberFormatType {
     case dollar, percent, number, power, energy
 }
 
-enum ChartStyle: CaseIterable {
-    case barChart, lineChart, pointChart
+enum ChartStyle: String, CaseIterable {
+    case barChart = "Bar chart"
+    case lineChart = "Line chart"
+    case pointChart = "Point chart"
     
     var description: String {
-        switch self {
-        case .barChart:
-            "Bar Chart"
-        case .lineChart:
-            "Line Chart"
-        case .pointChart:
-            "Point Chart"
-        }
+        return self.rawValue
     }
 }
 
-enum ChartColor: CaseIterable {
-    case gray, blue, green, red, yellow
-    
+enum ChartColor: String, CaseIterable {
+    case gray = "Gray"
+    case blue = "Blue"
+    case green = "Green"
+    case red = "Red"
+    case yellow = "Yellow"
+ 
     var description: String {
-        switch self {
-        case .gray:
-            "Gray"
-        case .blue:
-            "Blue"
-        case .green:
-            "Green"
-        case .red:
-            "Red"
-        case .yellow:
-            "Yellow"
-        }
+        return self.rawValue
     }
 }
 
