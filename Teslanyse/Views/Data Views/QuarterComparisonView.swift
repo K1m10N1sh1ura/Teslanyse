@@ -13,16 +13,16 @@ struct CompareQuartersView: View {
     @State private var selectionQuarterOne: String = "Q3 2023"
     @State private var selectionQuarterTwo: String = "Q4 2023"
 
-    var firstQuarterIndex: Int {
+    var firstQuarterIndex: Int? {
         vm.quarters.firstIndex {
             $0.quarter == selectionQuarterOne
-        } ?? 0
+        } ?? nil
     }
     
-    var secondQuarterIndex: Int {
+    var secondQuarterIndex: Int? {
         vm.quarters.firstIndex {
             $0.quarter == selectionQuarterTwo
-        } ?? 1
+        } ?? nil
     }
         
     var body: some View {
@@ -67,7 +67,7 @@ struct CompareQuartersView: View {
                 })
                 Divider()
                     ForEach(QuarterDataEnum.allCases, id: \.self) {param in
-                        if !vm.quarters.isEmpty {
+                        if let firstQuarterIndex, let secondQuarterIndex {
                             ExtractedView(title: param.description,
                                           valueFirstQuarter: vm.extractData(property: param)[firstQuarterIndex],
                                           valueSecondQuarter: vm.extractData(property: param)[secondQuarterIndex], numberFormat: getNumberFormat(of: param))
