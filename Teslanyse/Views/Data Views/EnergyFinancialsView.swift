@@ -18,8 +18,12 @@ struct EnergyFinancialsView: View {
         VStack (alignment: .leading) {
             TitleView(title: "Financials")
             SubtitleView(subtitle: "Energy - \(selection.description)")
-            let (xData, yData) = fetchChartData()
-            ChartView(vm: vm, xData: xData, yData: yData, numberFormat: numberFormat)
+            if !vm.quarters.isEmpty {
+                let (xData, yData) = fetchChartData()
+                ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
+            } else {
+                // placeholder
+            }
             Divider()
             InfoButtonView<InfoView<EnergyFinancialDataOption>>(title: "Select metric", infoView: InfoView())
             PickerView<EnergyFinancialDataOption>(selection: $selection)
