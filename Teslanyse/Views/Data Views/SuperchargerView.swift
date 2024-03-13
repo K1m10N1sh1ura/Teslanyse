@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Charts
 
 struct SuperchargerView: View {
     
@@ -22,7 +21,7 @@ struct SuperchargerView: View {
             let (xData, yData) = fetchChartData()
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
             Divider()
-            InfoButtonSubViewNew<InfoView<SuperchargerInfrastructure>>(title: "Type", infoView: InfoView())
+            InfoButtonView<InfoView<SuperchargerInfrastructure>>(title: "Type", infoView: InfoView())
             Picker("", selection: $selectionType) {
                 Text("Stations")
                     .tag("Stations")
@@ -31,7 +30,7 @@ struct SuperchargerView: View {
             }
             .pickerStyle(.palette)
             .padding(.horizontal)
-            InfoButtonSubViewNew<InfoView<SuperchargerInfrastructure>>(title: "Accumulated", infoView: InfoView())
+            InfoButtonView<InfoView<SuperchargerInfrastructure>>(title: "Accumulated", infoView: InfoView())
             Picker("", selection: $selectionAccumulated) {
                 Text("No")
                     .tag("No")

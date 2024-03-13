@@ -59,11 +59,11 @@ enum TeslaVehicleModel: String, CaseIterable, WithDescription, WithDefinition {
     var definition: String {
         switch self {
         case .model3Y:
-            return "Includes Tesla Model 3 and Model Y vehicles."
+            return "This category includes Tesla Model 3 and Model Y vehicles. The Model 3 is a more affordable, high-volume compact sedan, while the Model Y is a compact SUV that shares many components with the Model 3, designed to balance efficiency and usability."
         case .other:
-            return "Includes Tesla Model X, Model Y, Cybertruck and Semi."
+            return "Encompasses Tesla's other vehicle offerings, including the Model S and Model X, which are Tesla's premium sedan and SUV, respectively. It also includes the Cybertruck, Tesla's upcoming electric pickup truck, and the Tesla Semi, an electric freight truck. These models represent Tesla's expansion into various segments of the automotive market."
         case .all:
-            return "Inlcudes each Tesla vehicle model"
+            return "Represents the entirety of Tesla's vehicle lineup, including the Model S, Model 3, Model X, Model Y, Cybertruck, and Semi. This comprehensive category reflects Tesla's diverse range of electric vehicles designed to suit a variety of customer needs and preferences across different market segments."
         }
     }
 }
@@ -79,9 +79,9 @@ enum VehicleSaleState: String, CaseIterable, WithDescription, WithDefinition {
     var definition: String {
         switch self {
         case .produced:
-            return "Produced"
+            return "Refers to the total number of units manufactured within a specific time frame. This metric tracks the production capacity and efficiency, highlighting the company's ability to produce goods to meet demand."
         case .delivered:
-            return "Delivered"
+            return "Denotes the total number of units that have been shipped to and received by buyers. It's an indicator of sales success and the company's efficiency in distributing its products to the market or end consumers."
         }
     }
 }
@@ -145,9 +145,9 @@ enum EnergyOptions: String, CaseIterable, WithDescription, WithDefinition {
     var definition: String {
         switch self {
         case .storageDeployed:
-            return "Storage"
+            return "Represents the total capacity of energy storage solutions deployed, measured in megawatt-hours (MWh). This includes products like Powerwall, Powerpack, and Megapack, which store electricity for residential, commercial, and utility-scale projects, respectively."
         case .solarDeployed:
-            return "Solar"
+            return "Denotes the total area of solar energy products installed, measured in square feet or megawatts. This encompasses Solar Roof and traditional solar panel installations that convert sunlight into electricity, for both residential and commercial applications."
         }
     }
 }
@@ -191,18 +191,16 @@ enum SuperchargerInfrastructure: String, CaseIterable, WithDescription, WithDefi
     
     var definition: String {
         switch self {
-        case .stations:
-            return "Stations"
-        case .connectors:
-            return "Connectors"
-        case .stationsAccumulated:
-            return "Stations accumulated"
-        case .connectorsAccumulated:
-            return "Connectors accumulated"
+            case .stations:
+                return "Refers to the total number of Supercharger stations available within the network. A station includes one or more chargers designed to offer rapid charging for electric vehicles."
+            case .connectors:
+                return "Denotes the individual charging points available at Supercharger stations. Each station can have multiple connectors, allowing several vehicles to charge simultaneously."
+            case .stationsAccumulated:
+                return "Represents the cumulative total of Supercharger stations built over time. This metric highlights the growth of the charging infrastructure to accommodate the increasing number of Tesla vehicles."
+            case .connectorsAccumulated:
+                return "Indicates the total number of individual charging connectors installed within the Supercharger network to date. This figure reflects the network's capacity to charge multiple vehicles at once."
         }
     }
-    
-    
 }
 
 enum NumberFormatType {

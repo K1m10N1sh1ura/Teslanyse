@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Charts
 
 struct FinancialDataView: View {
     
@@ -26,7 +25,7 @@ struct FinancialDataView: View {
             let (xData, yData) = financialDataVm.fetchChartData(from: selection)
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: numberFormat)
             Divider()
-            InfoButtonSubViewNew<InfoView<FinancialDataOption>>(title: "Select metric", infoView: InfoView())
+            InfoButtonView<InfoView<FinancialDataOption>>(title: "Select metric", infoView: InfoView())
             PickerView<FinancialDataOption>(selection: $selection)
                 .pickerStyle(.wheel)
             ExportButtonView()
