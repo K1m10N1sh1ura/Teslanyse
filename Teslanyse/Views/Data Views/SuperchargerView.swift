@@ -18,8 +18,12 @@ struct SuperchargerView: View {
         VStack (alignment: .leading) {
             TitleView(title: "Supercharger")
             SubtitleView(subtitle: selection.description)
-            let (xData, yData) = fetchChartData()
-            ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
+            if !vm.quarters.isEmpty {
+                let (xData, yData) = fetchChartData()
+                ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
+            } else {
+                // placeholder
+            }
             Divider()
             InfoButtonView<InfoView<SuperchargerInfrastructure>>(title: "Type", infoView: InfoView())
             Picker("", selection: $selectionType) {

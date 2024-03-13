@@ -20,8 +20,12 @@ struct AutomotiveSalesView: View {
         VStack(alignment: .leading) {
             TitleView(title: "Automotive Sales")
             SubtitleView(subtitle: subtitle)
-            let (xData, yData) = fetchChartData()
-            ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
+            if !vm.quarters.isEmpty {
+                let (xData, yData) = fetchChartData()
+                ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
+            } else {
+                // placeholder
+            }
             Divider()
             InfoButtonView<InfoView<TeslaVehicleModel>>(title: "Model", infoView: InfoView())
             PickerView<TeslaVehicleModel>(selection: $selectedModel)

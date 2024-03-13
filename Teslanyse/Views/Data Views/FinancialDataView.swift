@@ -22,8 +22,12 @@ struct FinancialDataView: View {
         VStack (alignment: .leading) {
             TitleView(title: "Financials")
             SubtitleView(subtitle: "Summary")
-            let (xData, yData) = financialDataVm.fetchChartData(from: selection)
-            ChartView(vm: vm, xData: xData, yData: yData, numberFormat: numberFormat)
+            if !vm.quarters.isEmpty {
+                let (xData, yData) = financialDataVm.fetchChartData(from: selection)
+                ChartView(vm: vm, xData: xData, yData: yData, numberFormat: numberFormat)
+            } else {
+                // placeholder
+            }
             Divider()
             InfoButtonView<InfoView<FinancialDataOption>>(title: "Select metric", infoView: InfoView())
             PickerView<FinancialDataOption>(selection: $selection)
