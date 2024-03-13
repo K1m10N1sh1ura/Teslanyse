@@ -73,6 +73,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		890C05312BA2040000622DE7 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				898B6CDC2B9CC3120064C5EA /* SettingsClass.swift */,
+				890C052C2BA1FADA00622DE7 /* DataServiceClass.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		893C58CD2B8CD0D000734A71 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +93,7 @@
 		893C58CE2B8CD0DB00734A71 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				893C58D52B8D628900734A71 /* StartScreenView.swift */,
 				898B6CDB2B9BEAE70064C5EA /* Data Views */,
 				898B6CD62B9BE2E40064C5EA /* Setting Views */,
 				89B60EDE2B966691005A7BF2 /* Reusable UI Components */,
@@ -105,12 +115,9 @@
 			children = (
 				89F882E12B8A355400C81C85 /* TeslanyseApp.swift */,
 				89F882E32B8A355400C81C85 /* ContentView.swift */,
-				893C58D52B8D628900734A71 /* StartScreenView.swift */,
 				89B60ED72B952E54005A7BF2 /* Enums.swift */,
 				89B60EDF2B9666B5005A7BF2 /* Constants.swift */,
 				8934E0342B98EB52007C6FF9 /* Extensions.swift */,
-				898B6CDC2B9CC3120064C5EA /* SettingsClass.swift */,
-				890C052C2BA1FADA00622DE7 /* DataServiceClass.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -166,6 +173,7 @@
 		89F882E02B8A355400C81C85 /* Teslanyse */ = {
 			isa = PBXGroup;
 			children = (
+				890C05312BA2040000622DE7 /* Classes */,
 				89B60EE12B97D173005A7BF2 /* Info.plist */,
 				893C58D02B8CD0EA00734A71 /* App */,
 				893C58CF2B8CD0E000734A71 /* ViewModels */,
