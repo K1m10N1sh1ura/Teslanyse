@@ -10,15 +10,22 @@ import Foundation
 class MainViewModel: ObservableObject {
     
     @Published var quarters = [QuarterData]()
-    
+    private let dataService = DataService()
+    @Published var errorMessage: String?
+
     init() {
         Task {
-            guard let dataDict = try? await fetchData() else {
-                return
-            }
-            DispatchQueue.main.async {
-                self.quarters = self.extractQuarterData(from: dataDict)
-            }
+            await loadData()
+        }
+    }
+    
+    func loadData() async {
+        do {
+            let dataDict = try await dataService.fetchTeslaApiData()
+            // Assuming a method to directly convert to your desired data structure exists
+            self.quarters = self.extractQuarterData(from: dataDict)
+        } catch {
+            self.errorMessage = error.localizedDescription
         }
     }
     
@@ -28,7 +35,7 @@ class MainViewModel: ObservableObject {
                 return index
             }
         }
-        return nil // Return nil if the quarter is not found
+        return nil
     }
     
     func extractQuarterData(from dataDictionary: TeslaApiDataModel) -> [QuarterData] {
@@ -198,31 +205,27 @@ class MainViewModel: ObservableObject {
         return data
     }
     
-    func fetchData() async throws -> TeslaApiDataModel? {
-        //let endpoint = "http://192.168.178.20:5001/tesla_earnings"
-        let endpoint = "https://teslanyse-server-320ff9c71971.herokuapp.com/tesla_earnings"
-        guard let url = URL(string: endpoint) else {
-            print("[ERROR] invalid url")
-            return nil
-        }
-        
-        do {
-            let (data, response) = try await URLSession.shared.data(from: url)
-            guard let httpUrlResponse = response as? HTTPURLResponse, httpUrlResponse.statusCode == 200 else {
-                print("[ERROR] Invalid response")
-                return nil
-            }
+}
 
-            guard let jsonData = try? JSONDecoder().decode(TeslaApiDataModel.self, from: data) else {
-                print("[ERROR] failed decoding json data")
-                return nil
-            }
-            return jsonData
+
+
+
+
+
+class DataService {
+    func fetchTeslaApiData() async throws -> TeslaApiDataModel {
+        //let endpoint = "http://192.168.178.20:5001/tesla_earnings" // local endpoint
+        let endpoint = "https://teslanyse-server-320ff9c71971.herokuapp.com/tesla_earnings" // heroku online endpoint
+
+        guard let url = URL(string: endpoint) else {
+            throw URLError(.badURL)
         }
-        catch {
-            print("[ERROR] An error occured while trying to fetch data: \(error.localizedDescription)")
+
+        let (data, response) = try await URLSession.shared.data(from: url)
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw URLError(.badServerResponse)
         }
-        return nil
+
+        return try JSONDecoder().decode(TeslaApiDataModel.self, from: data)
     }
-    
 }
