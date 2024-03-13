@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		890C052D2BA1FADA00622DE7 /* DataServiceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890C052C2BA1FADA00622DE7 /* DataServiceClass.swift */; };
+		890C052F2BA1FB4900622DE7 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890C052E2BA1FB4900622DE7 /* ChartView.swift */; };
 		8934E0352B98EB52007C6FF9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8934E0342B98EB52007C6FF9 /* Extensions.swift */; };
 		893C58D22B8CD11100734A71 /* AutomotiveSalesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C58D12B8CD11100734A71 /* AutomotiveSalesView.swift */; };
 		893C58D42B8D626600734A71 /* FinancialDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C58D32B8D626600734A71 /* FinancialDataView.swift */; };
@@ -17,7 +19,7 @@
 		894AA19C2B9F8BCE00CF56D2 /* FinancialDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894AA19B2B9F8BCE00CF56D2 /* FinancialDataViewModel.swift */; };
 		898B6CD82B9BE3080064C5EA /* ChartStyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B6CD72B9BE3080064C5EA /* ChartStyleView.swift */; };
 		898B6CDA2B9BE3140064C5EA /* ChartColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B6CD92B9BE3140064C5EA /* ChartColorView.swift */; };
-		898B6CDD2B9CC3130064C5EA /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B6CDC2B9CC3120064C5EA /* Settings.swift */; };
+		898B6CDD2B9CC3130064C5EA /* SettingsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B6CDC2B9CC3120064C5EA /* SettingsClass.swift */; };
 		89B60ED62B94CF01005A7BF2 /* SuperchargerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B60ED52B94CF01005A7BF2 /* SuperchargerView.swift */; };
 		89B60ED82B952E54005A7BF2 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B60ED72B952E54005A7BF2 /* Enums.swift */; };
 		89B60EDA2B9530C1005A7BF2 /* UIElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B60ED92B9530C1005A7BF2 /* UIElements.swift */; };
@@ -32,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		890C052C2BA1FADA00622DE7 /* DataServiceClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceClass.swift; sourceTree = "<group>"; };
+		890C052E2BA1FB4900622DE7 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		8934E0342B98EB52007C6FF9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		893C58D12B8CD11100734A71 /* AutomotiveSalesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomotiveSalesView.swift; sourceTree = "<group>"; };
 		893C58D32B8D626600734A71 /* FinancialDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialDataView.swift; sourceTree = "<group>"; };
@@ -42,7 +46,7 @@
 		894AA19B2B9F8BCE00CF56D2 /* FinancialDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialDataViewModel.swift; sourceTree = "<group>"; };
 		898B6CD72B9BE3080064C5EA /* ChartStyleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartStyleView.swift; sourceTree = "<group>"; };
 		898B6CD92B9BE3140064C5EA /* ChartColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartColorView.swift; sourceTree = "<group>"; };
-		898B6CDC2B9CC3120064C5EA /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		898B6CDC2B9CC3120064C5EA /* SettingsClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsClass.swift; sourceTree = "<group>"; };
 		89B60ED52B94CF01005A7BF2 /* SuperchargerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuperchargerView.swift; sourceTree = "<group>"; };
 		89B60ED72B952E54005A7BF2 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		89B60ED92B9530C1005A7BF2 /* UIElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIElements.swift; sourceTree = "<group>"; };
@@ -105,7 +109,8 @@
 				89B60ED72B952E54005A7BF2 /* Enums.swift */,
 				89B60EDF2B9666B5005A7BF2 /* Constants.swift */,
 				8934E0342B98EB52007C6FF9 /* Extensions.swift */,
-				898B6CDC2B9CC3120064C5EA /* Settings.swift */,
+				898B6CDC2B9CC3120064C5EA /* SettingsClass.swift */,
+				890C052C2BA1FADA00622DE7 /* DataServiceClass.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -137,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				89B60ED92B9530C1005A7BF2 /* UIElements.swift */,
+				890C052E2BA1FB4900622DE7 /* ChartView.swift */,
 			);
 			path = "Reusable UI Components";
 			sourceTree = "<group>";
@@ -261,6 +267,7 @@
 				89B60EDA2B9530C1005A7BF2 /* UIElements.swift in Sources */,
 				893C58D82B8D62A700734A71 /* EnergySalesView.swift in Sources */,
 				89F882E42B8A355400C81C85 /* ContentView.swift in Sources */,
+				890C052F2BA1FB4900622DE7 /* ChartView.swift in Sources */,
 				89B60EE02B9666B5005A7BF2 /* Constants.swift in Sources */,
 				89B60ED82B952E54005A7BF2 /* Enums.swift in Sources */,
 				898B6CD82B9BE3080064C5EA /* ChartStyleView.swift in Sources */,
@@ -271,9 +278,10 @@
 				893C58D22B8CD11100734A71 /* AutomotiveSalesView.swift in Sources */,
 				89F882F22B8A3DB100C81C85 /* MainViewModel.swift in Sources */,
 				89B60EDC2B953D3E005A7BF2 /* QuarterComparisonView.swift in Sources */,
+				890C052D2BA1FADA00622DE7 /* DataServiceClass.swift in Sources */,
 				893C58D42B8D626600734A71 /* FinancialDataView.swift in Sources */,
 				894AA19C2B9F8BCE00CF56D2 /* FinancialDataViewModel.swift in Sources */,
-				898B6CDD2B9CC3130064C5EA /* Settings.swift in Sources */,
+				898B6CDD2B9CC3130064C5EA /* SettingsClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
