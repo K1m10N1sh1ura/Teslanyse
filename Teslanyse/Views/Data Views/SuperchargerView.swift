@@ -13,7 +13,7 @@ struct SuperchargerView: View {
     @StateObject var vm: MainViewModel
     @State private var selectionType = "Stations"
     @State private var selectionAccumulated = "No"
-    @State var selection: SuperchargerOption = .stations
+    @State var selection: SuperchargerInfrastructure = .stations
     
     var body: some View {
         VStack (alignment: .leading) {
@@ -22,7 +22,7 @@ struct SuperchargerView: View {
             let (xData, yData) = fetchChartData()
             ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
             Divider()
-            InfoButtonSubViewNew<InfoView<SuperchargerOption>>(title: "Type", infoView: InfoView())
+            InfoButtonSubViewNew<InfoView<SuperchargerInfrastructure>>(title: "Type", infoView: InfoView())
             Picker("", selection: $selectionType) {
                 Text("Stations")
                     .tag("Stations")
@@ -31,7 +31,7 @@ struct SuperchargerView: View {
             }
             .pickerStyle(.palette)
             .padding(.horizontal)
-            InfoButtonSubViewNew<InfoView<SuperchargerOption>>(title: "Accumulated", infoView: InfoView())
+            InfoButtonSubViewNew<InfoView<SuperchargerInfrastructure>>(title: "Accumulated", infoView: InfoView())
             Picker("", selection: $selectionAccumulated) {
                 Text("No")
                     .tag("No")

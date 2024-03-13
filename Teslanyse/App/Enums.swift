@@ -47,10 +47,10 @@ enum QuarterDataEnum: String, CaseIterable, WithDescription {
     }
 }
 
-enum TeslaModel: String, CaseIterable, WithDescription, WithDefinition {
+enum TeslaVehicleModel: String, CaseIterable, WithDescription, WithDefinition {
     case model3Y = "Model 3/Y"
-    case otherModels = "Other models"
-    case allModels = "Total"
+    case other = "Other models"
+    case all = "Total"
     
     var description: String {
         return self.rawValue
@@ -59,16 +59,16 @@ enum TeslaModel: String, CaseIterable, WithDescription, WithDefinition {
     var definition: String {
         switch self {
         case .model3Y:
-            return "Model 3/Y"
-        case .otherModels:
-            return "Other models"
-        case .allModels:
-            return "Total"
+            return "Includes Tesla Model 3 and Model Y vehicles."
+        case .other:
+            return "Includes Tesla Model X, Model Y, Cybertruck and Semi."
+        case .all:
+            return "Inlcudes each Tesla vehicle model"
         }
     }
 }
 
-enum TeslaSaleState: String, CaseIterable, WithDescription, WithDefinition {
+enum VehicleSaleState: String, CaseIterable, WithDescription, WithDefinition {
     case produced = "Produced"
     case delivered = "Delivered"
     
@@ -85,7 +85,6 @@ enum TeslaSaleState: String, CaseIterable, WithDescription, WithDefinition {
         }
     }
 }
-
 
 enum FinancialDataOption: String, CaseIterable, WithDescription, WithDefinition {
     case revenue = "Revenue"
@@ -180,7 +179,7 @@ enum EnergyFinancialDataOption: String, CaseIterable, WithDescription, WithDefin
     }
 }
 
-enum SuperchargerOption: String, CaseIterable, WithDescription, WithDefinition {
+enum SuperchargerInfrastructure: String, CaseIterable, WithDescription, WithDefinition {
     case stations = "Stations"
     case connectors = "Connectors"
     case stationsAccumulated = "Stations accumulated"
@@ -207,7 +206,11 @@ enum SuperchargerOption: String, CaseIterable, WithDescription, WithDefinition {
 }
 
 enum NumberFormatType {
-    case dollar, percent, number, power, energy
+    case dollar
+    case percent
+    case number
+    case power
+    case energy
 }
 
 enum ChartStyle: String, CaseIterable {
