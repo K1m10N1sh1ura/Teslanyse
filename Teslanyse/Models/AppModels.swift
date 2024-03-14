@@ -37,15 +37,21 @@ struct QuarterData: Identifiable {
     let profit: Int
     let automotiveRevenue: Int
     let automotiveCostOfRevenue: Int
-    let deliveredCars: Int
-    let producedCars: Int
     let energyRevenue: Int
     let energyCostOfRevenue: Int
     let energyStorage: Int
+    let deliveredCars: Int
+    let producedCars: Int
     let deliveredModel3Y: Int
     let deliveredOtherModels: Int
     let producedModel3Y: Int
     let producedOtherModels: Int
+    let deliveredCarsAccumulated: Int
+    let producedCarsAccumulated: Int
+    let deliveredModel3YAccumulated: Int
+    let deliveredOtherModelsAccumulated: Int
+    let producedModel3YAccumulated: Int
+    let producedOtherModelsAccumulated: Int
     let solarDeployed: Int
     let superchargerStations: Int
     let superchargerConnectors: Int
@@ -58,6 +64,7 @@ struct QuarterData: Identifiable {
     var energyMargin: Double { Double(energyProfit) / Double(energyRevenue) }
     var automotiveCostOfGoodsSold: Int { Int(Double(automotiveCostOfRevenue) / Double(producedCars)) }
     var energyCostOfGoodsSold: Int { Int(Double(energyCostOfRevenue) / Double(energyStorage)) }
+    
     var date: Date {
         // Convert quarter string to Date
         let dateFormatter = DateFormatter()

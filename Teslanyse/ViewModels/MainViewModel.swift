@@ -53,30 +53,52 @@ class MainViewModel: ObservableObject {
             let energyRevenue = dataDictionary.energyRevenue[String(i)]!
             let energyCostOfRevenue = dataDictionary.energyCostOfRevenue[String(i)]!
             let energyStorage = dataDictionary.energyStorage[String(i)]!
-            let deliveriesModel3Y = dataDictionary.deliveredModel3Y[String(i)]!
-            let deliveriesOtherModels = dataDictionary.deliveredOtherModels[String(i)]!
-            let productionModel3Y = dataDictionary.producedModel3Y[String(i)]!
-            let productionOtherModels = dataDictionary.producedOtherModels[String(i)]!
+            let deliveredModel3Y = dataDictionary.deliveredModel3Y[String(i)]!
+            let deliveredOtherModels = dataDictionary.deliveredOtherModels[String(i)]!
+            let producedModel3Y = dataDictionary.producedModel3Y[String(i)]!
+            let producedOtherModels = dataDictionary.producedOtherModels[String(i)]!
             let solarDeployed = dataDictionary.solarDeployed[String(i)]!
             let superchargerStations = dataDictionary.superchargerStationsAccumulated[String(i)]! - (dataDictionary.superchargerStationsAccumulated[String(i - 1)] ?? 0)
             let superchargerConnectors = dataDictionary.superchargerConnectorsAccumulated[String(i)]! - (dataDictionary.superchargerConnectorsAccumulated[String(i - 1)] ?? 0)
             let superchargerStationsAccumulated = dataDictionary.superchargerStationsAccumulated[String(i)]!
             let superchargerConnectorsAccumulated = dataDictionary.superchargerConnectorsAccumulated[String(i)]!
+            var producedCarsAccumulated: Int = 0
+            var deliveredCarsAccumulated: Int = 0
+            var deliveredModel3YAccumulated: Int = 0
+            var deliveredOtherModelsAccumulated: Int = 0
+            var producedModel3YAccumulated: Int = 0
+            var producedOtherModelsAccumulated: Int = 0
+            
+            for n in 0...i {
+                producedCarsAccumulated += dataDictionary.producedCars[String(n)]!
+                deliveredCarsAccumulated += dataDictionary.deliveredCars[String(n)]!
+                producedModel3YAccumulated += dataDictionary.producedModel3Y[String(n)]!
+                deliveredModel3YAccumulated += dataDictionary.deliveredModel3Y[String(n)]!
+                producedOtherModelsAccumulated += dataDictionary.producedOtherModels[String(n)]!
+                deliveredOtherModelsAccumulated += dataDictionary.deliveredOtherModels[String(n)]!
+            }
+
 
             let quarterDatum = QuarterData(quarter: quarter,
                                            revenue: revenue,
                                            profit: profit,
                                            automotiveRevenue: carRevenue,
                                            automotiveCostOfRevenue: carCostOfRevenue,
-                                           deliveredCars: deliveredCars,
-                                           producedCars: producedCars,
                                            energyRevenue: energyRevenue,
                                            energyCostOfRevenue: energyCostOfRevenue,
                                            energyStorage: energyStorage,
-                                           deliveredModel3Y: deliveriesModel3Y,
-                                           deliveredOtherModels: deliveriesOtherModels,
-                                           producedModel3Y: productionModel3Y,
-                                           producedOtherModels: productionOtherModels,
+                                           deliveredCars: deliveredCars,
+                                           producedCars: producedCars,
+                                           deliveredModel3Y: deliveredModel3Y,
+                                           deliveredOtherModels: deliveredOtherModels,
+                                           producedModel3Y: producedModel3Y,
+                                           producedOtherModels: producedOtherModels,
+                                           deliveredCarsAccumulated: deliveredCarsAccumulated,
+                                           producedCarsAccumulated: producedCarsAccumulated,
+                                           deliveredModel3YAccumulated: deliveredModel3YAccumulated,
+                                           deliveredOtherModelsAccumulated: deliveredOtherModelsAccumulated,
+                                           producedModel3YAccumulated: producedModel3YAccumulated,
+                                           producedOtherModelsAccumulated: producedOtherModelsAccumulated,
                                            solarDeployed: solarDeployed,
                                            superchargerStations: superchargerStations,
                                            superchargerConnectors: superchargerConnectors,
@@ -200,6 +222,30 @@ class MainViewModel: ObservableObject {
         case .superchargerConnectorsAccumulated:
             for quarter in quarters {
                 data.append(Double(quarter.superchargerConnectorsAccumulated))
+            }
+        case .deliveredCarsAccumulated:
+            for quarter in quarters {
+                data.append(Double(quarter.deliveredCarsAccumulated))
+            }
+        case .producedCarsAccumulated:
+            for quarter in quarters {
+                data.append(Double(quarter.producedCarsAccumulated))
+            }
+        case .deliveredModel3YAccumulated:
+            for quarter in quarters {
+                data.append(Double(quarter.deliveredModel3YAccumulated))
+            }
+        case .deliveredOtherModelsAccumulated:
+            for quarter in quarters {
+                data.append(Double(quarter.deliveredOtherModelsAccumulated))
+            }
+        case .producedModel3YAccumulated:
+            for quarter in quarters {
+                data.append(Double(quarter.producedModel3YAccumulated))
+            }
+        case .producedOtherModelsAccumulated:
+            for quarter in quarters {
+                data.append(Double(quarter.producedOtherModelsAccumulated))
             }
         }
         return data
