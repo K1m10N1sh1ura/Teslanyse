@@ -90,6 +90,7 @@ struct InfoView<Info: WithDefinition & WithDescription & CaseIterable & Hashable
                 .frame(maxWidth: .infinity, alignment: .leading) // Ensure VStack takes full width
             }
         }
+        .navigationTitle("Definitions")
     }
 }
 

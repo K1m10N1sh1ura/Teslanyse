@@ -12,6 +12,7 @@ struct AutomotiveSalesView: View {
     @StateObject var vm: MainViewModel
     @State private var selectedModel: TeslaVehicleModel = .model3Y
     @State private var selectedCarSaleState: VehicleSaleState = .produced
+    @State private var selectionAccumulated: SelectionYesNo = .no
     private var subtitle: String {
         "\(selectedModel.description) - \(selectedCarSaleState.description)"
     }
@@ -35,6 +36,12 @@ struct AutomotiveSalesView: View {
             PickerView<VehicleSaleState>(selection: $selectedCarSaleState)
                 .pickerStyle(.palette)
             Divider()
+            Text("Accumulated")
+                .font(.headline)
+                .padding(.horizontal)
+            PickerView<SelectionYesNo>(selection: $selectionAccumulated)
+                .pickerStyle(.palette)
+            Divider()
             ExportButtonView()
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -44,19 +51,31 @@ struct AutomotiveSalesView: View {
         let xData = vm.extractQuarters()
         let yData: [Double]
         
-        switch (selectedModel, selectedCarSaleState) {
-        case (.model3Y, .delivered):
+        switch (selectedModel, selectedCarSaleState, selectionAccumulated) {
+        case (.model3Y, .delivered, .no):
             yData = vm.extractData(property: .deliveredModel3Y)
-        case (.model3Y, .produced):
+        case (.model3Y, .produced, .no):
             yData = vm.extractData(property: .producedModel3Y)
-        case (.other, .delivered):
+        case (.other, .delivered, .no):
             yData = vm.extractData(property: .deliveredOtherModels)
-        case (.other, .produced):
+        case (.other, .produced, .no):
             yData = vm.extractData(property: .producedOtherModels)
-        case (.all, .delivered):
+        case (.all, .delivered, .no):
             yData = vm.extractData(property: .deliveredCars)
-        case (.all, .produced):
+        case (.all, .produced, .no):
             yData = vm.extractData(property: .producedCars)
+        case (.model3Y, .delivered, .yes):
+            yData = vm.extractData(property: .deliveredModel3YAccumulated)
+        case (.model3Y, .produced, .yes):
+            yData = vm.extractData(property: .producedModel3YAccumulated)
+        case (.other, .delivered, .yes):
+            yData = vm.extractData(property: .deliveredOtherModelsAccumulated)
+        case (.other, .produced, .yes):
+            yData = vm.extractData(property: .producedOtherModelsAccumulated)
+        case (.all, .delivered, .yes):
+            yData = vm.extractData(property: .deliveredCarsAccumulated)
+        case (.all, .produced, .yes):
+            yData = vm.extractData(property: .producedCarsAccumulated)
         }
         return (xData, yData)
     }

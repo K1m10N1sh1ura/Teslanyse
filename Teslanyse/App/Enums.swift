@@ -30,6 +30,12 @@ enum QuarterDataEnum: String, CaseIterable, WithDescription {
     case deliveredOtherModels = "Delivered other models"
     case producedModel3Y = "Produced Model 3 and Y"
     case producedOtherModels = "Produced other models"
+    case deliveredCarsAccumulated = "Delivered cars accumulated"
+    case producedCarsAccumulated = "Produced cars accumulated"
+    case deliveredModel3YAccumulated = "Delivered Model 3 and Y accumulated"
+    case deliveredOtherModelsAccumulated = "Delivered other models accumulated"
+    case producedModel3YAccumulated = "Produced Model 3 and Y accumulated"
+    case producedOtherModelsAccumulated = "Produced other models accumulated"
     case energyRevenue = "Energy revenue"
     case energyCostOfRevenue = "Energy cost of revenue"
     case energyStorage = "Energy storage"
@@ -182,8 +188,6 @@ enum EnergyFinancialDataOption: String, CaseIterable, WithDescription, WithDefin
 enum SuperchargerInfrastructure: String, CaseIterable, WithDescription, WithDefinition {
     case stations = "Stations"
     case connectors = "Connectors"
-    case stationsAccumulated = "Stations accumulated"
-    case connectorsAccumulated = "Connectors accumulated"
     
     var description: String {
         return self.rawValue
@@ -195,11 +199,15 @@ enum SuperchargerInfrastructure: String, CaseIterable, WithDescription, WithDefi
                 return "Refers to the total number of Supercharger stations available within the network. A station includes one or more chargers designed to offer rapid charging for electric vehicles."
             case .connectors:
                 return "Denotes the individual charging points available at Supercharger stations. Each station can have multiple connectors, allowing several vehicles to charge simultaneously."
-            case .stationsAccumulated:
-                return "Represents the cumulative total of Supercharger stations built over time. This metric highlights the growth of the charging infrastructure to accommodate the increasing number of Tesla vehicles."
-            case .connectorsAccumulated:
-                return "Indicates the total number of individual charging connectors installed within the Supercharger network to date. This figure reflects the network's capacity to charge multiple vehicles at once."
         }
+    }
+}
+
+enum SelectionYesNo: String, CaseIterable, WithDescription {
+    case yes = "Yes"
+    case no = "No"
+    var description: String {
+        return self.rawValue
     }
 }
 

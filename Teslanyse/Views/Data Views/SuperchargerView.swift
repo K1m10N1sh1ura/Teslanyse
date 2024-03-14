@@ -10,14 +10,13 @@ import SwiftUI
 struct SuperchargerView: View {
     
     @StateObject var vm: MainViewModel
-    @State private var selectionType = "Stations"
-    @State private var selectionAccumulated = "No"
-    @State var selection: SuperchargerInfrastructure = .stations
+    @State private var selectionType: SuperchargerInfrastructure = .stations
+    @State private var selectionAccumulated: SelectionYesNo = .yes
     
     var body: some View {
         VStack (alignment: .leading) {
             TitleView(title: "Supercharger")
-            SubtitleView(subtitle: selection.description)
+            SubtitleView(subtitle: selectionType.description)
             if !vm.quarters.isEmpty {
                 let (xData, yData) = fetchChartData()
                 ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
@@ -26,60 +25,31 @@ struct SuperchargerView: View {
             }
             Divider()
             InfoButtonView<InfoView<SuperchargerInfrastructure>>(title: "Type", infoView: InfoView())
-            Picker("", selection: $selectionType) {
-                Text("Stations")
-                    .tag("Stations")
-                Text("Connectors")
-                    .tag("Connectors")
-            }
-            .pickerStyle(.palette)
-            .padding(.horizontal)
-            InfoButtonView<InfoView<SuperchargerInfrastructure>>(title: "Accumulated", infoView: InfoView())
-            Picker("", selection: $selectionAccumulated) {
-                Text("No")
-                    .tag("No")
-                Text("Yes")
-                    .tag("Yes")
-            }
-            .pickerStyle(.segmented)
-            .padding(.horizontal)
+            PickerView<SuperchargerInfrastructure>(selection: $selectionType)
+                .pickerStyle(.palette)
+            Divider()
+            Text("Accumulated") // Explicitly add the label here
+                .font(.headline)
+                .padding(.horizontal)            
+            PickerView<SelectionYesNo>(selection: $selectionAccumulated)
+                .pickerStyle(.palette)
             ExportButtonView()
         }
         .navigationBarTitleDisplayMode(.inline)
-        .onChange(of: selectionType) {
-            chartSelection()
-        }
-        .onChange(of: selectionAccumulated) {
-            chartSelection()
-        }
     }
     
-    private func chartSelection() {
-        switch selectionType {
-        case "Connectors":
-            selection = selectionAccumulated == "Yes" ? .connectorsAccumulated : .connectors
-        case "Stations":
-            selection = selectionAccumulated == "Yes" ? .stationsAccumulated : .stations
-        default:
-            selection = .connectors
-        }
-    }
     private func fetchChartData() -> ([Date],[Double]) {
         let xData = vm.extractQuarters()
         let yData: [Double]
         
-        switch selection {
+        switch selectionType {
         case .stations:
-            yData = vm.extractData(property: .superchargerStations)
+            let selection: QuarterDataEnum = selectionAccumulated == .yes ? .superchargerStationsAccumulated : .superchargerStations
+            yData = vm.extractData(property: selection)
         case .connectors:
-            yData = vm.extractData(property: .superchargerConnectors)
-        case .stationsAccumulated:
-            yData = vm.extractData(property: .superchargerStationsAccumulated)
-        case .connectorsAccumulated:
-            yData = vm.extractData(property: .superchargerConnectorsAccumulated)
-
+            let selection: QuarterDataEnum = selectionAccumulated == .yes ? .superchargerConnectorsAccumulated : .superchargerConnectors
+            yData = vm.extractData(property: selection)
         }
-        
         return (xData, yData)
     }
 }
