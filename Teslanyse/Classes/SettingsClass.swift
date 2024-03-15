@@ -9,12 +9,12 @@ import Foundation
 import SwiftUI
 
 class SettingsClass {
-    var chartStyle: ChartStyle = .barChart
-    var chartColor: Color = .blue
+    static var chartStyle: ChartStyle = .barChart
+    static var chartColor: Color = .blue
     
-    static let shared = SettingsClass() // Singleton shared access
+    //static let shared = SettingsClass() // Singleton shared access
     
-    private init() {}
+    //private init() {}
     
 }
 

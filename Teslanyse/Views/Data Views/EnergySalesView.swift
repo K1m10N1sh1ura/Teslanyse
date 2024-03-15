@@ -19,8 +19,8 @@ struct EnergySalesView: View {
             TitleView(title: "Energy Sales")
             SubtitleView(subtitle: subtitle)
             if !vm.quarters.isEmpty {
-                let (xData, yData) = fetchChartData()
-                ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
+                let yData = fetchChartData()
+                QuarterChartView(vm: vm, yData: yData, numberFormat: .number)
             } else {
                 // placeholder
             }
@@ -43,17 +43,16 @@ struct EnergySalesView: View {
         }
     }
     
-    private func fetchChartData() -> ([Date],[Double]) {
-        let xData = vm.extractQuarters()
+    private func fetchChartData() -> [Double] {
         let yData: [Double]
         
         switch selection {
         case .solarDeployed:
-            yData = vm.extractData(property: .solarDeployed)
+            yData = vm.quarters.map { Double($0.solarDeployed) }
         case .storageDeployed:
-            yData = vm.extractData(property: .energyStorage)
+            yData = vm.quarters.map { Double($0.energyStorage) }
         }
-        return (xData, yData)
+        return yData
     }
 }
 

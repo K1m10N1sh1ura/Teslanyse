@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChartStyleView: View {
-    @State private var selection: ChartStyle = SettingsClass.shared.chartStyle
+    @State private var selection: ChartStyle = SettingsClass.chartStyle
 
     var body: some View {
         VStack {
@@ -22,10 +22,10 @@ struct ChartStyleView: View {
             }
             .pickerStyle(.wheel)
             .onChange(of: selection) {
-                SettingsClass.shared.chartStyle = selection
+                SettingsClass.chartStyle = selection
             }
             .onAppear {
-                selection = SettingsClass.shared.chartStyle
+                selection = SettingsClass.chartStyle
             }
         }
     }

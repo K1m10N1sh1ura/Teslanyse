@@ -18,8 +18,8 @@ struct AutomotiveFinancialsView: View {
             TitleView(title: "Financials")
             SubtitleView(subtitle: "Automotive - \(selection.description)")
             if !vm.quarters.isEmpty {
-                let (xData, yData) = fetchChartData()
-                ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
+                let yData = fetchChartData()
+                QuarterChartView(vm: vm, yData: yData, numberFormat: .number)
             } else {
                 // placeholder
             }
@@ -40,23 +40,22 @@ struct AutomotiveFinancialsView: View {
         }
     }
     
-    private func fetchChartData() -> ([Date],[Double]) {
-        let xData = vm.extractQuarters()
+    private func fetchChartData() -> [Double] {
         let yData: [Double]
 
         switch (selection) {
         case .revenue:
-            yData = vm.extractData(property: .automotiveRevenue)
+            yData = vm.quarters.map { Double($0.automotiveRevenue) }
         case .costOfRevenue:
-            yData = vm.extractData(property: .automotiveCostOfRevenue)
+            yData = vm.quarters.map { Double($0.automotiveCostOfRevenue) }
         case .profit:
-            yData = vm.extractData(property: .automotiveProfit)
+            yData = vm.quarters.map { Double($0.automotiveProfit) }
         case .margin:
-            yData = vm.extractData(property: .automotiveMargin)
+            yData = vm.quarters.map { Double($0.automotiveMargin) }
         case .cogs:
-            yData = vm.extractData(property: .automotiveCostOfGoodsSold)
+            yData = vm.quarters.map { Double($0.automotiveCostOfGoodsSold) }
         }
-        return (xData, yData)
+        return yData
     }
     
 }

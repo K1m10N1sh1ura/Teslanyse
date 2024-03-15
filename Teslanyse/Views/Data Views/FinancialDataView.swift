@@ -23,8 +23,8 @@ struct FinancialDataView: View {
             TitleView(title: "Financials")
             SubtitleView(subtitle: "Summary")
             if !vm.quarters.isEmpty {
-                let (xData, yData) = financialDataVm.fetchChartData(from: selection)
-                ChartView(vm: vm, xData: xData, yData: yData, numberFormat: numberFormat)
+                let yData = financialDataVm.fetchChartData(from: selection)
+                QuarterChartView(vm: vm, yData: yData, numberFormat: numberFormat)
             } else {
                 // placeholder
             }

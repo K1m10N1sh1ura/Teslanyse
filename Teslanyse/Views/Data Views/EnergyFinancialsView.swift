@@ -19,8 +19,8 @@ struct EnergyFinancialsView: View {
             TitleView(title: "Financials")
             SubtitleView(subtitle: "Energy - \(selection.description)")
             if !vm.quarters.isEmpty {
-                let (xData, yData) = fetchChartData()
-                ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
+                let yData = fetchChartData()
+                QuarterChartView(vm: vm, yData: yData, numberFormat: .number)
             } else {
                 // placeholder
             }
@@ -42,22 +42,21 @@ struct EnergyFinancialsView: View {
 
     }
     
-    private func fetchChartData() -> ([Date],[Double]) {
-        let xData = vm.extractQuarters()
+    private func fetchChartData() -> [Double] {
         let yData: [Double]
         switch (selection) {
         case .revenue:
-            yData = vm.extractData(property: .energyRevenue)
+            yData = vm.quarters.map { Double($0.energyRevenue) }
         case .costOfRevenue:
-            yData = vm.extractData(property: .energyCostOfRevenue)
+            yData = vm.quarters.map { Double($0.energyCostOfRevenue) }
         case .profit:
-            yData = vm.extractData(property: .energyProfit)
+            yData = vm.quarters.map { Double($0.energyProfit) }
         case .margin:
-            yData = vm.extractData(property: .energyMargin)
+            yData = vm.quarters.map { Double($0.energyMargin) }
         case .cogs:
-            yData = vm.extractData(property: .energyCostOfGoodsSold)
+            yData = vm.quarters.map { Double($0.energyCostOfRevenue) }
         }
-        return (xData, yData)
+        return yData
     }
 }
 

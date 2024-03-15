@@ -7,11 +7,13 @@
 
 import Foundation
 
-class DataService {
-    func fetchTeslaApiData() async throws -> TeslaApiDataModel {
-        let endpoint = "http://192.168.178.20:5001/tesla_earnings" // local endpoint
-        //let endpoint = "https://teslanyse-server-320ff9c71971.herokuapp.com/tesla_earnings" // heroku online endpoint
+protocol DataServiceProtocol {
+    associatedtype T
+    func fetchData(endpoint: String) async throws -> T
+}
 
+class DataService<T: Decodable>: DataServiceProtocol {
+    func fetchData(endpoint: String) async throws -> T {
         guard let url = URL(string: endpoint) else {
             throw URLError(.badURL)
         }
@@ -21,6 +23,19 @@ class DataService {
             throw URLError(.badServerResponse)
         }
 
-        return try JSONDecoder().decode(TeslaApiDataModel.self, from: data)
+        return try JSONDecoder().decode(T.self, from: data)
+    }
+}
+
+struct EndpointManager {
+    static let baseLocalURL = "http://192.168.178.20:5001"
+    static let baseHerokuURL = "https://teslanyse-server-320ff9c71971.herokuapp.com"
+    
+    static var teslaEarnings: String {
+        return "\(baseHerokuURL)/tesla_earnings" // Switch to baseHerokuURL if needed
+    }
+    
+    static func chinaWeeklySales(forYear year: String) -> String {
+        return "\(baseHerokuURL)/china_weekly_sales/\(year)" // Switch to baseHerokuURL if needed
     }
 }

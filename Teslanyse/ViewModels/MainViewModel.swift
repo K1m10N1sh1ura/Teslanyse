@@ -10,35 +10,31 @@ import Foundation
 class MainViewModel: ObservableObject {
     
     @Published var quarters = [QuarterData]()
-    private let dataService = DataService()
     @Published var errorMessage: String?
-
-    init() {
+    private var dataService: DataService<EarningsApiDataModel>
+    
+    init(dataService: DataService<EarningsApiDataModel>) {
+        self.dataService = dataService
         Task {
-            await loadData()
+            await loadData(endpoint: EndpointManager.teslaEarnings)
         }
     }
     
-    func loadData() async {
+    func loadData(endpoint: String) async {
         do {
-            let dataDict = try await dataService.fetchTeslaApiData()
-            // Assuming a method to directly convert to your desired data structure exists
+            let dataDict = try await dataService.fetchData(endpoint: endpoint)
             self.quarters = self.extractQuarterData(from: dataDict)
         } catch {
             self.errorMessage = error.localizedDescription
         }
     }
     
+    
     func getIndexOfQuarter(_ quarter: String) -> Int? {
-        for (index, quarterObj) in quarters.enumerated() {
-            if quarterObj.quarter == quarter {
-                return index
-            }
-        }
-        return nil
+        return quarters.firstIndex { $0.quarter == quarter }
     }
     
-    func extractQuarterData(from dataDictionary: TeslaApiDataModel) -> [QuarterData] {
+    func extractQuarterData(from dataDictionary: EarningsApiDataModel) -> [QuarterData] {
         var quarterData = [QuarterData]()
         let numberOfQuarters = dataDictionary.quarter.count
         
@@ -110,13 +106,8 @@ class MainViewModel: ObservableObject {
         return quarterData
     }
     
-    func extractQuarters () -> [Date] {
-        var data = [Date]()
-
-        for quarter in quarters {
-            data.append(quarter.date)
-        }
-        return data
+    var dates: [Date] {
+        return quarters.map { $0.date }
     }
     
     func extractData(property: QuarterDataEnum) -> [Double] {
@@ -253,9 +244,17 @@ class MainViewModel: ObservableObject {
     
 }
 
-
-
-
-
-
-
+//extension MainViewModel: ChartDataProvider {
+//    var dates: [Date] {
+//        return quarters.map { $0.date }
+//    }
+//
+//    var values: [Double] {
+//        // Assuming you have a property that should be displayed in the chart
+//        return quarters.map { Double($0.profit) }
+//    }
+//
+//    func formattedLabel(forIndex index: Int) -> String {
+//        return quarters[index].quarter
+//    }
+//}

@@ -31,7 +31,7 @@ struct ChartColorView: View {
     }
     
     private func loadChartColor() -> ChartColor {
-        switch SettingsClass.shared.chartColor {
+        switch SettingsClass.chartColor {
         case .blue:
             return .blue
         case .green:
@@ -50,15 +50,15 @@ struct ChartColorView: View {
     private func saveChartColor() {
         switch selection {
         case .blue:
-            SettingsClass.shared.chartColor = .blue
+            SettingsClass.chartColor = .blue
         case .green:
-            SettingsClass.shared.chartColor = .green
+            SettingsClass.chartColor = .green
         case .red:
-            SettingsClass.shared.chartColor = .red
+            SettingsClass.chartColor = .red
         case .gray:
-            SettingsClass.shared.chartColor = .gray
+            SettingsClass.chartColor = .gray
         case .yellow:
-            SettingsClass.shared.chartColor = .yellow
+            SettingsClass.chartColor = .yellow
         }
     }
 }

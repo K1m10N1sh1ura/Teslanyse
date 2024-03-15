@@ -1,5 +1,5 @@
 //
-//  ChartView.swift
+//  QuarterChartView.swift
 //  Teslanyse
 //
 //  Created by Kimio Nishiura on 13.03.24.
@@ -8,10 +8,9 @@
 import SwiftUI
 import Charts
 
-struct ChartView: View {
+struct QuarterChartView: View {
     @StateObject var vm: MainViewModel
     @State private var rawSelectedDate: Date? = nil
-    let xData: [Date]
     let yData: [Double]
     let numberFormat: NumberFormatType
     
@@ -21,20 +20,20 @@ struct ChartView: View {
                         
             let opacity = calcBarMarkOpacity(of: index)
             
-            switch SettingsClass.shared.chartStyle {
+            switch SettingsClass.chartStyle {
             case .barChart:
-                BarMark(x: .value("Quarter", manipulateDateToQuarterMiddle(xData[index])),
+                BarMark(x: .value("Quarter", manipulateDateToQuarterMiddle(vm.dates[index])),
                         y: .value("", yData[index]), width: barMarkWidth)
-                .foregroundStyle(SettingsClass.shared.chartColor)
+                .foregroundStyle(SettingsClass.chartColor)
                 .opacity(opacity)
             case .lineChart:
-                LineMark(x: .value("Quarter", manipulateDateToQuarterMiddle(xData[index])),
+                LineMark(x: .value("Quarter", manipulateDateToQuarterMiddle(vm.dates[index])),
                         y: .value("", yData[index]))
-                .foregroundStyle(SettingsClass.shared.chartColor)
+                .foregroundStyle(SettingsClass.chartColor)
             case .pointChart:
-                PointMark(x: .value("Quarter", manipulateDateToQuarterMiddle(xData[index])),
+                            PointMark(x: .value("Quarter", manipulateDateToQuarterMiddle(vm.dates[index])),
                         y: .value("", yData[index]))
-                .foregroundStyle(SettingsClass.shared.chartColor)
+                .foregroundStyle(SettingsClass.chartColor)
                 .opacity(opacity)
             }
 
@@ -106,7 +105,7 @@ struct ChartView: View {
             }
 
             let date1Quarter = quarter(of: rawSelectedDate)
-            let date2Quarter = quarter(of: xData[index])
+            let date2Quarter = quarter(of: vm.dates[index])
             if date1Quarter.year == date2Quarter.year && date1Quarter.quarter == date2Quarter.quarter {
                 return 1.0
             }

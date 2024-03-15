@@ -68,6 +68,7 @@ struct CompareQuartersView: View {
                 Divider()
                     ForEach(QuarterDataEnum.allCases, id: \.self) {param in
                         if let firstQuarterIndex, let secondQuarterIndex {
+
                             ExtractedView(title: param.description,
                                           valueFirstQuarter: vm.extractData(property: param)[firstQuarterIndex],
                                           valueSecondQuarter: vm.extractData(property: param)[secondQuarterIndex], numberFormat: getNumberFormat(of: param))
