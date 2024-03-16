@@ -1,5 +1,5 @@
 //
-//  MainViewModel.swift
+//  QuarterDataViewModel.swift
 //  Teslanyse
 //
 //  Created by Kimio Nishiura on 24.02.24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MainViewModel: ObservableObject {
+class QuarterDataViewModel: ObservableObject {
     
     @Published var quarters = [QuarterData]()
     @Published var errorMessage: String?

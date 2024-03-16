@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AutomotiveSalesView: View {
 
-    @StateObject var vm: MainViewModel
+    @StateObject var vm: QuarterDataViewModel
     @State private var selectedModel: TeslaVehicleModel = .model3Y
     @State private var selectedCarSaleState: VehicleSaleState = .produced
     @State private var selectionAccumulated: SelectionYesNo = .no
@@ -85,6 +85,6 @@ struct AutomotiveSalesView: View {
 
 #Preview {
     NavigationStack {
-        AutomotiveSalesView(vm: vmPreview)
+        AutomotiveSalesView(vm: quarterDataVM)
     }
 }

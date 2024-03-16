@@ -10,7 +10,7 @@
 		890C052D2BA1FADA00622DE7 /* DataServiceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890C052C2BA1FADA00622DE7 /* DataServiceClass.swift */; };
 		890C052F2BA1FB4900622DE7 /* QuarterChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890C052E2BA1FB4900622DE7 /* QuarterChartView.swift */; };
 		890C05332BA3876B00622DE7 /* ChinaSalesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890C05322BA3876B00622DE7 /* ChinaSalesView.swift */; };
-		890C05352BA38ABA00622DE7 /* ChinaSalesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890C05342BA38ABA00622DE7 /* ChinaSalesViewModel.swift */; };
+		890C05352BA38ABA00622DE7 /* WeekDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890C05342BA38ABA00622DE7 /* WeekDataViewModel.swift */; };
 		890C05372BA4ACA400622DE7 /* WeekChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890C05362BA4ACA400622DE7 /* WeekChartView.swift */; };
 		8934E0352B98EB52007C6FF9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8934E0342B98EB52007C6FF9 /* Extensions.swift */; };
 		893C58D22B8CD11100734A71 /* AutomotiveSalesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C58D12B8CD11100734A71 /* AutomotiveSalesView.swift */; };
@@ -32,7 +32,7 @@
 		89F882E42B8A355400C81C85 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882E32B8A355400C81C85 /* ContentView.swift */; };
 		89F882E62B8A355600C81C85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F882E52B8A355600C81C85 /* Assets.xcassets */; };
 		89F882E92B8A355600C81C85 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F882E82B8A355600C81C85 /* Preview Assets.xcassets */; };
-		89F882F22B8A3DB100C81C85 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882F12B8A3DB100C81C85 /* MainViewModel.swift */; };
+		89F882F22B8A3DB100C81C85 /* QuarterDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882F12B8A3DB100C81C85 /* QuarterDataViewModel.swift */; };
 		89F882F42B8A3DC800C81C85 /* AppModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882F32B8A3DC800C81C85 /* AppModels.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +40,7 @@
 		890C052C2BA1FADA00622DE7 /* DataServiceClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceClass.swift; sourceTree = "<group>"; };
 		890C052E2BA1FB4900622DE7 /* QuarterChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuarterChartView.swift; sourceTree = "<group>"; };
 		890C05322BA3876B00622DE7 /* ChinaSalesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChinaSalesView.swift; sourceTree = "<group>"; };
-		890C05342BA38ABA00622DE7 /* ChinaSalesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChinaSalesViewModel.swift; sourceTree = "<group>"; };
+		890C05342BA38ABA00622DE7 /* WeekDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDataViewModel.swift; sourceTree = "<group>"; };
 		890C05362BA4ACA400622DE7 /* WeekChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekChartView.swift; sourceTree = "<group>"; };
 		8934E0342B98EB52007C6FF9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		893C58D12B8CD11100734A71 /* AutomotiveSalesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomotiveSalesView.swift; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 		89F882E32B8A355400C81C85 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		89F882E52B8A355600C81C85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89F882E82B8A355600C81C85 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		89F882F12B8A3DB100C81C85 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		89F882F12B8A3DB100C81C85 /* QuarterDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuarterDataViewModel.swift; sourceTree = "<group>"; };
 		89F882F32B8A3DC800C81C85 /* AppModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,9 +110,9 @@
 		893C58CF2B8CD0E000734A71 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				89F882F12B8A3DB100C81C85 /* MainViewModel.swift */,
+				89F882F12B8A3DB100C81C85 /* QuarterDataViewModel.swift */,
 				894AA19B2B9F8BCE00CF56D2 /* FinancialDataViewModel.swift */,
-				890C05342BA38ABA00622DE7 /* ChinaSalesViewModel.swift */,
+				890C05342BA38ABA00622DE7 /* WeekDataViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -295,9 +295,9 @@
 				89F882E22B8A355400C81C85 /* TeslanyseApp.swift in Sources */,
 				8934E0352B98EB52007C6FF9 /* Extensions.swift in Sources */,
 				893C58D22B8CD11100734A71 /* AutomotiveSalesView.swift in Sources */,
-				89F882F22B8A3DB100C81C85 /* MainViewModel.swift in Sources */,
+				89F882F22B8A3DB100C81C85 /* QuarterDataViewModel.swift in Sources */,
 				89B60EDC2B953D3E005A7BF2 /* QuarterComparisonView.swift in Sources */,
-				890C05352BA38ABA00622DE7 /* ChinaSalesViewModel.swift in Sources */,
+				890C05352BA38ABA00622DE7 /* WeekDataViewModel.swift in Sources */,
 				890C052D2BA1FADA00622DE7 /* DataServiceClass.swift in Sources */,
 				893C58D42B8D626600734A71 /* FinancialDataView.swift in Sources */,
 				894AA19C2B9F8BCE00CF56D2 /* FinancialDataViewModel.swift in Sources */,

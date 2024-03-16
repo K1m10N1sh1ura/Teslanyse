@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SuperchargerView: View {
     
-    @StateObject var vm: MainViewModel
+    @StateObject var vm: QuarterDataViewModel
     @State private var selectionType: SuperchargerInfrastructure = .stations
     @State private var selectionAccumulated: SelectionYesNo = .yes
     
@@ -66,7 +66,7 @@ struct SuperchargerView: View {
 
 #Preview {
     NavigationStack {
-        SuperchargerView(vm: vmPreview)
+        SuperchargerView(vm: quarterDataVM)
     }
 }
 

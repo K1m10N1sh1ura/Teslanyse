@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EnergySalesView: View {
     
-    @StateObject var vm: MainViewModel
+    @StateObject var vm: QuarterDataViewModel
     @State private var selection: EnergyOptions = .storageDeployed
     @State private var numberFormat: NumberFormatType = .power
     @State private var subtitle: String = "Storage deployed in Wh"
@@ -58,7 +58,7 @@ struct EnergySalesView: View {
 
 #Preview {
     NavigationStack {
-        EnergySalesView(vm: vmPreview)
+        EnergySalesView(vm: quarterDataVM)
     }
 }
 

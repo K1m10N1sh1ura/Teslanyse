@@ -10,53 +10,36 @@ import Charts
 
 struct ChinaSalesView: View {
     
-    @StateObject var vm: ChinaSalesViewModel
-
+    @StateObject var vm: WeekDataViewModel
+    @State var selection: String = ""
+    
     var body: some View {
         VStack (alignment: .leading) {
             TitleView(title: "China")
             SubtitleView(subtitle: "Weekly Sales")
             ScrollView (.horizontal) {
-                if !vm.weeks.isEmpty {
-                    let (xData, yData) = fetchChartData()
-                    Chart(0..<vm.weeks.count, id: \.self) {index in
-                                                        
-                        switch SettingsClass.chartStyle {
-                        case .barChart:
-                            BarMark(x: .value("Quarter", xData[index]),
-                                    y: .value("", yData[index]), width: barMarkWidth)
-                            .foregroundStyle(SettingsClass.chartColor)
-                        case .lineChart:
-                            LineMark(x: .value("Quarter", xData[index]),
-                                    y: .value("", yData[index]))
-                            .foregroundStyle(SettingsClass.chartColor)
-                        case .pointChart:
-                            PointMark(x: .value("Quarter", xData[index]),
-                                    y: .value("", yData[index]))
-                            .foregroundStyle(SettingsClass.chartColor)
-                        }
-                    }
-                    .frame(width: 1000)
-                    .padding()
+                if vm.dataLoaded {
+                    let yData = vm.weeks.map { Double($0.units) }
+                    WeekChartView(vm: vm, yData: yData, numberFormat: .number)
+                        .frame(width: 1000, height: 500)
                 } else {
                     Text("No Data")
                 }
             }
+            Picker("", selection: $selection) {
+                Text("Q1")
+                Text("Q2")
+                Text("Q3")
+                Text("Q4")
+            }
+            .pickerStyle(.palette)
+            .padding()
             ExportButtonView()
         }
         .navigationBarTitleDisplayMode(.inline)
     }
-    
-    private func fetchChartData() -> ([Date],[Int]) {
-        let xData = vm.extractWeeks()
-        let yData: [Int]
-
-        yData = vm.weeks.map { $0.units }
-
-        return (xData, yData)
-    }
 }
 
 #Preview {
-    ChinaSalesView(vm: vmChinaSalesPreview)
+    ChinaSalesView(vm: weekDataVM)
 }

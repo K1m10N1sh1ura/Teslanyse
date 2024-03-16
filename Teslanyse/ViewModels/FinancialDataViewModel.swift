@@ -8,9 +8,9 @@
 import Foundation
 
 class FinancialDataViewModel: ObservableObject {
-    let vm: MainViewModel
+    let vm: QuarterDataViewModel
 
-    init(mainViewModel: MainViewModel) {
+    init(mainViewModel: QuarterDataViewModel) {
         self.vm = mainViewModel
     }
     

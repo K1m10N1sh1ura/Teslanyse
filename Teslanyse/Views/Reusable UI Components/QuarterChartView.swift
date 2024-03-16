@@ -9,7 +9,7 @@ import SwiftUI
 import Charts
 
 struct QuarterChartView: View {
-    @StateObject var vm: MainViewModel
+    @StateObject var vm: QuarterDataViewModel
     @State private var rawSelectedDate: Date? = nil
     let yData: [Double]
     let numberFormat: NumberFormatType
