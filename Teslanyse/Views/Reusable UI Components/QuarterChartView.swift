@@ -36,7 +36,7 @@ struct QuarterChartView: View {
                 .foregroundStyle(SettingsClass.chartColor)
                 .opacity(opacity)
             }
-
+            
             if let rawSelectedDate {
                 BarMark(x: .value("Value", rawSelectedDate, unit: .quarter), width: 2)
                     .foregroundStyle(.secondary)

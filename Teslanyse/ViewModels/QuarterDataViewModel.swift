@@ -243,18 +243,3 @@ class QuarterDataViewModel: ObservableObject {
     }
     
 }
-
-//extension MainViewModel: ChartDataProvider {
-//    var dates: [Date] {
-//        return quarters.map { $0.date }
-//    }
-//
-//    var values: [Double] {
-//        // Assuming you have a property that should be displayed in the chart
-//        return quarters.map { Double($0.profit) }
-//    }
-//
-//    func formattedLabel(forIndex index: Int) -> String {
-//        return quarters[index].quarter
-//    }
-//}
