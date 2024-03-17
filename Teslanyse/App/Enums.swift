@@ -53,6 +53,14 @@ enum QuarterDataEnum: String, CaseIterable, WithDescription {
     }
 }
 
+enum ChinaWeeklySalesDataEnum: String, CaseIterable, WithDescription {
+    case units = "Units"
+
+    var description: String {
+        return self.rawValue
+    }
+}
+
 enum TeslaVehicleModel: String, CaseIterable, WithDescription, WithDefinition {
     case model3Y = "Model 3/Y"
     case other = "Other models"

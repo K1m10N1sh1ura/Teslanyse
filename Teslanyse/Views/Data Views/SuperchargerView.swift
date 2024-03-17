@@ -18,8 +18,8 @@ struct SuperchargerView: View {
             TitleView(title: "Supercharger")
             SubtitleView(subtitle: selectionType.description)
             if !vm.quarters.isEmpty {
-                let (xData, yData) = fetchChartData()
-                ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
+                let yData = fetchChartData()
+                QuarterChartView(vm: vm, yData: yData, numberFormat: .number)
             } else {
                 // placeholder
             }
@@ -38,19 +38,29 @@ struct SuperchargerView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
-    private func fetchChartData() -> ([Date],[Double]) {
-        let xData = vm.extractQuarters()
+    private func fetchChartData() -> [Double] {
         let yData: [Double]
-        
+        let selection: QuarterDataEnum
         switch selectionType {
         case .stations:
-            let selection: QuarterDataEnum = selectionAccumulated == .yes ? .superchargerStationsAccumulated : .superchargerStations
-            yData = vm.extractData(property: selection)
+            selection = selectionAccumulated == .yes ? .superchargerStationsAccumulated : .superchargerStations
         case .connectors:
-            let selection: QuarterDataEnum = selectionAccumulated == .yes ? .superchargerConnectorsAccumulated : .superchargerConnectors
-            yData = vm.extractData(property: selection)
+            selection = selectionAccumulated == .yes ? .superchargerConnectorsAccumulated : .superchargerConnectors
         }
-        return (xData, yData)
+        
+        switch selection {
+        case .superchargerStations:
+            yData = vm.quarters.map { Double($0.superchargerStations) }
+        case .superchargerConnectors:
+            yData = vm.quarters.map { Double($0.superchargerConnectors) }
+        case .superchargerStationsAccumulated:
+            yData = vm.quarters.map { Double($0.superchargerStationsAccumulated) }
+        case .superchargerConnectorsAccumulated:
+            yData = vm.quarters.map { Double($0.superchargerConnectorsAccumulated) }
+        default:
+            yData = []
+        }
+        return yData
     }
 }
 

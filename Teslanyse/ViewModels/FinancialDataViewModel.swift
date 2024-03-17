@@ -14,19 +14,18 @@ class FinancialDataViewModel: ObservableObject {
         self.vm = mainViewModel
     }
     
-    func fetchChartData(from selection: FinancialDataOption) -> ([Date],[Double]) {
-        let xData = vm.extractQuarters()
+    func fetchChartData(from selection: FinancialDataOption) -> [Double] {
         let yData: [Double]
 
         switch (selection) {
         case .revenue:
-            yData = vm.extractData(property: .revenue)
+            yData = vm.quarters.map { Double($0.revenue) }
         case .profit:
-            yData = vm.extractData(property: .profit)
+            yData = vm.quarters.map { Double($0.profit) }
         case .grossGAAPMargin:
-            yData = vm.extractData(property: .margin)
+            yData = vm.quarters.map { Double($0.margin) }
         }
-        return (xData, yData)
+        return yData
     }
     
     func selectNumberFormat(for selection: FinancialDataOption) -> NumberFormatType {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TeslaApiDataModel: Codable {
+struct EarningsApiDataModel: Codable {
     var quarter: [String:String] = [:]
     var profit: [String:Int] = [:]
     var revenue: [String:Int] = [:]
@@ -70,5 +70,28 @@ struct QuarterData: Identifiable {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "'Q'q yyyy"
         return dateFormatter.date(from: quarter) ?? Date()
+    }
+}
+
+struct ChinaSalesApiDataModel: Codable {
+    var units: [String: Int] // weekly insured units
+}
+
+struct ChinaWeeklySalesData: Identifiable {
+    let id = UUID()
+    let week: Int
+    let year: Int
+    let units: Int
+    var date: Date {
+        return dateFrom(weekNumber: week, year: year) ?? Date()
+    }
+
+    private func dateFrom(weekNumber: Int, year: Int) -> Date? {
+        var components = DateComponents()
+        components.weekOfYear = weekNumber
+        components.yearForWeekOfYear = year
+        components.weekday = 1 // 1 = Sunday, 2 = Monday, ...
+        let calendar = Calendar(identifier: .gregorian)
+        return calendar.date(from: components)
     }
 }

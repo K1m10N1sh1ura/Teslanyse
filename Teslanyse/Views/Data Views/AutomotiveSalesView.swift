@@ -22,8 +22,8 @@ struct AutomotiveSalesView: View {
             TitleView(title: "Automotive Sales")
             SubtitleView(subtitle: subtitle)
             if !vm.quarters.isEmpty {
-                let (xData, yData) = fetchChartData()
-                ChartView(vm: vm, xData: xData, yData: yData, numberFormat: .number)
+                let yData = fetchChartData()
+                QuarterChartView(vm: vm, yData: yData, numberFormat: .number)
             } else {
                 // placeholder
             }
@@ -47,37 +47,36 @@ struct AutomotiveSalesView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
-    private func fetchChartData() -> ([Date],[Double]) {
-        let xData = vm.extractQuarters()
+    private func fetchChartData() -> [Double] {
         let yData: [Double]
         
         switch (selectedModel, selectedCarSaleState, selectionAccumulated) {
         case (.model3Y, .delivered, .no):
-            yData = vm.extractData(property: .deliveredModel3Y)
+            yData = vm.quarters.map { Double($0.deliveredModel3Y) }
         case (.model3Y, .produced, .no):
-            yData = vm.extractData(property: .producedModel3Y)
+            yData = vm.quarters.map { Double($0.producedModel3Y) }
         case (.other, .delivered, .no):
-            yData = vm.extractData(property: .deliveredOtherModels)
+            yData = vm.quarters.map { Double($0.deliveredOtherModels) }
         case (.other, .produced, .no):
-            yData = vm.extractData(property: .producedOtherModels)
+            yData = vm.quarters.map { Double($0.producedOtherModels) }
         case (.all, .delivered, .no):
-            yData = vm.extractData(property: .deliveredCars)
+            yData = vm.quarters.map { Double($0.deliveredCars) }
         case (.all, .produced, .no):
-            yData = vm.extractData(property: .producedCars)
+            yData = vm.quarters.map { Double($0.producedCars) }
         case (.model3Y, .delivered, .yes):
-            yData = vm.extractData(property: .deliveredModel3YAccumulated)
+            yData = vm.quarters.map { Double($0.deliveredModel3YAccumulated) }
         case (.model3Y, .produced, .yes):
-            yData = vm.extractData(property: .producedModel3YAccumulated)
+            yData = vm.quarters.map { Double($0.producedModel3YAccumulated) }
         case (.other, .delivered, .yes):
-            yData = vm.extractData(property: .deliveredOtherModelsAccumulated)
+            yData = vm.quarters.map { Double($0.deliveredOtherModelsAccumulated) }
         case (.other, .produced, .yes):
-            yData = vm.extractData(property: .producedOtherModelsAccumulated)
+            yData = vm.quarters.map { Double($0.producedOtherModelsAccumulated) }
         case (.all, .delivered, .yes):
-            yData = vm.extractData(property: .deliveredCarsAccumulated)
+            yData = vm.quarters.map { Double($0.deliveredCarsAccumulated) }
         case (.all, .produced, .yes):
-            yData = vm.extractData(property: .producedCarsAccumulated)
+            yData = vm.quarters.map { Double($0.producedCarsAccumulated) }
         }
-        return (xData, yData)
+        return yData
     }
 
 }
