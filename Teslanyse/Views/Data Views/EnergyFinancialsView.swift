@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EnergyFinancialsView: View {
     
-    @StateObject var vm: MainViewModel
+    @StateObject var vm: QuarterDataViewModel
     @State private var selection: EnergyFinancialDataOption = .revenue
     @State private var numberFormat: NumberFormatType = .dollar
     
@@ -20,7 +20,7 @@ struct EnergyFinancialsView: View {
             SubtitleView(subtitle: "Energy - \(selection.description)")
             if !vm.quarters.isEmpty {
                 let yData = fetchChartData()
-                QuarterChartView(vm: vm, yData: yData, numberFormat: .number)
+                QuarterChartView(vm: vm, yAxislabel: numberFormat.rawValue, yData: yData, numberFormat: numberFormat)
             } else {
                 // placeholder
             }
@@ -62,6 +62,6 @@ struct EnergyFinancialsView: View {
 
 #Preview {
     NavigationStack {
-        EnergyFinancialsView(vm: vmPreview)
+        EnergyFinancialsView(vm: quarterDataVM)
     }
 }

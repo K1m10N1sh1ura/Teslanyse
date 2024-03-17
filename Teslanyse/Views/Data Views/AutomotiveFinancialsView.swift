@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AutomotiveFinancialsView: View {
     
-    @StateObject var vm: MainViewModel
+    @StateObject var vm: QuarterDataViewModel
     @State private var selection = AutomotiveFinancialDataOption.revenue
     @State private var numberFormat: NumberFormatType = .dollar
     
@@ -19,7 +19,7 @@ struct AutomotiveFinancialsView: View {
             SubtitleView(subtitle: "Automotive - \(selection.description)")
             if !vm.quarters.isEmpty {
                 let yData = fetchChartData()
-                QuarterChartView(vm: vm, yData: yData, numberFormat: .number)
+                QuarterChartView(vm: vm, yAxislabel: numberFormat.rawValue, yData: yData, numberFormat: numberFormat)
             } else {
                 // placeholder
             }
@@ -62,6 +62,6 @@ struct AutomotiveFinancialsView: View {
 
 #Preview {
     NavigationStack {
-        AutomotiveFinancialsView(vm: vmPreview)
+        AutomotiveFinancialsView(vm: quarterDataVM)
     }
 }

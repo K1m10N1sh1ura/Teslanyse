@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EnergySalesView: View {
     
-    @StateObject var vm: MainViewModel
+    @StateObject var vm: QuarterDataViewModel
     @State private var selection: EnergyOptions = .storageDeployed
     @State private var numberFormat: NumberFormatType = .power
     @State private var subtitle: String = "Storage deployed in Wh"
@@ -20,7 +20,7 @@ struct EnergySalesView: View {
             SubtitleView(subtitle: subtitle)
             if !vm.quarters.isEmpty {
                 let yData = fetchChartData()
-                QuarterChartView(vm: vm, yData: yData, numberFormat: .number)
+                QuarterChartView(vm: vm, yAxislabel: numberFormat.rawValue, yData: yData, numberFormat: numberFormat)
             } else {
                 // placeholder
             }
@@ -58,7 +58,7 @@ struct EnergySalesView: View {
 
 #Preview {
     NavigationStack {
-        EnergySalesView(vm: vmPreview)
+        EnergySalesView(vm: quarterDataVM)
     }
 }
 

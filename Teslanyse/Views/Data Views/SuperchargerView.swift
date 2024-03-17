@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SuperchargerView: View {
     
-    @StateObject var vm: MainViewModel
+    @StateObject var vm: QuarterDataViewModel
     @State private var selectionType: SuperchargerInfrastructure = .stations
     @State private var selectionAccumulated: SelectionYesNo = .yes
     
@@ -19,7 +19,7 @@ struct SuperchargerView: View {
             SubtitleView(subtitle: selectionType.description)
             if !vm.quarters.isEmpty {
                 let yData = fetchChartData()
-                QuarterChartView(vm: vm, yData: yData, numberFormat: .number)
+                QuarterChartView(vm: vm, yAxislabel: selectionType.description, yData: yData, numberFormat: .number)
             } else {
                 // placeholder
             }
@@ -66,7 +66,7 @@ struct SuperchargerView: View {
 
 #Preview {
     NavigationStack {
-        SuperchargerView(vm: vmPreview)
+        SuperchargerView(vm: quarterDataVM)
     }
 }
 

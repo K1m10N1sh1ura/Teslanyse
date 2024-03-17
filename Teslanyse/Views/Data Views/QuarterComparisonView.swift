@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CompareQuartersView: View {
     
-    @StateObject var vm: MainViewModel
+    @StateObject var vm: QuarterDataViewModel
     @State private var selectionQuarterOne: String = "Q3 2023"
     @State private var selectionQuarterTwo: String = "Q4 2023"
 
@@ -121,7 +121,7 @@ struct CompareQuartersView: View {
 
 #Preview {
     NavigationStack {
-        CompareQuartersView(vm: vmPreview)
+        CompareQuartersView(vm: quarterDataVM)
     }
 }
 

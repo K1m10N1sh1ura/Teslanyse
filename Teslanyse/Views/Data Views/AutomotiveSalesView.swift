@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AutomotiveSalesView: View {
 
-    @StateObject var vm: MainViewModel
+    @StateObject var vm: QuarterDataViewModel
     @State private var selectedModel: TeslaVehicleModel = .model3Y
     @State private var selectedCarSaleState: VehicleSaleState = .produced
     @State private var selectionAccumulated: SelectionYesNo = .no
@@ -23,7 +23,7 @@ struct AutomotiveSalesView: View {
             SubtitleView(subtitle: subtitle)
             if !vm.quarters.isEmpty {
                 let yData = fetchChartData()
-                QuarterChartView(vm: vm, yData: yData, numberFormat: .number)
+                QuarterChartView(vm: vm, yAxislabel: selectedModel.description, yData: yData, numberFormat: .number)
             } else {
                 // placeholder
             }
@@ -85,6 +85,6 @@ struct AutomotiveSalesView: View {
 
 #Preview {
     NavigationStack {
-        AutomotiveSalesView(vm: vmPreview)
+        AutomotiveSalesView(vm: quarterDataVM)
     }
 }

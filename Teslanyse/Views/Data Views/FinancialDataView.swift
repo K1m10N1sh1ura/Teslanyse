@@ -9,12 +9,12 @@ import SwiftUI
 
 struct FinancialDataView: View {
     
-    @StateObject private var vm: MainViewModel
+    @StateObject private var vm: QuarterDataViewModel
     @StateObject private var financialDataVm: FinancialDataViewModel
     @State private var selection: FinancialDataOption = .revenue
     @State private var numberFormat: NumberFormatType = .dollar
     
-    init(vm: MainViewModel) {
+    init(vm: QuarterDataViewModel) {
         _vm = StateObject(wrappedValue: vm)
         _financialDataVm = StateObject(wrappedValue: FinancialDataViewModel(mainViewModel: vm))
     }
@@ -24,7 +24,7 @@ struct FinancialDataView: View {
             SubtitleView(subtitle: "Summary")
             if !vm.quarters.isEmpty {
                 let yData = financialDataVm.fetchChartData(from: selection)
-                QuarterChartView(vm: vm, yData: yData, numberFormat: numberFormat)
+                QuarterChartView(vm: vm, yAxislabel: numberFormat.rawValue, yData: yData, numberFormat: numberFormat)
             } else {
                 // placeholder
             }
@@ -43,6 +43,6 @@ struct FinancialDataView: View {
 
 #Preview {
     NavigationStack {
-        FinancialDataView(vm: vmPreview)
+        FinancialDataView(vm: quarterDataVM)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  ChinaSalesViewModel.swift
+//  WeekDataViewModel.swift
 //  Teslanyse
 //
 //  Created by Kimio Nishiura on 14.03.24.
@@ -7,25 +7,32 @@
 
 import Foundation
 
-class ChinaSalesViewModel: ObservableObject {
+class WeekDataViewModel: ObservableObject {
     @Published var weeks = [ChinaWeeklySalesData]()
     @Published var errorMessage: String?
+    @Published var dataLoaded = false
     private var dataService: DataService<ChinaSalesApiDataModel>
+    var dates: [Date] {
+        return weeks.map { $0.date }
+    }
     
     init(dataService: DataService<ChinaSalesApiDataModel>) {
         self.dataService = dataService
         Task {
             let yearsPath = ["2022", "2023", "2024"]
-            await withTaskGroup(of: Void.self) { group in
-                for year in yearsPath {
-                    group.addTask {
-                        await self.loadData(endpoint: EndpointManager.chinaWeeklySales(forYear: year), year: year)
-                    }
-                }
+            
+            for year in yearsPath {
+                // Execute each load task and wait for it to complete before continuing to the next iteration.
+                await loadData(endpoint: EndpointManager.chinaWeeklySales(forYear: year), year: year)
             }
+            dataLoaded = true
         }
     }
     
+    func getIndexOfWeek(_ week: String) -> Int? {
+        return weeks.firstIndex { $0.week == Int(week) }
+    }
+
     func loadData(endpoint: String, year: String) async {
         do {
             let dataDict = try await dataService.fetchData(endpoint: endpoint)

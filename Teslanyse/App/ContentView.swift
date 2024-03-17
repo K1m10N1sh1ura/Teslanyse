@@ -8,11 +8,11 @@
 import SwiftUI
 
 // global: used for previews only
-let vmPreview = MainViewModel(dataService: DataService<EarningsApiDataModel>())
-let vmChinaSalesPreview = ChinaSalesViewModel(dataService: DataService<ChinaSalesApiDataModel>())
+let quarterDataVM = QuarterDataViewModel(dataService: DataService<EarningsApiDataModel>())
+let weekDataVM = WeekDataViewModel(dataService: DataService<ChinaSalesApiDataModel>())
 
 struct ContentView: View {
-    let vm = MainViewModel(dataService: DataService<EarningsApiDataModel>())
+    let vm = QuarterDataViewModel(dataService: DataService<EarningsApiDataModel>())
 
     var body: some View {
         NavigationStack {

@@ -219,12 +219,12 @@ enum SelectionYesNo: String, CaseIterable, WithDescription {
     }
 }
 
-enum NumberFormatType {
-    case dollar
-    case percent
-    case number
-    case power
-    case energy
+enum NumberFormatType: String {
+    case dollar = "USD"
+    case percent = "%"
+    case number = "Num"
+    case power = "Wh"
+    case energy = "Watts"
 }
 
 enum ChartStyle: String, CaseIterable {
