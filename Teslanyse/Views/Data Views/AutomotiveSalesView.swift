@@ -23,7 +23,7 @@ struct AutomotiveSalesView: View {
             SubtitleView(subtitle: subtitle)
             if !vm.quarters.isEmpty {
                 let yData = fetchChartData()
-                QuarterChartView(vm: vm, yData: yData, numberFormat: .number)
+                QuarterChartView(vm: vm, yAxislabel: selectedModel.description, yData: yData, numberFormat: .number)
             } else {
                 // placeholder
             }

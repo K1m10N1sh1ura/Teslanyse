@@ -23,7 +23,7 @@ class FinancialDataViewModel: ObservableObject {
         case .profit:
             yData = vm.quarters.map { Double($0.profit) }
         case .grossGAAPMargin:
-            yData = vm.quarters.map { Double($0.margin) }
+            yData = vm.quarters.map { Double($0.margin) * 100 } // conversion in percent
         }
         return yData
     }

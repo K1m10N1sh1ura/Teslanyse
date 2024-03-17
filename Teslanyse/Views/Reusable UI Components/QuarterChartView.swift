@@ -11,6 +11,7 @@ import Charts
 struct QuarterChartView: View {
     @StateObject var vm: QuarterDataViewModel
     @State private var rawSelectedDate: Date? = nil
+    let yAxislabel: String
     let yData: [Double]
     let numberFormat: NumberFormatType
     
@@ -49,6 +50,7 @@ struct QuarterChartView: View {
             }
         }
         .chartXSelection(value: $rawSelectedDate)
+        .chartYAxisLabel(yAxislabel)
         .frame(maxHeight: 300)
         .padding(.horizontal,20)
         .padding(.bottom,20)

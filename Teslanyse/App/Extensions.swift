@@ -64,7 +64,7 @@ extension Double {
             }
         case .percent:
             numberFormatter.maximumFractionDigits = 1
-            formattedNumber = numberFormatter.string(from: NSNumber(value: Double(self) * 100)) ?? ""
+            formattedNumber = numberFormatter.string(from: NSNumber(value: Double(self))) ?? ""
             formattedNumber += "%"
         case .number:
             if abs(self) >= 1_000_000_000 {
