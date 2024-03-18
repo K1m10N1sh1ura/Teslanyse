@@ -23,13 +23,13 @@ struct StartScreenView: View {
                     Label("Global sales", systemImage: "car.side")
                 }
                 NavigationLink(destination: Text("Coming soon")) {
-                    Label("China sales 🇨🇳", systemImage: "car.fill")
+                    Label("Asia sales", systemImage: "car.fill")
                 }
                 NavigationLink(destination: Text("Coming soon")) {
-                    Label("Europe sales 🇪🇺", systemImage: "car.fill")
+                    Label("Europe sales", systemImage: "car.fill")
                 }
                 NavigationLink(destination: Text("Coming soon")) {
-                    Label("US sales 🇺🇸", systemImage: "car.fill")
+                    Label("North America sales", systemImage: "car.fill")
                 }
                 NavigationLink(destination: AutomotiveFinancialsView(vm: vm)) {
                     Label("Financials", systemImage: "dollarsign.square")
