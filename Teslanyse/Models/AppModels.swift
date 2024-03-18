@@ -57,11 +57,11 @@ struct QuarterData: Identifiable {
     let superchargerConnectors: Int
     let superchargerStationsAccumulated: Int
     let superchargerConnectorsAccumulated: Int
-    var margin: Double { Double(profit) / Double(revenue) }
+    var margin: Double { Double(profit) * 100 / Double(revenue) } // in percent
     var automotiveProfit: Int { automotiveRevenue - automotiveCostOfRevenue }
-    var automotiveMargin: Double { Double(automotiveProfit) / Double(automotiveRevenue) }
+    var automotiveMargin: Double { Double(automotiveProfit) * 100 / Double(automotiveRevenue) } // in percent
     var energyProfit: Int { energyRevenue - energyCostOfRevenue }
-    var energyMargin: Double { Double(energyProfit) / Double(energyRevenue) }
+    var energyMargin: Double { Double(energyProfit) * 100 / Double(energyRevenue) } // in percent
     var automotiveCostOfGoodsSold: Int { Int(Double(automotiveCostOfRevenue) / Double(producedCars)) }
     var energyCostOfGoodsSold: Int { Int(Double(energyCostOfRevenue) / Double(energyStorage)) }
     

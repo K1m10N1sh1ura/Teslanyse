@@ -52,7 +52,7 @@ struct EnergyFinancialsView: View {
         case .profit:
             yData = vm.quarters.map { Double($0.energyProfit) }
         case .margin:
-            yData = vm.quarters.map { Double($0.energyMargin) }
+            yData = vm.quarters.map { Double($0.energyMargin) } 
         case .cogs:
             yData = vm.quarters.map { Double($0.energyCostOfRevenue) }
         }
