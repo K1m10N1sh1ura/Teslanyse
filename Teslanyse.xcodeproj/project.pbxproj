@@ -12,6 +12,7 @@
 		890C05332BA3876B00622DE7 /* ChinaSalesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890C05322BA3876B00622DE7 /* ChinaSalesView.swift */; };
 		890C05352BA38ABA00622DE7 /* WeekDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890C05342BA38ABA00622DE7 /* WeekDataViewModel.swift */; };
 		890C05372BA4ACA400622DE7 /* WeekChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890C05362BA4ACA400622DE7 /* WeekChartView.swift */; };
+		890F4E482BA8F00F008783F1 /* QuarterComparisonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890F4E472BA8F00F008783F1 /* QuarterComparisonViewModel.swift */; };
 		8934E0352B98EB52007C6FF9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8934E0342B98EB52007C6FF9 /* Extensions.swift */; };
 		893C58D22B8CD11100734A71 /* AutomotiveSalesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C58D12B8CD11100734A71 /* AutomotiveSalesView.swift */; };
 		893C58D42B8D626600734A71 /* FinancialDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C58D32B8D626600734A71 /* FinancialDataView.swift */; };
@@ -42,6 +43,7 @@
 		890C05322BA3876B00622DE7 /* ChinaSalesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChinaSalesView.swift; sourceTree = "<group>"; };
 		890C05342BA38ABA00622DE7 /* WeekDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDataViewModel.swift; sourceTree = "<group>"; };
 		890C05362BA4ACA400622DE7 /* WeekChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekChartView.swift; sourceTree = "<group>"; };
+		890F4E472BA8F00F008783F1 /* QuarterComparisonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuarterComparisonViewModel.swift; sourceTree = "<group>"; };
 		8934E0342B98EB52007C6FF9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		893C58D12B8CD11100734A71 /* AutomotiveSalesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomotiveSalesView.swift; sourceTree = "<group>"; };
 		893C58D32B8D626600734A71 /* FinancialDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialDataView.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				89F882F12B8A3DB100C81C85 /* QuarterDataViewModel.swift */,
 				894AA19B2B9F8BCE00CF56D2 /* FinancialDataViewModel.swift */,
 				890C05342BA38ABA00622DE7 /* WeekDataViewModel.swift */,
+				890F4E472BA8F00F008783F1 /* QuarterComparisonViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				89B60EDA2B9530C1005A7BF2 /* UIElements.swift in Sources */,
 				890C05372BA4ACA400622DE7 /* WeekChartView.swift in Sources */,
 				893C58D82B8D62A700734A71 /* EnergySalesView.swift in Sources */,
+				890F4E482BA8F00F008783F1 /* QuarterComparisonViewModel.swift in Sources */,
 				89F882E42B8A355400C81C85 /* ContentView.swift in Sources */,
 				890C052F2BA1FB4900622DE7 /* QuarterChartView.swift in Sources */,
 				89B60EE02B9666B5005A7BF2 /* Constants.swift in Sources */,

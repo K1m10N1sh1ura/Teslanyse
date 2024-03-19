@@ -10,113 +10,37 @@ import SwiftUI
 struct CompareQuartersView: View {
     
     @StateObject var vm: QuarterDataViewModel
-    @State private var selectionQuarterOne: String = "Q3 2023"
-    @State private var selectionQuarterTwo: String = "Q4 2023"
-
-    var firstQuarterIndex: Int? {
-        vm.quarters.firstIndex {
-            $0.quarter == selectionQuarterOne
-        } ?? nil
-    }
+    @StateObject private var quarterCompareViewModel: QuarterComparisonViewModel
     
-    var secondQuarterIndex: Int? {
-        vm.quarters.firstIndex {
-            $0.quarter == selectionQuarterTwo
-        } ?? nil
+    init(vm: QuarterDataViewModel) {
+        _vm = StateObject(wrappedValue: vm)
+        _quarterCompareViewModel = StateObject(wrappedValue: QuarterComparisonViewModel(vm: vm))
     }
+
+
         
     var body: some View {
         VStack (alignment: .leading) {
             TitleView(title: "Quarter")
             SubtitleView(subtitle: "Comparison")
-        ScrollView {
+            ScrollView {
                 Divider()
-                HStack {
-                    Picker("", selection: $selectionQuarterOne) {
-                        ForEach(vm.quarters) {
-                            Text($0.quarter)
-                                .tag($0.quarter)
-                        }
-                    }
-                    Text("vs")
-                    Picker("", selection: $selectionQuarterTwo) {
-                        ForEach(vm.quarters) {
-                            Text($0.quarter)
-                                .tag($0.quarter)
-                        }
+                QuarterPickerView(vm: vm, selectionQuarterOne: $quarterCompareViewModel.selectionQuarterOne, selectionQuarterTwo: $quarterCompareViewModel.selectionQuarterTwo)
+                LatestButtonView(selectionQuarterOne: $quarterCompareViewModel.selectionQuarterOne, selectionQuarterTwo: $quarterCompareViewModel.selectionQuarterTwo)
+                Divider()
+                ForEach(QuarterDataEnum.allCases, id: \.self) {param in
+                    if let firstQuarterIndex = quarterCompareViewModel.firstQuarterIndex,
+                        let secondQuarterIndex = quarterCompareViewModel.secondQuarterIndex {
+                        
+                        ExtractedView(title: param.description,
+                                      valueFirstQuarter: vm.extractData(property: param)[firstQuarterIndex],
+                                      valueSecondQuarter: vm.extractData(property: param)[secondQuarterIndex], numberFormat: quarterCompareViewModel.getNumberFormat(of: param))
                     }
                 }
-                .bold()
-                .pickerStyle(.inline)
-                .frame(height: 120)
-                .animation(.easeIn, value: selectionQuarterOne)
-                .animation(.easeIn, value: selectionQuarterTwo)
-                Button(action: {
-                    selectionQuarterOne = "Q3 2023"
-                    selectionQuarterTwo = "Q4 2023"
-                }, label: {
-                    Label("Latest", systemImage: "chart.line.uptrend.xyaxis")
-                        .font(.headline)
-                        .foregroundStyle(.white)
-                        .frame(height: 55)
-                        .frame(maxWidth: .infinity)
-                        .background(.blue)
-                        .cornerRadius(10.0)
-                        .padding()
-                        .frame(height: 60)
-                })
-                Divider()
-                    ForEach(QuarterDataEnum.allCases, id: \.self) {param in
-                        if let firstQuarterIndex, let secondQuarterIndex {
-
-                            ExtractedView(title: param.description,
-                                          valueFirstQuarter: vm.extractData(property: param)[firstQuarterIndex],
-                                          valueSecondQuarter: vm.extractData(property: param)[secondQuarterIndex], numberFormat: getNumberFormat(of: param))
-                        }
-                    }
             }
             .navigationBarTitleDisplayMode(.inline)
         }
     }
-    private func getNumberFormat(of param: QuarterDataEnum) -> NumberFormatType {
-        let numberFormat: NumberFormatType
-        switch param {
-        case .margin:
-            numberFormat = .percent
-        case .automotiveMargin:
-            numberFormat = .percent
-        case .deliveredCars:
-            numberFormat = .number
-        case .producedCars:
-            numberFormat = .number
-        case .deliveredModel3Y:
-            numberFormat = .number
-        case .deliveredOtherModels:
-            numberFormat = .number
-        case .producedModel3Y:
-            numberFormat = .number
-        case .producedOtherModels:
-            numberFormat = .number
-        case .energyStorage:
-            numberFormat = .power
-        case .energyMargin:
-            numberFormat = .percent
-        case .solarDeployed:
-            numberFormat = .energy
-        case .superchargerStations:
-            numberFormat = .number
-        case .superchargerConnectors:
-            numberFormat = .number
-        case .superchargerStationsAccumulated:
-            numberFormat = .number
-        case .superchargerConnectorsAccumulated:
-            numberFormat = .number
-        default:
-            numberFormat = .dollar
-        }
-        return numberFormat
-    }
-    
 }
 
 #Preview {
@@ -161,5 +85,54 @@ struct ExtractedView: View {
             }
         }
         Divider()
+    }
+}
+
+struct LatestButtonView: View {
+    @Binding var selectionQuarterOne: String
+    @Binding var selectionQuarterTwo: String
+    var body: some View {
+        Button(action: {
+            selectionQuarterOne = "Q3 2023"
+            selectionQuarterTwo = "Q4 2023"
+        }, label: {
+            Label("Latest", systemImage: "chart.line.uptrend.xyaxis")
+                .font(.headline)
+                .foregroundStyle(.white)
+                .frame(height: 55)
+                .frame(maxWidth: .infinity)
+                .background(.blue)
+                .cornerRadius(10.0)
+                .padding()
+                .frame(height: 60)
+        })
+    }
+}
+
+struct QuarterPickerView: View {
+    @ObservedObject var vm: QuarterDataViewModel
+    @Binding var selectionQuarterOne: String
+    @Binding var selectionQuarterTwo: String
+    var body: some View {
+        HStack {
+            Picker("", selection: $selectionQuarterOne) {
+                ForEach(vm.quarters) {
+                    Text($0.quarter)
+                        .tag($0.quarter)
+                }
+            }
+            Text("vs")
+            Picker("", selection: $selectionQuarterTwo) {
+                ForEach(vm.quarters) {
+                    Text($0.quarter)
+                        .tag($0.quarter)
+                }
+            }
+        }
+        .bold()
+        .pickerStyle(.inline)
+        .frame(height: 120)
+        .animation(.easeIn, value: selectionQuarterOne)
+        .animation(.easeIn, value: selectionQuarterTwo)
     }
 }

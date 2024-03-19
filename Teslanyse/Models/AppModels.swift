@@ -11,9 +11,18 @@ struct EarningsApiDataModel: Codable {
     var quarter: [String:String] = [:]
     var profit: [String:Int] = [:]
     var revenue: [String:Int] = [:]
+    var operatingExpenses: [String:Int] = [:]
+    var cash: [String:Int] = [:]
+    var freeCashFlow: [String:Int] = [:]
+    var researchAndDevelopementExpenses: [String:Int] = [:]
+    var sellingGeneralAndAdministrativeExpenses: [String:Int] = [:]
+    var restructuringExpenses: [String:Int] = [:]
     // automotive
     var automotiveRevenue: [String:Int] = [:]
     var automotiveCostOfRevenue: [String:Int] = [:]
+    var automotiveRegulatoryCreditsRevenue: [String:Int] = [:]
+    var automotiveLeasingRevenue: [String:Int] = [:]
+    var automotiveLeasingCostOfRevenue: [String:Int] = [:]
     var deliveredCars: [String:Int] = [:]
     var deliveredModel3Y: [String:Int] = [:]
     var deliveredOtherModels: [String:Int] = [:]
@@ -25,6 +34,9 @@ struct EarningsApiDataModel: Codable {
     var energyCostOfRevenue: [String:Int] = [:]
     var energyStorage: [String:Int] = [:]
     var solarDeployed: [String:Int] = [:]
+    // service
+    var serviceRevenue: [String:Int] = [:]
+    var serviceCostOfRevenue: [String:Int] = [:]
     // superchargers
     var superchargerStationsAccumulated: [String:Int] = [:]
     var superchargerConnectorsAccumulated: [String:Int] = [:]
@@ -35,8 +47,19 @@ struct QuarterData: Identifiable {
     let quarter: String
     let revenue: Int
     let profit: Int
+    let operatingExpenses: Int
+    let cash: Int
+    let freeCashFlow: Int
+    let researchAndDevelopementExpenses: Int
+    let sellingGeneralAndAdministrativeExpenses: Int
+    let restructuringExpenses: Int
     let automotiveRevenue: Int
     let automotiveCostOfRevenue: Int
+    let automotiveRegulatoryCreditsRevenue: Int
+    let automotiveLeasingRevenue: Int
+    let automotiveLeasingCostOfRevenue: Int
+    let serviceRevenue: Int
+    let serviceCostOfRevenue: Int
     let energyRevenue: Int
     let energyCostOfRevenue: Int
     let energyStorage: Int
@@ -57,11 +80,14 @@ struct QuarterData: Identifiable {
     let superchargerConnectors: Int
     let superchargerStationsAccumulated: Int
     let superchargerConnectorsAccumulated: Int
-    var margin: Double { Double(profit) / Double(revenue) }
+    var margin: Double { Double(profit) * 100 / Double(revenue) } // in percent
+    var operatingMargin: Double { Double(profit - operatingExpenses) * 100 / Double(revenue) } // in percent
     var automotiveProfit: Int { automotiveRevenue - automotiveCostOfRevenue }
-    var automotiveMargin: Double { Double(automotiveProfit) / Double(automotiveRevenue) }
+    var automotiveMargin: Double { Double(automotiveProfit) * 100 / Double(automotiveRevenue) } // in percent
     var energyProfit: Int { energyRevenue - energyCostOfRevenue }
-    var energyMargin: Double { Double(energyProfit) / Double(energyRevenue) }
+    var energyMargin: Double { Double(energyProfit) * 100 / Double(energyRevenue) } // in percent
+    var serviceProfit: Int { serviceRevenue - serviceCostOfRevenue }
+    var serviceMargin: Double { Double(serviceProfit) * 100 / Double(serviceRevenue) } // in percent
     var automotiveCostOfGoodsSold: Int { Int(Double(automotiveCostOfRevenue) / Double(producedCars)) }
     var energyCostOfGoodsSold: Int { Int(Double(energyCostOfRevenue) / Double(energyStorage)) }
     

@@ -51,7 +51,7 @@ struct AutomotiveFinancialsView: View {
         case .profit:
             yData = vm.quarters.map { Double($0.automotiveProfit) }
         case .margin:
-            yData = vm.quarters.map { Double($0.automotiveMargin) }
+            yData = vm.quarters.map { Double($0.automotiveMargin) * 100 } // conversion in percent
         case .cogs:
             yData = vm.quarters.map { Double($0.automotiveCostOfGoodsSold) }
         }
