@@ -37,7 +37,11 @@ class QuarterComparisonViewModel: ObservableObject {
         switch param {
         case .margin:
             numberFormat = .percent
+        case .operatingMargin:
+            numberFormat = .percent
         case .automotiveMargin:
+            numberFormat = .percent
+        case .automotiveLeasingMargin:
             numberFormat = .percent
         case .deliveredCars:
             numberFormat = .number
@@ -54,6 +58,8 @@ class QuarterComparisonViewModel: ObservableObject {
         case .energyStorage:
             numberFormat = .power
         case .energyMargin:
+            numberFormat = .percent
+        case .serviceMargin:
             numberFormat = .percent
         case .solarDeployed:
             numberFormat = .energy

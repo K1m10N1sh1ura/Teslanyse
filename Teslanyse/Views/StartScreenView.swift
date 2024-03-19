@@ -13,34 +13,26 @@ struct StartScreenView: View {
 
     var body: some View {
         List {
-            Section("Total") {
+            Section("Financials") {
                 NavigationLink(destination: FinancialDataView(vm: vm)) {
-                    Label("Financials", systemImage: "dollarsign.square")
-                }
-            }
-            Section("Automotive") {
-                NavigationLink(destination: AutomotiveSalesView(vm: vm)) {
-                    Label("Global sales", systemImage: "car.side")
-                }
-                NavigationLink(destination: Text("Coming soon")) {
-                    Label("Asia sales", systemImage: "car.fill")
-                }
-                NavigationLink(destination: Text("Coming soon")) {
-                    Label("Europe sales", systemImage: "car.fill")
-                }
-                NavigationLink(destination: Text("Coming soon")) {
-                    Label("North America sales", systemImage: "car.fill")
+                    Label("Total", systemImage: "dollarsign.square")
                 }
                 NavigationLink(destination: AutomotiveFinancialsView(vm: vm)) {
-                    Label("Financials", systemImage: "dollarsign.square")
-                }
-            }
-            Section("Energy generation and storage") {
-                NavigationLink(destination: EnergySalesView(vm:vm)) {
-                    Label("Storage", systemImage: "bolt.batteryblock")
+                    Label("Automotive", systemImage: "car.side")
                 }
                 NavigationLink(destination: EnergyFinancialsView(vm: vm)) {
-                    Label("Financials", systemImage: "dollarsign.square")
+                    Label("Energy and storage", systemImage: "bolt.batteryblock")
+                }
+                NavigationLink(destination: ServiceFinancialsView(vm: vm)) {
+                    Label("Service and other", systemImage: "hammer")
+                }
+            }
+            Section("Sales and numbers") {
+                NavigationLink(destination: AutomotiveSalesView(vm: vm)) {
+                    Label("Automotive", systemImage: "car.side")
+                }
+                NavigationLink(destination: EnergySalesView(vm:vm)) {
+                    Label("Energy and storage", systemImage: "bolt.batteryblock")
                 }
                 NavigationLink(destination: SuperchargerView(vm:vm)) {
                     Label("Superchargers", systemImage: "ev.charger.fill")

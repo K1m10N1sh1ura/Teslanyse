@@ -57,7 +57,7 @@ struct ExtractedView: View {
     
     var deviation: Double {
         guard valueFirstQuarter != 0 else { return 0 }
-        return (valueSecondQuarter - valueFirstQuarter) / valueFirstQuarter
+        return (valueSecondQuarter - valueFirstQuarter) / abs(valueFirstQuarter)
     }
     
     var body: some View {
