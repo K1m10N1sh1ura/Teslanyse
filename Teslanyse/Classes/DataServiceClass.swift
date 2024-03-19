@@ -32,10 +32,10 @@ struct EndpointManager {
     static let baseHerokuURL = "https://teslanyse-server-320ff9c71971.herokuapp.com"
     
     static var teslaEarnings: String {
-        return "\(baseHerokuURL)/tesla_earnings" // Switch to baseHerokuURL if needed
+        return "\(baseLocalURL)/tesla_earnings" // Switch to baseHerokuURL if needed
     }
     
     static func chinaWeeklySales(forYear year: String) -> String {
-        return "\(baseHerokuURL)/china_weekly_sales/\(year)" // Switch to baseHerokuURL if needed
+        return "\(baseLocalURL)/china_weekly_sales/\(year)" // Switch to baseHerokuURL if needed
     }
 }

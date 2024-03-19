@@ -35,7 +35,7 @@ struct StartScreenView: View {
                     Label("Financials", systemImage: "dollarsign.square")
                 }
             }
-            Section("Energy") {
+            Section("Energy generation and storage") {
                 NavigationLink(destination: EnergySalesView(vm:vm)) {
                     Label("Storage", systemImage: "bolt.batteryblock")
                 }

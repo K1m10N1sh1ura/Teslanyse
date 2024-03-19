@@ -42,8 +42,19 @@ class QuarterDataViewModel: ObservableObject {
             let quarter = dataDictionary.quarter[String(i)]!
             let profit = dataDictionary.profit[String(i)]!
             let revenue = dataDictionary.revenue[String(i)]!
-            let carRevenue = dataDictionary.automotiveRevenue[String(i)]!
-            let carCostOfRevenue = dataDictionary.automotiveCostOfRevenue[String(i)]!
+            let operatingExpenses = dataDictionary.operatingExpenses[String(i)]!
+            let cash = dataDictionary.cash[String(i)]!
+            let freeCashFlow = dataDictionary.freeCashFlow[String(i)]!
+            let restructuringExpenses = dataDictionary.restructuringExpenses[String(i)]!
+            let sellingGeneralAndAdministrativeExpenses = dataDictionary.sellingGeneralAndAdministrativeExpenses[String(i)]!
+            let researchAndDevelopementExpenses = dataDictionary.researchAndDevelopementExpenses[String(i)]!
+            let automotiveRevenue = dataDictionary.automotiveRevenue[String(i)]!
+            let automotiveCostOfRevenue = dataDictionary.automotiveCostOfRevenue[String(i)]!
+            let automotiveRegulatoryCreditsRevenue = dataDictionary.automotiveRegulatoryCreditsRevenue[String(i)]!
+            let automotiveLeasingRevenue = dataDictionary.automotiveLeasingRevenue[String(i)]!
+            let automotiveLeasingCostOfRevenue = dataDictionary.automotiveLeasingCostOfRevenue[String(i)]!
+            let serviceRevenue = dataDictionary.serviceRevenue[String(i)]!
+            let serviceCostOfRevenue = dataDictionary.serviceCostOfRevenue[String(i)]!
             let producedCars = dataDictionary.producedCars[String(i)]!
             let deliveredCars = dataDictionary.deliveredCars[String(i)]!
             let energyRevenue = dataDictionary.energyRevenue[String(i)]!
@@ -78,8 +89,19 @@ class QuarterDataViewModel: ObservableObject {
             let quarterDatum = QuarterData(quarter: quarter,
                                            revenue: revenue,
                                            profit: profit,
-                                           automotiveRevenue: carRevenue,
-                                           automotiveCostOfRevenue: carCostOfRevenue,
+                                           operatingExpenses: operatingExpenses,
+                                           cash: cash,
+                                           freeCashFlow: freeCashFlow,
+                                           researchAndDevelopementExpenses: researchAndDevelopementExpenses,
+                                           sellingGeneralAndAdministrativeExpenses: sellingGeneralAndAdministrativeExpenses,
+                                           restructuringExpenses: restructuringExpenses,
+                                           automotiveRevenue: automotiveRevenue,
+                                           automotiveCostOfRevenue: automotiveCostOfRevenue,
+                                           automotiveRegulatoryCreditsRevenue: automotiveRegulatoryCreditsRevenue,
+                                           automotiveLeasingRevenue: automotiveLeasingRevenue,
+                                           automotiveLeasingCostOfRevenue: automotiveLeasingCostOfRevenue,
+                                           serviceRevenue: serviceRevenue,
+                                           serviceCostOfRevenue: serviceCostOfRevenue,
                                            energyRevenue: energyRevenue,
                                            energyCostOfRevenue: energyCostOfRevenue,
                                            energyStorage: energyStorage,
