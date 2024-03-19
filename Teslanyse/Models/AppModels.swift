@@ -84,6 +84,8 @@ struct QuarterData: Identifiable {
     var operatingMargin: Double { Double(profit - operatingExpenses) * 100 / Double(revenue) } // in percent
     var automotiveProfit: Int { automotiveRevenue - automotiveCostOfRevenue }
     var automotiveMargin: Double { Double(automotiveProfit) * 100 / Double(automotiveRevenue) } // in percent
+    var automotiveLeasingProfit: Int { automotiveLeasingRevenue - automotiveLeasingCostOfRevenue }
+    var automotiveLeasingMargin: Double { Double(automotiveLeasingProfit) * 100 / Double(automotiveLeasingRevenue) } // in percent
     var energyProfit: Int { energyRevenue - energyCostOfRevenue }
     var energyMargin: Double { Double(energyProfit) * 100 / Double(energyRevenue) } // in percent
     var serviceProfit: Int { serviceRevenue - serviceCostOfRevenue }
