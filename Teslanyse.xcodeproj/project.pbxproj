@@ -29,6 +29,7 @@
 		89B60EDA2B9530C1005A7BF2 /* UIElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B60ED92B9530C1005A7BF2 /* UIElements.swift */; };
 		89B60EDC2B953D3E005A7BF2 /* QuarterComparisonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B60EDB2B953D3E005A7BF2 /* QuarterComparisonView.swift */; };
 		89B60EE02B9666B5005A7BF2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B60EDF2B9666B5005A7BF2 /* Constants.swift */; };
+		89E32C2E2BA915F4007462C5 /* ServiceFinancialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E32C2D2BA915F4007462C5 /* ServiceFinancialsView.swift */; };
 		89F882E22B8A355400C81C85 /* TeslanyseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882E12B8A355400C81C85 /* TeslanyseApp.swift */; };
 		89F882E42B8A355400C81C85 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882E32B8A355400C81C85 /* ContentView.swift */; };
 		89F882E62B8A355600C81C85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F882E52B8A355600C81C85 /* Assets.xcassets */; };
@@ -61,6 +62,7 @@
 		89B60EDB2B953D3E005A7BF2 /* QuarterComparisonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuarterComparisonView.swift; sourceTree = "<group>"; };
 		89B60EDF2B9666B5005A7BF2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		89B60EE12B97D173005A7BF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		89E32C2D2BA915F4007462C5 /* ServiceFinancialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFinancialsView.swift; sourceTree = "<group>"; };
 		89F882DE2B8A355400C81C85 /* Teslanyse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teslanyse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F882E12B8A355400C81C85 /* TeslanyseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslanyseApp.swift; sourceTree = "<group>"; };
 		89F882E32B8A355400C81C85 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				893C58DD2B8FC42300734A71 /* EnergyFinancialsView.swift */,
 				89B60EDB2B953D3E005A7BF2 /* QuarterComparisonView.swift */,
 				890C05322BA3876B00622DE7 /* ChinaSalesView.swift */,
+				89E32C2D2BA915F4007462C5 /* ServiceFinancialsView.swift */,
 			);
 			path = "Data Views";
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				890C052F2BA1FB4900622DE7 /* QuarterChartView.swift in Sources */,
 				89B60EE02B9666B5005A7BF2 /* Constants.swift in Sources */,
 				89B60ED82B952E54005A7BF2 /* Enums.swift in Sources */,
+				89E32C2E2BA915F4007462C5 /* ServiceFinancialsView.swift in Sources */,
 				898B6CD82B9BE3080064C5EA /* ChartStyleView.swift in Sources */,
 				893C58DC2B8F8B1600734A71 /* AutomotiveFinancialsView.swift in Sources */,
 				898B6CDA2B9BE3140064C5EA /* ChartColorView.swift in Sources */,

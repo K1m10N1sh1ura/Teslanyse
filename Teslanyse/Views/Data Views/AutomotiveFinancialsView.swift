@@ -34,6 +34,8 @@ struct AutomotiveFinancialsView: View {
             switch selection {
             case .margin:
                 numberFormat = .percent
+            case .leasingMargin:
+                numberFormat = .percent
             default:
                 numberFormat = .dollar
             }
@@ -46,14 +48,20 @@ struct AutomotiveFinancialsView: View {
         switch (selection) {
         case .revenue:
             yData = vm.quarters.map { Double($0.automotiveRevenue) }
-        case .costOfRevenue:
-            yData = vm.quarters.map { Double($0.automotiveCostOfRevenue) }
         case .profit:
             yData = vm.quarters.map { Double($0.automotiveProfit) }
         case .margin:
-            yData = vm.quarters.map { Double($0.automotiveMargin) * 100 } // conversion in percent
+            yData = vm.quarters.map { Double($0.automotiveMargin) } // conversion in percent
         case .cogs:
             yData = vm.quarters.map { Double($0.automotiveCostOfGoodsSold) }
+        case .regulatoryCredits:
+            yData = vm.quarters.map { Double($0.automotiveRegulatoryCreditsRevenue) }
+        case .leasingRevenue:
+            yData = vm.quarters.map { Double($0.automotiveLeasingRevenue) }
+        case .leasingProfit:
+            yData = vm.quarters.map { Double($0.automotiveLeasingProfit) }
+        case .leasingMargin:
+            yData = vm.quarters.map { Double($0.automotiveLeasingMargin) }
         }
         return yData
     }

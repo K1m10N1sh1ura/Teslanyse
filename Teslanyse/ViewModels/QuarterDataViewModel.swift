@@ -260,6 +260,54 @@ class QuarterDataViewModel: ObservableObject {
             for quarter in quarters {
                 data.append(Double(quarter.producedOtherModelsAccumulated))
             }
+        case .operatingMargin:
+            for quarter in quarters {
+                data.append(Double(quarter.operatingMargin))
+            }
+        case .cash:
+            for quarter in quarters {
+                data.append(Double(quarter.cash))
+            }
+        case .freeCashFlow:
+            for quarter in quarters {
+                data.append(Double(quarter.freeCashFlow))
+            }
+        case .operatingExpenses:
+            for quarter in quarters {
+                data.append(Double(quarter.operatingExpenses))
+            }
+        case .researchAndDevelopementExpenses:
+            for quarter in quarters {
+                data.append(Double(quarter.researchAndDevelopementExpenses))
+            }
+        case .sellingGeneralAndAdministrativeExpenses:
+            for quarter in quarters {
+                data.append(Double(quarter.sellingGeneralAndAdministrativeExpenses))
+            }
+        case .automotiveLeasingRevenue:
+            for quarter in quarters {
+                data.append(Double(quarter.automotiveLeasingRevenue))
+            }
+        case .automotiveLeasingProfit:
+            for quarter in quarters {
+                data.append(Double(quarter.automotiveLeasingProfit))
+            }
+        case .automotiveLeasingMargin:
+            for quarter in quarters {
+                data.append(Double(quarter.automotiveLeasingMargin))
+            }
+        case .serviceRevenue:
+            for quarter in quarters {
+                data.append(Double(quarter.serviceRevenue))
+            }
+        case .serviceProfit:
+            for quarter in quarters {
+                data.append(Double(quarter.serviceProfit))
+            }
+        case .serviceMargin:
+            for quarter in quarters {
+                data.append(Double(quarter.serviceMargin))
+            }
         }
         return data
     }
