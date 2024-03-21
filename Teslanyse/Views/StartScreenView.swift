@@ -47,6 +47,11 @@ struct StartScreenView: View {
                     Label("Other manufacturers", systemImage: "car.2.fill")
                 }
             }
+            Section("Prototypes") {
+                NavigationLink(destination: CustomMetricView(vm: vm)) {
+                    Label("Custom metrics", systemImage: "clock.arrow.2.circlepath")
+                }
+            }
             Section("Settings") {
                 NavigationLink(destination: ChartStyleView()) {
                     Label("Chart style", systemImage: "chart.xyaxis.line")
