@@ -105,4 +105,3 @@ struct PickerView<Info: CaseIterable & Hashable & WithDescription>: View {
         .padding()
     }
 }
-
