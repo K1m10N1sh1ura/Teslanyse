@@ -29,8 +29,8 @@ struct SuperchargerView: View {
                 .pickerStyle(.palette)
             Divider()
             Text("Accumulated") // Explicitly add the label here
-                .font(.headline)
-                .padding(.horizontal)            
+                .font(.title2)
+                .padding(.horizontal)
             PickerView<SelectionYesNo>(selection: $selectionAccumulated)
                 .pickerStyle(.palette)
             ExportButtonView()
