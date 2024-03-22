@@ -33,6 +33,7 @@ struct FinancialDataView: View {
             List {
                 ForEach(FinancialDataOption.allCases, id: \.self) { param in
                     Label(param.description, systemImage: financialDataVm.selectedParams[param] == true ? "checkmark.diamond.fill" : "diamond")
+                        .foregroundColor(financialDataVm.selectedParams[param] == true ? .green : .primary)
                         .onTapGesture {
                             financialDataVm.resetSelection()
                             financialDataVm.selectedParams[param, default: false].toggle()
