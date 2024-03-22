@@ -63,7 +63,7 @@ struct InfoButtonView<InfoView: View>: View {
     var body: some View {
         HStack {
             Text(title) // Explicitly add the label here
-                .font(.headline)
+                .font(.title2)
                 .padding(.horizontal)
             Spacer()
             NavigationLink(destination: infoView) {

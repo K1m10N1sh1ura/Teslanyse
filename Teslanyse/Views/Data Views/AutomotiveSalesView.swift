@@ -37,7 +37,7 @@ struct AutomotiveSalesView: View {
                 .pickerStyle(.palette)
             Divider()
             Text("Accumulated")
-                .font(.headline)
+                .font(.title2)
                 .padding(.horizontal)
             PickerView<SelectionYesNo>(selection: $selectionAccumulated)
                 .pickerStyle(.palette)
