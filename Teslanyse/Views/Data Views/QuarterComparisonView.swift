@@ -23,24 +23,46 @@ struct CompareQuartersView: View {
         VStack (alignment: .leading) {
             TitleView(title: "Quarter")
             SubtitleView(subtitle: "Comparison")
-            ScrollView {
-                Divider()
-                QuarterPickerView(vm: vm, selectionQuarterOne: $quarterCompareViewModel.selectionQuarterOne, selectionQuarterTwo: $quarterCompareViewModel.selectionQuarterTwo)
-                LatestButtonView(selectionQuarterOne: $quarterCompareViewModel.selectionQuarterOne, selectionQuarterTwo: $quarterCompareViewModel.selectionQuarterTwo)
-                Divider()
-                ForEach(QuarterDataEnum.allCases, id: \.self) {param in
-                    if let firstQuarterIndex = quarterCompareViewModel.firstQuarterIndex,
-                        let secondQuarterIndex = quarterCompareViewModel.secondQuarterIndex {
-                        
-                        ExtractedView(title: param.description,
-                                      valueFirstQuarter: vm.extractData(property: param)[firstQuarterIndex],
-                                      valueSecondQuarter: vm.extractData(property: param)[secondQuarterIndex], numberFormat: quarterCompareViewModel.getNumberFormat(of: param))
+            Divider()
+            QuarterPickerView(vm: vm, selectionQuarterOne: $quarterCompareViewModel.selectionQuarterOne, selectionQuarterTwo: $quarterCompareViewModel.selectionQuarterTwo)
+            LatestButtonView(selectionQuarterOne: $quarterCompareViewModel.selectionQuarterOne, selectionQuarterTwo: $quarterCompareViewModel.selectionQuarterTwo)
+            if quarterCompareViewModel.isEditing {
+                List(QuarterDataEnum.allCases, id: \.self) { param in
+                    HStack {
+                        Text(param.description)
+                        Spacer()
+                        if quarterCompareViewModel.selectedParams[param, default: false] {
+                            Image(systemName: "checkmark.circle.fill")
+                                .foregroundColor(.blue)
+                        } else {
+                            Image(systemName: "circle")
+                                .foregroundColor(.gray)
+                        }
+                    }
+                    .onTapGesture {
+                        quarterCompareViewModel.selectedParams[param, default: false].toggle()
                     }
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
+            else {
+                List {
+                    ForEach(QuarterDataEnum.allCases.filter { quarterCompareViewModel.selectedParams[$0, default: false] }, id: \.self) { param in
+                        if let firstQuarterIndex = quarterCompareViewModel.firstQuarterIndex,
+                            let secondQuarterIndex = quarterCompareViewModel.secondQuarterIndex {
+                            
+                            ExtractedView(title: param.description,
+                                          valueFirstQuarter: vm.extractData(property: param)[firstQuarterIndex],
+                                          valueSecondQuarter: vm.extractData(property: param)[secondQuarterIndex], numberFormat: quarterCompareViewModel.getNumberFormat(of: param))
+                            
+                        }
+                    }
+                }
+            }
         }
-    }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarItems(trailing: Button(quarterCompareViewModel.isEditing ? "Done" : "Edit") {
+            quarterCompareViewModel.isEditing.toggle()
+        })    }
 }
 
 #Preview {
@@ -84,7 +106,6 @@ struct ExtractedView: View {
                 Spacer()
             }
         }
-        Divider()
     }
 }
 

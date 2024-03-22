@@ -13,7 +13,9 @@ class QuarterComparisonViewModel: ObservableObject {
     let vm: QuarterDataViewModel
     @Published var selectionQuarterOne: String
     @Published var selectionQuarterTwo: String
-    
+    @Published var selectedParams: [QuarterDataEnum: Bool] = Dictionary(uniqueKeysWithValues: QuarterDataEnum.allCases.map { ($0, true) })
+    @Published var isEditing: Bool = false
+
     init(vm: QuarterDataViewModel, selectionQuarterOne: String = "Q3 2023", selectionQuarterTwo: String = "Q4 2023") {
         self.vm = vm
         self.selectionQuarterOne = selectionQuarterOne
