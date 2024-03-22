@@ -9,9 +9,16 @@ import Foundation
 
 class FinancialDataViewModel: ObservableObject {
     let vm: QuarterDataViewModel
+    @Published var selectedParams: [FinancialDataOption: Bool] = Dictionary(uniqueKeysWithValues: FinancialDataOption.allCases.map { ($0, false) })
+
 
     init(mainViewModel: QuarterDataViewModel) {
         self.vm = mainViewModel
+        selectedParams[.revenue, default: false].toggle()
+    }
+    
+    func resetSelection() {
+        selectedParams = Dictionary(uniqueKeysWithValues: FinancialDataOption.allCases.map { ($0, false) })
     }
     
     func fetchChartData(from selection: FinancialDataOption) -> [Double] {

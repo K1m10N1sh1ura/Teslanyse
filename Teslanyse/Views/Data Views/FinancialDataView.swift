@@ -23,16 +23,24 @@ struct FinancialDataView: View {
             TitleView(title: "Financials")
             SubtitleView(subtitle: "Summary")
             if !vm.quarters.isEmpty {
-                let yData = financialDataVm.fetchChartData(from: selection)
+                let yData = financialDataVm.fetchChartData(from: financialDataVm.selectedParams.filter { $0.value == true }.map { $0.key }.first!)
                 QuarterChartView(vm: vm, yAxislabel: numberFormat.rawValue, yData: yData, numberFormat: numberFormat)
             } else {
                 // placeholder
             }
             Divider()
             InfoButtonView<InfoView<FinancialDataOption>>(title: "Select metric", infoView: InfoView())
-            PickerView<FinancialDataOption>(selection: $selection)
-                .pickerStyle(.wheel)
-            ExportButtonView()
+            List {
+                ForEach(FinancialDataOption.allCases, id: \.self) { param in
+                    Label(param.description, systemImage: financialDataVm.selectedParams[param] == true ? "checkmark.diamond.fill" : "diamond")
+                        .onTapGesture {
+                            financialDataVm.resetSelection()
+                            financialDataVm.selectedParams[param, default: false].toggle()
+                            numberFormat = financialDataVm.selectNumberFormat(for: param)
+                        }
+                }
+            }
+            .listStyle(.plain)
         }
         .navigationBarTitleDisplayMode(.inline)
         .onChange(of: selection) {
