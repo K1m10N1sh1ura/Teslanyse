@@ -18,6 +18,7 @@ struct FinancialDataView: View {
         _vm = StateObject(wrappedValue: vm)
         _financialDataVm = StateObject(wrappedValue: FinancialDataViewModel(mainViewModel: vm))
     }
+    
     var body: some View {
         VStack (alignment: .leading) {
             TitleView(title: "Financials")
@@ -26,7 +27,7 @@ struct FinancialDataView: View {
                 let yData = financialDataVm.fetchChartData(from: financialDataVm.selectedParams.filter { $0.value == true }.map { $0.key }.first!)
                 QuarterChartView(vm: vm, yAxislabel: numberFormat.rawValue, yData: yData, numberFormat: numberFormat)
             } else {
-                // placeholder
+                ProgressView()
             }
             Divider()
             InfoButtonView<InfoView<FinancialDataOption>>(title: "Select metric", infoView: InfoView())

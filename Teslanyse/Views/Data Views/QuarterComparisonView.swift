@@ -48,7 +48,7 @@ struct CompareQuartersView: View {
                 List {
                     ForEach(QuarterDataEnum.allCases.filter { quarterCompareViewModel.selectedParams[$0, default: false] }, id: \.self) { param in
                         if let firstQuarterIndex = quarterCompareViewModel.firstQuarterIndex,
-                            let secondQuarterIndex = quarterCompareViewModel.secondQuarterIndex {
+                           let secondQuarterIndex = quarterCompareViewModel.secondQuarterIndex {
                             
                             ExtractedView(title: param.description,
                                           valueFirstQuarter: vm.extractData(property: param)[firstQuarterIndex],
@@ -62,7 +62,11 @@ struct CompareQuartersView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarItems(trailing: Button(quarterCompareViewModel.isEditing ? "Done" : "Edit") {
             quarterCompareViewModel.isEditing.toggle()
-        })    }
+            if quarterCompareViewModel.isEditing == false {
+                quarterCompareViewModel.saveSelectedParams()
+            }
+        })
+    }
 }
 
 #Preview {

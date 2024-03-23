@@ -31,6 +31,9 @@
 		89B60EE02B9666B5005A7BF2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B60EDF2B9666B5005A7BF2 /* Constants.swift */; };
 		89E32C2E2BA915F4007462C5 /* ServiceFinancialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E32C2D2BA915F4007462C5 /* ServiceFinancialsView.swift */; };
 		89E32C302BA9C59D007462C5 /* CustomMetricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E32C2F2BA9C59D007462C5 /* CustomMetricView.swift */; };
+		89E32C342BAF8B4C007462C5 /* AutomotiveFinancialsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E32C332BAF8B4C007462C5 /* AutomotiveFinancialsViewModel.swift */; };
+		89E32C362BAF92C2007462C5 /* EnergyFinancialsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E32C352BAF92C2007462C5 /* EnergyFinancialsViewModel.swift */; };
+		89E32C382BAF93FB007462C5 /* ServiceFinancialsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E32C372BAF93FB007462C5 /* ServiceFinancialsViewModel.swift */; };
 		89F882E22B8A355400C81C85 /* TeslanyseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882E12B8A355400C81C85 /* TeslanyseApp.swift */; };
 		89F882E42B8A355400C81C85 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F882E32B8A355400C81C85 /* ContentView.swift */; };
 		89F882E62B8A355600C81C85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F882E52B8A355600C81C85 /* Assets.xcassets */; };
@@ -65,6 +68,9 @@
 		89B60EE12B97D173005A7BF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		89E32C2D2BA915F4007462C5 /* ServiceFinancialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFinancialsView.swift; sourceTree = "<group>"; };
 		89E32C2F2BA9C59D007462C5 /* CustomMetricView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMetricView.swift; sourceTree = "<group>"; };
+		89E32C332BAF8B4C007462C5 /* AutomotiveFinancialsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomotiveFinancialsViewModel.swift; sourceTree = "<group>"; };
+		89E32C352BAF92C2007462C5 /* EnergyFinancialsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyFinancialsViewModel.swift; sourceTree = "<group>"; };
+		89E32C372BAF93FB007462C5 /* ServiceFinancialsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFinancialsViewModel.swift; sourceTree = "<group>"; };
 		89F882DE2B8A355400C81C85 /* Teslanyse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teslanyse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F882E12B8A355400C81C85 /* TeslanyseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslanyseApp.swift; sourceTree = "<group>"; };
 		89F882E32B8A355400C81C85 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -120,6 +126,9 @@
 				894AA19B2B9F8BCE00CF56D2 /* FinancialDataViewModel.swift */,
 				890C05342BA38ABA00622DE7 /* WeekDataViewModel.swift */,
 				890F4E472BA8F00F008783F1 /* QuarterComparisonViewModel.swift */,
+				89E32C332BAF8B4C007462C5 /* AutomotiveFinancialsViewModel.swift */,
+				89E32C352BAF92C2007462C5 /* EnergyFinancialsViewModel.swift */,
+				89E32C372BAF93FB007462C5 /* ServiceFinancialsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -191,11 +200,11 @@
 		89F882E02B8A355400C81C85 /* Teslanyse */ = {
 			isa = PBXGroup;
 			children = (
+				893C58CE2B8CD0DB00734A71 /* Views */,
 				890C05312BA2040000622DE7 /* Classes */,
 				89B60EE12B97D173005A7BF2 /* Info.plist */,
 				893C58D02B8CD0EA00734A71 /* App */,
 				893C58CF2B8CD0E000734A71 /* ViewModels */,
-				893C58CE2B8CD0DB00734A71 /* Views */,
 				893C58CD2B8CD0D000734A71 /* Models */,
 				89F882E52B8A355600C81C85 /* Assets.xcassets */,
 				89F882E72B8A355600C81C85 /* Preview Content */,
@@ -287,14 +296,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				890C05332BA3876B00622DE7 /* ChinaSalesView.swift in Sources */,
+				89E32C342BAF8B4C007462C5 /* AutomotiveFinancialsViewModel.swift in Sources */,
 				89F882F42B8A3DC800C81C85 /* AppModels.swift in Sources */,
 				893C58DE2B8FC42300734A71 /* EnergyFinancialsView.swift in Sources */,
 				893C58D62B8D628900734A71 /* StartScreenView.swift in Sources */,
 				89B60ED62B94CF01005A7BF2 /* SuperchargerView.swift in Sources */,
+				89E32C362BAF92C2007462C5 /* EnergyFinancialsViewModel.swift in Sources */,
 				89B60EDA2B9530C1005A7BF2 /* UIElements.swift in Sources */,
 				890C05372BA4ACA400622DE7 /* WeekChartView.swift in Sources */,
 				893C58D82B8D62A700734A71 /* EnergySalesView.swift in Sources */,
 				890F4E482BA8F00F008783F1 /* QuarterComparisonViewModel.swift in Sources */,
+				89E32C382BAF93FB007462C5 /* ServiceFinancialsViewModel.swift in Sources */,
 				89F882E42B8A355400C81C85 /* ContentView.swift in Sources */,
 				890C052F2BA1FB4900622DE7 /* QuarterChartView.swift in Sources */,
 				89B60EE02B9666B5005A7BF2 /* Constants.swift in Sources */,
