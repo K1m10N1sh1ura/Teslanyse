@@ -10,50 +10,46 @@ import SwiftUI
 struct ServiceFinancialsView: View {
     
     @StateObject var vm: QuarterDataViewModel
+    @StateObject private var serviceFinancialsVM: ServiceFinancialsViewModel
     @State private var selection = ServiceFinancialsOption.revenue
     @State private var numberFormat: NumberFormatType = .dollar
+    
+    init(vm: QuarterDataViewModel) {
+        _vm = StateObject(wrappedValue: vm)
+        _serviceFinancialsVM = StateObject(wrappedValue: ServiceFinancialsViewModel(mainViewModel: vm))
+    }
     
     var body: some View {
         VStack (alignment: .leading) {
             TitleView(title: "Financials")
             SubtitleView(subtitle: "Service - \(selection.description)")
             if !vm.quarters.isEmpty {
-                let yData = fetchChartData()
+                let yData = serviceFinancialsVM.fetchChartData(from: serviceFinancialsVM.selectedParams.filter { $0.value == true }.map { $0.key }.first!)
                 QuarterChartView(vm: vm, yAxislabel: numberFormat.rawValue, yData: yData, numberFormat: numberFormat)
             } else {
-                // placeholder
+                ProgressView()
             }
             Divider()
             InfoButtonView<InfoView<ServiceFinancialsOption>>(title: "Select metric", infoView: InfoView())
-            PickerView<ServiceFinancialsOption>(selection: $selection)
-                .pickerStyle(.wheel)
+            List {
+                ForEach(ServiceFinancialsOption.allCases, id: \.self) { param in
+                    Label(param.description, systemImage: serviceFinancialsVM.selectedParams[param] == true ? "checkmark.diamond.fill" : "diamond")
+                        .foregroundColor(serviceFinancialsVM.selectedParams[param] == true ? .green : .primary)
+                        .onTapGesture {
+                            serviceFinancialsVM.resetSelection()
+                            serviceFinancialsVM.selectedParams[param, default: false].toggle()
+                            numberFormat = serviceFinancialsVM.selectNumberFormat(for: param)
+                        }
+                }
+            }
+            .listStyle(.plain)
             ExportButtonView()
         }
         .navigationBarTitleDisplayMode(.inline)
         .onChange(of: selection) {
-            switch selection {
-            case .margin:
-                numberFormat = .percent
-            default:
-                numberFormat = .dollar
-            }
+            numberFormat = serviceFinancialsVM.selectNumberFormat(for: selection)
         }
     }
-    
-    private func fetchChartData() -> [Double] {
-        let yData: [Double]
-
-        switch (selection) {
-        case .revenue:
-            yData = vm.quarters.map { Double($0.serviceRevenue) }
-        case .profit:
-            yData = vm.quarters.map { Double($0.serviceProfit) }
-        case .margin:
-            yData = vm.quarters.map { Double($0.serviceMargin) }
-        }
-        return yData
-    }
-    
 }
 
 #Preview {
