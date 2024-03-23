@@ -75,6 +75,8 @@ class QuarterDataViewModel: ObservableObject {
             var deliveredOtherModelsAccumulated: Int = 0
             var producedModel3YAccumulated: Int = 0
             var producedOtherModelsAccumulated: Int = 0
+            var energyStorageAccumulated: Int = 0
+            var solarDeployedAccumulated: Int = 0
             
             for n in 0...i {
                 producedCarsAccumulated += dataDictionary.producedCars[String(n)]!
@@ -83,6 +85,8 @@ class QuarterDataViewModel: ObservableObject {
                 deliveredModel3YAccumulated += dataDictionary.deliveredModel3Y[String(n)]!
                 producedOtherModelsAccumulated += dataDictionary.producedOtherModels[String(n)]!
                 deliveredOtherModelsAccumulated += dataDictionary.deliveredOtherModels[String(n)]!
+                energyStorageAccumulated += dataDictionary.energyStorage[String(n)]!
+                solarDeployedAccumulated += dataDictionary.solarDeployed[String(n)]!
             }
 
 
@@ -105,6 +109,7 @@ class QuarterDataViewModel: ObservableObject {
                                            energyRevenue: energyRevenue,
                                            energyCostOfRevenue: energyCostOfRevenue,
                                            energyStorage: energyStorage,
+                                           energyStorageAccumulated: energyStorageAccumulated,
                                            deliveredCars: deliveredCars,
                                            producedCars: producedCars,
                                            deliveredModel3Y: deliveredModel3Y,
@@ -118,6 +123,7 @@ class QuarterDataViewModel: ObservableObject {
                                            producedModel3YAccumulated: producedModel3YAccumulated,
                                            producedOtherModelsAccumulated: producedOtherModelsAccumulated,
                                            solarDeployed: solarDeployed,
+                                           solarDeployedAccumulated: solarDeployedAccumulated,
                                            superchargerStations: superchargerStations,
                                            superchargerConnectors: superchargerConnectors,
                                            superchargerStationsAccumulated: superchargerStationsAccumulated,
@@ -307,6 +313,14 @@ class QuarterDataViewModel: ObservableObject {
         case .serviceMargin:
             for quarter in quarters {
                 data.append(Double(quarter.serviceMargin))
+            }
+        case .energySotrageAccumulated:
+            for quarter in quarters {
+                data.append(Double(quarter.energyStorageAccumulated))
+            }
+        case .solarDeployedAccumulated:
+            for quarter in quarters {
+                data.append(Double(quarter.solarDeployedAccumulated))
             }
         }
         return data

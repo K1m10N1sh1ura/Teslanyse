@@ -63,6 +63,7 @@ struct QuarterData: Identifiable {
     let energyRevenue: Int
     let energyCostOfRevenue: Int
     let energyStorage: Int
+    let energyStorageAccumulated: Int
     let deliveredCars: Int
     let producedCars: Int
     let deliveredModel3Y: Int
@@ -76,6 +77,7 @@ struct QuarterData: Identifiable {
     let producedModel3YAccumulated: Int
     let producedOtherModelsAccumulated: Int
     let solarDeployed: Int
+    let solarDeployedAccumulated: Int
     let superchargerStations: Int
     let superchargerConnectors: Int
     let superchargerStationsAccumulated: Int

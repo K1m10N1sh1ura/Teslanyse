@@ -10,7 +10,8 @@ import SwiftUI
 struct EnergySalesView: View {
     
     @StateObject var vm: QuarterDataViewModel
-    @State private var selection: EnergyOptions = .storageDeployed
+    @State private var selectionType: EnergyOptions = .storageDeployed
+    @State private var selectionAccumulated: SelectionYesNo = .yes
     @State private var numberFormat: NumberFormatType = .power
     @State private var subtitle: String = "Storage deployed in Wh"
 
@@ -22,17 +23,28 @@ struct EnergySalesView: View {
                 let yData = fetchChartData()
                 QuarterChartView(vm: vm, yAxislabel: numberFormat.rawValue, yData: yData, numberFormat: numberFormat)
             } else {
-                // placeholder
+                HStack {
+                    Spacer()
+                    ProgressView()
+                        .padding()
+                    Spacer()
+                }
             }
             Divider()
             InfoButtonView<InfoView<EnergyOptions>>(title: "Type", infoView: InfoView())
-            PickerView<EnergyOptions>(selection: $selection)
+            PickerView<EnergyOptions>(selection: $selectionType)
                 .pickerStyle(.palette)
+            Text("Accumulated") 
+                .font(.title2)
+                .padding(.horizontal)
+            PickerView<SelectionYesNo>(selection: $selectionAccumulated)
+                .pickerStyle(.palette)
+            Divider()
             ExportButtonView()
         }
         .navigationBarTitleDisplayMode(.inline)
-        .onChange(of: selection) {
-            switch selection {
+        .onChange(of: selectionType) {
+            switch selectionType {
             case .solarDeployed:
                 numberFormat = .energy
                 subtitle = "Solar deployed in Watt"
@@ -46,11 +58,25 @@ struct EnergySalesView: View {
     private func fetchChartData() -> [Double] {
         let yData: [Double]
         
+        let selection: QuarterDataEnum
+        switch selectionType {
+        case .solarDeployed:
+            selection = selectionAccumulated == .yes ? .solarDeployedAccumulated : .solarDeployed
+        case .storageDeployed:
+            selection = selectionAccumulated == .yes ? .energySotrageAccumulated : .energyStorage
+        }
+        
         switch selection {
         case .solarDeployed:
             yData = vm.quarters.map { Double($0.solarDeployed) }
-        case .storageDeployed:
+        case .energyStorage:
             yData = vm.quarters.map { Double($0.energyStorage) }
+        case .solarDeployedAccumulated:
+            yData = vm.quarters.map { Double($0.solarDeployedAccumulated) }
+        case .energySotrageAccumulated:
+            yData = vm.quarters.map { Double($0.energyStorageAccumulated) }
+        default:
+            yData = []
         }
         return yData
     }

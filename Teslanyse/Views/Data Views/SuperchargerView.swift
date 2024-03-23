@@ -21,18 +21,22 @@ struct SuperchargerView: View {
                 let yData = fetchChartData()
                 QuarterChartView(vm: vm, yAxislabel: selectionType.description, yData: yData, numberFormat: .number)
             } else {
-                // placeholder
-            }
+                HStack {
+                    Spacer()
+                    ProgressView()
+                        .padding()
+                    Spacer()
+                }            }
             Divider()
             InfoButtonView<InfoView<SuperchargerInfrastructure>>(title: "Type", infoView: InfoView())
             PickerView<SuperchargerInfrastructure>(selection: $selectionType)
                 .pickerStyle(.palette)
-            Divider()
-            Text("Accumulated") // Explicitly add the label here
+            Text("Accumulated")
                 .font(.title2)
                 .padding(.horizontal)
             PickerView<SelectionYesNo>(selection: $selectionAccumulated)
                 .pickerStyle(.palette)
+            Divider()
             ExportButtonView()
         }
         .navigationBarTitleDisplayMode(.inline)

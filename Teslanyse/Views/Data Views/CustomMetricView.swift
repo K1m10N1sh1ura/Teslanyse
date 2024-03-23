@@ -120,6 +120,10 @@ struct CustomMetricView: View {
             yData = vm.quarters.map { Double($0.superchargerStationsAccumulated) }
         case .superchargerConnectorsAccumulated:
             yData = vm.quarters.map { Double($0.superchargerConnectorsAccumulated) }
+        case .energySotrageAccumulated:
+            yData = vm.quarters.map { Double($0.energyStorageAccumulated) }
+        case .solarDeployedAccumulated:
+            yData = vm.quarters.map { Double($0.solarDeployedAccumulated) }
         }
         return yData
     }
