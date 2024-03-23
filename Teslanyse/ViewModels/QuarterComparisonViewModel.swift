@@ -20,7 +20,9 @@ class QuarterComparisonViewModel: ObservableObject {
         self.vm = vm
         self.selectionQuarterOne = selectionQuarterOne
         self.selectionQuarterTwo = selectionQuarterTwo
+        loadSelectedParams()
     }
+    
     
     var firstQuarterIndex: Int? {
         vm.quarters.firstIndex {
@@ -32,6 +34,39 @@ class QuarterComparisonViewModel: ObservableObject {
         vm.quarters.firstIndex {
             $0.quarter == selectionQuarterTwo
         } ?? nil
+    }
+    
+    func saveSelectedParams() {
+        let dictForUserDefaults = Dictionary(uniqueKeysWithValues: selectedParams.map { ($0.key.rawValue, $0.value) })
+        UserDefaults.standard.set(dictForUserDefaults, forKey: "selectedParams")
+    }
+    
+    func deleteSelectedParams() {
+        UserDefaults.standard.removeObject(forKey: "selectedParams")
+    }
+    
+    func loadSelectedParams() {
+        if let loadedDict = UserDefaults.standard.dictionary(forKey: "selectedParams") as? [String: Bool] {
+            let selectedParams = Dictionary(uniqueKeysWithValues: loadedDict.map { (QuarterDataEnum(rawValue: $0.key)!, $0.value) })
+            self.selectedParams = selectedParams
+        }
+        else {
+            selectedParams[.deliveredCarsAccumulated] = false
+            selectedParams[.deliveredModel3Y] = false
+            selectedParams[.deliveredOtherModels] = false
+            selectedParams[.deliveredModel3YAccumulated] = false
+            selectedParams[.deliveredOtherModelsAccumulated] = false
+            selectedParams[.producedCarsAccumulated] = false
+            selectedParams[.producedModel3Y] = false
+            selectedParams[.producedOtherModels] = false
+            selectedParams[.producedModel3YAccumulated] = false
+            selectedParams[.producedOtherModelsAccumulated] = false
+            selectedParams[.energyCostOfRevenue] = false
+            selectedParams[.automotiveCostOfRevenue] = false
+            selectedParams[.operatingExpenses] = false
+            selectedParams[.superchargerConnectors] = false
+            selectedParams[.superchargerStations] = false
+        }
     }
     
     func getNumberFormat(of param: QuarterDataEnum) -> NumberFormatType {
