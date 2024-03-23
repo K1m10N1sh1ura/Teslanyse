@@ -31,12 +31,12 @@ struct SuperchargerView: View {
             InfoButtonView<InfoView<SuperchargerInfrastructure>>(title: "Type", infoView: InfoView())
             PickerView<SuperchargerInfrastructure>(selection: $selectionType)
                 .pickerStyle(.palette)
-            Divider()
-            Text("Accumulated") // Explicitly add the label here
+            Text("Accumulated")
                 .font(.title2)
                 .padding(.horizontal)
             PickerView<SelectionYesNo>(selection: $selectionAccumulated)
                 .pickerStyle(.palette)
+            Divider()
             ExportButtonView()
         }
         .navigationBarTitleDisplayMode(.inline)
