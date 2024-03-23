@@ -21,8 +21,12 @@ struct SuperchargerView: View {
                 let yData = fetchChartData()
                 QuarterChartView(vm: vm, yAxislabel: selectionType.description, yData: yData, numberFormat: .number)
             } else {
-                // placeholder
-            }
+                HStack {
+                    Spacer()
+                    ProgressView()
+                        .padding()
+                    Spacer()
+                }            }
             Divider()
             InfoButtonView<InfoView<SuperchargerInfrastructure>>(title: "Type", infoView: InfoView())
             PickerView<SuperchargerInfrastructure>(selection: $selectionType)

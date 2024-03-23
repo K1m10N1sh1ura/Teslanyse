@@ -28,8 +28,12 @@ struct EnergyFinancialsView: View {
                 let yData = energyFinancialsVM.fetchChartData(from: energyFinancialsVM.selectedParams.filter { $0.value == true }.map { $0.key }.first!)
                 QuarterChartView(vm: vm, yAxislabel: numberFormat.rawValue, yData: yData, numberFormat: numberFormat)
             } else {
-                ProgressView()
-            }
+                HStack {
+                    Spacer()
+                    ProgressView()
+                        .padding()
+                    Spacer()
+                }            }
             Divider()
             InfoButtonView<InfoView<EnergyFinancialDataOption>>(title: "Select metric", infoView: InfoView())
             List {

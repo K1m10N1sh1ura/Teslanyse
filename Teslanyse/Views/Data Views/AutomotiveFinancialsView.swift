@@ -27,8 +27,12 @@ struct AutomotiveFinancialsView: View {
                 let yData = automotiveFinancialsVM.fetchChartData(from: automotiveFinancialsVM.selectedParams.filter { $0.value == true }.map { $0.key }.first!)
                 QuarterChartView(vm: vm, yAxislabel: numberFormat.rawValue, yData: yData, numberFormat: numberFormat)
             } else {
-                ProgressView()
-            }
+                HStack {
+                    Spacer()
+                    ProgressView()
+                        .padding()
+                    Spacer()
+                }            }
             Divider()
             InfoButtonView<InfoView<AutomotiveFinancialDataOption>>(title: "Select metric", infoView: InfoView())
             List {

@@ -25,8 +25,12 @@ struct AutomotiveSalesView: View {
                 let yData = fetchChartData()
                 QuarterChartView(vm: vm, yAxislabel: selectedModel.description, yData: yData, numberFormat: .number)
             } else {
-                // placeholder
-            }
+                HStack {
+                    Spacer()
+                    ProgressView()
+                        .padding()
+                    Spacer()
+                }            }
             Divider()
             InfoButtonView<InfoView<TeslaVehicleModel>>(title: "Model", infoView: InfoView())
             PickerView<TeslaVehicleModel>(selection: $selectedModel)

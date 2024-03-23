@@ -22,7 +22,12 @@ struct EnergySalesView: View {
                 let yData = fetchChartData()
                 QuarterChartView(vm: vm, yAxislabel: numberFormat.rawValue, yData: yData, numberFormat: numberFormat)
             } else {
-                // placeholder
+                HStack {
+                    Spacer()
+                    ProgressView()
+                        .padding()
+                    Spacer()
+                }
             }
             Divider()
             InfoButtonView<InfoView<EnergyOptions>>(title: "Type", infoView: InfoView())
