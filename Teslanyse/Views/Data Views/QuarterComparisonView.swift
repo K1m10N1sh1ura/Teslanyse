@@ -25,7 +25,8 @@ struct CompareQuartersView: View {
             SubtitleView(subtitle: "Comparison")
             Divider()
             QuarterPickerView(vm: vm, selectionQuarterOne: $quarterCompareViewModel.selectionQuarterOne, selectionQuarterTwo: $quarterCompareViewModel.selectionQuarterTwo)
-            LatestButtonView(selectionQuarterOne: $quarterCompareViewModel.selectionQuarterOne, selectionQuarterTwo: $quarterCompareViewModel.selectionQuarterTwo)
+            Divider()
+            //LatestButtonView(selectionQuarterOne: $quarterCompareViewModel.selectionQuarterOne, selectionQuarterTwo: $quarterCompareViewModel.selectionQuarterTwo)
             if quarterCompareViewModel.isEditing {
                 List(QuarterDataEnum.allCases, id: \.self) { param in
                     HStack {
@@ -57,6 +58,7 @@ struct CompareQuartersView: View {
                         }
                     }
                 }
+                .listStyle(.plain)
             }
         }
         .navigationBarTitleDisplayMode(.inline)

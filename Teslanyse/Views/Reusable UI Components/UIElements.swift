@@ -18,7 +18,7 @@ struct TitleView: View {
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .padding(.leading, 20)
-            Image("Tesla_T_symbol")
+            Image("Tesla_T_Symbol")
                 .resizable()
                 .frame(width: 25, height: 25)
         }

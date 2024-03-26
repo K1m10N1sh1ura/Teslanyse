@@ -39,7 +39,7 @@ struct ServiceFinancialsView: View {
             List {
                 ForEach(ServiceFinancialsOption.allCases, id: \.self) { param in
                     Label(param.description, systemImage: serviceFinancialsVM.selectedParams[param] == true ? "checkmark.diamond.fill" : "diamond")
-                        .foregroundColor(serviceFinancialsVM.selectedParams[param] == true ? .green : .primary)
+                        .foregroundColor(serviceFinancialsVM.selectedParams[param] == true ? .blue : .primary)
                         .onTapGesture {
                             serviceFinancialsVM.resetSelection()
                             serviceFinancialsVM.selectedParams[param, default: false].toggle()

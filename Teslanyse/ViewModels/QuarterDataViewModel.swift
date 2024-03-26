@@ -23,7 +23,9 @@ class QuarterDataViewModel: ObservableObject {
     func loadData(endpoint: String) async {
         do {
             let dataDict = try await dataService.fetchData(endpoint: endpoint)
-            self.quarters = self.extractQuarterData(from: dataDict)
+            DispatchQueue.main.async {
+                self.quarters = self.extractQuarterData(from: dataDict)
+            }
         } catch {
             self.errorMessage = error.localizedDescription
         }

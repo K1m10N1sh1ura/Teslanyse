@@ -39,7 +39,7 @@ struct EnergyFinancialsView: View {
             List {
                 ForEach(EnergyFinancialDataOption.allCases, id: \.self) { param in
                     Label(param.description, systemImage: energyFinancialsVM.selectedParams[param] == true ? "checkmark.diamond.fill" : "diamond")
-                        .foregroundColor(energyFinancialsVM.selectedParams[param] == true ? .green : .primary)
+                        .foregroundColor(energyFinancialsVM.selectedParams[param] == true ? .blue : .primary)
                         .onTapGesture {
                             energyFinancialsVM.resetSelection()
                             energyFinancialsVM.selectedParams[param, default: false].toggle()
