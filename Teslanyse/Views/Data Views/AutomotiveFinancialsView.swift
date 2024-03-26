@@ -32,13 +32,14 @@ struct AutomotiveFinancialsView: View {
                     ProgressView()
                         .padding()
                     Spacer()
-                }            }
+                }
+            }
             Divider()
             InfoButtonView<InfoView<AutomotiveFinancialDataOption>>(title: "Select metric", infoView: InfoView())
             List {
                 ForEach(AutomotiveFinancialDataOption.allCases, id: \.self) { param in
                     Label(param.description, systemImage: automotiveFinancialsVM.selectedParams[param] == true ? "checkmark.diamond.fill" : "diamond")
-                        .foregroundColor(automotiveFinancialsVM.selectedParams[param] == true ? .green : .primary)
+                        .foregroundColor(automotiveFinancialsVM.selectedParams[param] == true ? .blue : .primary)
                         .onTapGesture {
                             automotiveFinancialsVM.resetSelection()
                             automotiveFinancialsVM.selectedParams[param, default: false].toggle()

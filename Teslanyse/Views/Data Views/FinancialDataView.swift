@@ -22,7 +22,7 @@ struct FinancialDataView: View {
     var body: some View {
         VStack (alignment: .leading) {
             TitleView(title: "Financials")
-            SubtitleView(subtitle: "Summary")
+            SubtitleView(subtitle: "Summary - " + financialDataVm.selectedParams.filter { $0.value == true }.map { $0.key.description }.first!)
             if !vm.quarters.isEmpty {
                 let yData = financialDataVm.fetchChartData(from: financialDataVm.selectedParams.filter { $0.value == true }.map { $0.key }.first!)
                 QuarterChartView(vm: vm, yAxislabel: numberFormat.rawValue, yData: yData, numberFormat: numberFormat)
@@ -38,7 +38,7 @@ struct FinancialDataView: View {
             List {
                 ForEach(FinancialDataOption.allCases, id: \.self) { param in
                     Label(param.description, systemImage: financialDataVm.selectedParams[param] == true ? "checkmark.diamond.fill" : "diamond")
-                        .foregroundColor(financialDataVm.selectedParams[param] == true ? .green : .primary)
+                        .foregroundColor(financialDataVm.selectedParams[param] == true ? .blue : .primary)
                         .onTapGesture {
                             financialDataVm.resetSelection()
                             financialDataVm.selectedParams[param, default: false].toggle()
